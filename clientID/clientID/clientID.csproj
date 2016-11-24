@@ -121,6 +121,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProfilController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -154,6 +155,20 @@
     <Content Include="UI\font-awesome\fonts\fontawesome-webfont.svg" />
     <Content Include="UI\img\intro-bg.jpg" />
     <Content Include="UI\index.html" />
+    <Content Include="UI_1\assets\css\animate.min.css" />
+    <Content Include="UI_1\assets\css\bootstrap.min.css" />
+    <Content Include="UI_1\assets\css\demo.css" />
+    <Content Include="UI_1\assets\css\light-bootstrap-dashboard.css" />
+    <Content Include="UI_1\assets\css\pe-icon-7-stroke.css" />
+    <Content Include="UI_1\assets\fonts\Pe-icon-7-stroke.svg" />
+    <Content Include="UI_1\assets\js\bootstrap-checkbox-radio-switch.js" />
+    <Content Include="UI_1\assets\js\bootstrap-notify.js" />
+    <Content Include="UI_1\assets\js\bootstrap-select.js" />
+    <Content Include="UI_1\assets\js\bootstrap.min.js" />
+    <Content Include="UI_1\assets\js\chartist.min.js" />
+    <Content Include="UI_1\assets\js\demo.js" />
+    <Content Include="UI_1\assets\js\jquery-1.10.2.js" />
+    <Content Include="UI_1\assets\js\light-bootstrap-dashboard.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -197,6 +212,40 @@
     <Content Include="UI\font-awesome\scss\_spinning.scss" />
     <Content Include="UI\font-awesome\scss\_stacked.scss" />
     <Content Include="UI\font-awesome\scss\_variables.scss" />
+    <Content Include="UI_1\assets\fonts\Pe-icon-7-stroke.eot" />
+    <Content Include="UI_1\assets\fonts\Pe-icon-7-stroke.ttf" />
+    <Content Include="UI_1\assets\fonts\Pe-icon-7-stroke.woff" />
+    <Content Include="UI_1\assets\sass\lbd\mixins\_buttons.scss" />
+    <Content Include="UI_1\assets\sass\lbd\mixins\_cards.scss" />
+    <Content Include="UI_1\assets\sass\lbd\mixins\_chartist.scss" />
+    <Content Include="UI_1\assets\sass\lbd\mixins\_icons.scss" />
+    <Content Include="UI_1\assets\sass\lbd\mixins\_inputs.scss" />
+    <Content Include="UI_1\assets\sass\lbd\mixins\_labels.scss" />
+    <Content Include="UI_1\assets\sass\lbd\mixins\_morphing-buttons.scss" />
+    <Content Include="UI_1\assets\sass\lbd\mixins\_navbars.scss" />
+    <Content Include="UI_1\assets\sass\lbd\mixins\_social-buttons.scss" />
+    <Content Include="UI_1\assets\sass\lbd\mixins\_tabs.scss" />
+    <Content Include="UI_1\assets\sass\lbd\mixins\_transparency.scss" />
+    <Content Include="UI_1\assets\sass\lbd\mixins\_vendor-prefixes.scss" />
+    <Content Include="UI_1\assets\sass\lbd\_alerts.scss" />
+    <Content Include="UI_1\assets\sass\lbd\_buttons.scss" />
+    <Content Include="UI_1\assets\sass\lbd\_cards.scss" />
+    <Content Include="UI_1\assets\sass\lbd\_chartist.scss" />
+    <Content Include="UI_1\assets\sass\lbd\_checkbox-radio-switch.scss" />
+    <Content Include="UI_1\assets\sass\lbd\_dropdown.scss" />
+    <Content Include="UI_1\assets\sass\lbd\_footers.scss" />
+    <Content Include="UI_1\assets\sass\lbd\_inputs.scss" />
+    <Content Include="UI_1\assets\sass\lbd\_misc.scss" />
+    <Content Include="UI_1\assets\sass\lbd\_mixins.scss" />
+    <Content Include="UI_1\assets\sass\lbd\_navbars.scss" />
+    <Content Include="UI_1\assets\sass\lbd\_responsive.scss" />
+    <Content Include="UI_1\assets\sass\lbd\_sidebar-and-main-panel.scss" />
+    <Content Include="UI_1\assets\sass\lbd\_tables.scss" />
+    <Content Include="UI_1\assets\sass\lbd\_typography.scss" />
+    <Content Include="UI_1\assets\sass\lbd\_variables.scss" />
+    <Content Include="UI_1\assets\sass\light-bootstrap-dashboard.scss" />
+    <Content Include="Views\Profil\Index.cshtml" />
+    <Content Include="Views\Shared\_MainShared.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
