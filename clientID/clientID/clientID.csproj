@@ -147,6 +147,13 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="UI\css\landing-page.css" />
+    <Content Include="UI\css\s.css" />
+    <Content Include="UI\font-awesome\css\font-awesome.css" />
+    <Content Include="UI\font-awesome\css\font-awesome.min.css" />
+    <Content Include="UI\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="UI\img\intro-bg.jpg" />
+    <Content Include="UI\index.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -158,13 +165,43 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Giris.cshtml" />
+    <Content Include="UI\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="UI\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="UI\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="UI\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="UI\font-awesome\less\bordered-pulled.less" />
+    <Content Include="UI\font-awesome\less\core.less" />
+    <Content Include="UI\font-awesome\less\fixed-width.less" />
+    <Content Include="UI\font-awesome\less\font-awesome.less" />
+    <Content Include="UI\font-awesome\less\icons.less" />
+    <Content Include="UI\font-awesome\less\larger.less" />
+    <Content Include="UI\font-awesome\less\list.less" />
+    <Content Include="UI\font-awesome\less\mixins.less" />
+    <Content Include="UI\font-awesome\less\path.less" />
+    <Content Include="UI\font-awesome\less\rotated-flipped.less" />
+    <Content Include="UI\font-awesome\less\spinning.less" />
+    <Content Include="UI\font-awesome\less\stacked.less" />
+    <Content Include="UI\font-awesome\less\variables.less" />
+    <Content Include="UI\font-awesome\scss\font-awesome.scss" />
+    <Content Include="UI\font-awesome\scss\_bordered-pulled.scss" />
+    <Content Include="UI\font-awesome\scss\_core.scss" />
+    <Content Include="UI\font-awesome\scss\_fixed-width.scss" />
+    <Content Include="UI\font-awesome\scss\_icons.scss" />
+    <Content Include="UI\font-awesome\scss\_larger.scss" />
+    <Content Include="UI\font-awesome\scss\_list.scss" />
+    <Content Include="UI\font-awesome\scss\_mixins.scss" />
+    <Content Include="UI\font-awesome\scss\_path.scss" />
+    <Content Include="UI\font-awesome\scss\_rotated-flipped.scss" />
+    <Content Include="UI\font-awesome\scss\_spinning.scss" />
+    <Content Include="UI\font-awesome\scss\_stacked.scss" />
+    <Content Include="UI\font-awesome\scss\_variables.scss" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Giris\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
