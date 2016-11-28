@@ -110,16 +110,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model\DataModel\idEntity.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>idEntity.edmx</DependentUpon>
-      <LastGenOutput>idEntity.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Model\DataModel\idEntity.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>idEntity.edmx</DependentUpon>
-      <LastGenOutput>idEntity.cs</LastGenOutput>
-    </Content>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -200,8 +190,18 @@
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Model\DataModel\idEntity.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>idEntity.edmx</DependentUpon>
+      <LastGenOutput>idEntity.Context.cs</LastGenOutput>
+    </Content>
     <Content Include="Model\DataModel\idEntity.edmx.diagram">
       <DependentUpon>idEntity.edmx</DependentUpon>
+    </Content>
+    <Content Include="Model\DataModel\idEntity.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>idEntity.edmx</DependentUpon>
+      <LastGenOutput>idEntity.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <PropertyGroup>

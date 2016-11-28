@@ -59,4 +59,3 @@ namespace serviceID.Model.ViewModel
         }
     }
 }
-}

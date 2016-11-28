@@ -9,18 +9,24 @@ namespace serviceID.BL
 {
     public class KullaniciIslemler
     {
-        public static string KullaniciKaydet( Kullanici kullanici)
+        public static string KullaniciKaydet( Kullanici kul)
         {
 
             try
             {
-
+                using (EntityModel db = new EntityModel())
+                {
+                    kullanici k = new kullanici();
+                    k.kullaniciAdi = kul.kullaniciAdi;
+                    k.email = kul.email;
+                    k.sifre = kul.sifre;//encrption yapılacak
+                }
                 return "Başarılı";
-            } 
+            }
             catch (Exception ex)
             {
 
-                
+
                 return "Basarisiz" + ex.Message;
             }
         }
@@ -28,18 +34,18 @@ namespace serviceID.BL
         {
             try
             {
-
-                EntityModel db = new EntityModel();
-                // Sınıfı Oluşturamıyorum
-                var kul = (from k in db.tblKullanici
-                           where k.KullaniciAdi == kulAdi && k.Sifre == sifre
-                           select k).SingleOrDefault();
-                if (kul == null)
+                using (EntityModel db = new EntityModel())
                 {
-                    return "Şifre ya da kullanıcı adı yanlış.";
+                    var kul = (from k in db.kullanicis
+                               where k.kullaniciAdi == kulAd && k.sifre == sifre
+                               select k).SingleOrDefault();
+                    if (kul == null)
+                    {
+                        return "Şifre ya da kullanıcı adı yanlış.";
+                    }
+                    else
+                        return "Giriş başarılı!";
                 }
-                else
-                    return "Giriş başarılı!";
             }
             catch (Exception ex)
             {
