@@ -10,15 +10,25 @@ namespace clientID.Controllers
     {
         public ActionResult Index()
         {
+           
             return View();
         }
-
+        idService.Service1Client s = new idService.Service1Client();
         public ActionResult Giris()
         {
             
             return View();
         }
+        public JsonResult GirisYap(string kulAd,string sifre)
+        {
+            string sonuc=s.GirisYap(kulAd,sifre);
+            return Json("+");
+        }
+        public JsonResult Kaydol(idService.kullanici kul)
+        {
+            s.KayitOl(kul);
+            return Json("+");
+        }
 
-      
     }
 }
