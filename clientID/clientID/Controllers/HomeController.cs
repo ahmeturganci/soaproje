@@ -10,10 +10,9 @@ namespace clientID.Controllers
     {
         public ActionResult Index()
         {
-           
             return View();
         }
-        idService.Service1Client s = new idService.Service1Client();
+        ServiceReference1.Service1Client s = new ServiceReference1.Service1Client();
         public ActionResult Giris()
         {
             
@@ -24,7 +23,7 @@ namespace clientID.Controllers
             string sonuc=s.GirisYap(kulAd,sifre);
             return Json("+");
         }
-        public JsonResult Kaydol(idService.kullanici kul)
+        public JsonResult Kaydol(ServiceReference1.kullanici kul)
         {
             s.KayitOl(kul);
             return Json("+");
