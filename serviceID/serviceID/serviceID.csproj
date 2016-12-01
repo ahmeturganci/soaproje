@@ -67,65 +67,73 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model\idEntity.Context.tt">
+    <Content Include="Model\idDBmodel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>idEntity.edmx</DependentUpon>
-      <LastGenOutput>idEntity.Context.cs</LastGenOutput>
+      <DependentUpon>idDBmodel.edmx</DependentUpon>
+      <LastGenOutput>idDBmodel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Model\idEntity.tt">
+    <Content Include="Model\idDBmodel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>idEntity.edmx</DependentUpon>
-      <LastGenOutput>idEntity.cs</LastGenOutput>
+      <DependentUpon>idDBmodel.edmx</DependentUpon>
+      <LastGenOutput>idDBmodel.cs</LastGenOutput>
     </Content>
     <Content Include="Service1.svc" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BL\KullaniciIslem.cs" />
     <Compile Include="Model\begeni.cs">
-      <DependentUpon>idEntity.tt</DependentUpon>
+      <DependentUpon>idDBmodel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\cevap.cs">
-      <DependentUpon>idEntity.tt</DependentUpon>
+      <DependentUpon>idDBmodel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\etiket.cs">
-      <DependentUpon>idEntity.tt</DependentUpon>
+      <DependentUpon>idDBmodel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\favori.cs">
-      <DependentUpon>idEntity.tt</DependentUpon>
+      <DependentUpon>idDBmodel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\idEntity.Context.cs">
+    <Compile Include="Model\idDBmodel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>idEntity.Context.tt</DependentUpon>
+      <DependentUpon>idDBmodel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\idEntity.cs">
+    <Compile Include="Model\idDBmodel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>idEntity.tt</DependentUpon>
+      <DependentUpon>idDBmodel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\idEntity.Designer.cs">
+    <Compile Include="Model\idDBmodel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>idEntity.edmx</DependentUpon>
+      <DependentUpon>idDBmodel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Model\kategori.cs">
-      <DependentUpon>idEntity.tt</DependentUpon>
+      <DependentUpon>idDBmodel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\kullanici.cs">
-      <DependentUpon>idEntity.tt</DependentUpon>
+      <DependentUpon>idDBmodel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\soru.cs">
-      <DependentUpon>idEntity.tt</DependentUpon>
+      <DependentUpon>idDBmodel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\soruEtiket.cs">
-      <DependentUpon>idEntity.tt</DependentUpon>
+    <Compile Include="Model\soruDetay.cs">
+      <DependentUpon>idDBmodel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>idDBmodel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\sp_helpdiagrams_Result.cs">
+      <DependentUpon>idDBmodel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\sysdiagram.cs">
-      <DependentUpon>idEntity.tt</DependentUpon>
+      <DependentUpon>idDBmodel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\yorum.cs">
-      <DependentUpon>idEntity.tt</DependentUpon>
+      <DependentUpon>idDBmodel.tt</DependentUpon>
     </Compile>
     <Compile Include="Service1.svc.cs">
       <DependentUpon>Service1.svc</DependentUpon>
@@ -137,14 +145,15 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Model\idEntity.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>idEntity.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Model\idEntity.edmx.diagram">
-      <DependentUpon>idEntity.edmx</DependentUpon>
-    </Content>
     <Content Include="packages.config" />
+    <EntityDeploy Include="Model\idDBmodel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>idDBmodel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Model\idDBmodel.edmx.diagram">
+      <DependentUpon>idDBmodel.edmx</DependentUpon>
+    </Content>
+    <None Include="Properties\PublishProfiles\serviceID.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

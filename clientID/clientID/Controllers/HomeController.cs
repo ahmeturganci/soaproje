@@ -12,22 +12,23 @@ namespace clientID.Controllers
         {
             return View();
         }
-        ServiceReference1.Service1Client s = new ServiceReference1.Service1Client();
+        //ServiceReference1.Service1Client s = new ServiceReference1.Service1Client();
+        //servis yazıldıktan sonra bu kısıma adapte edilecektir.
         public ActionResult Giris()
         {
             
             return View();
         }
-        public JsonResult GirisYap(string kulAd,string sifre)
-        {
-            string sonuc=s.GirisYap(kulAd,sifre);
-            return Json("+");
-        }
-        public JsonResult Kaydol(ServiceReference1.kullanici kul)
-        {
-            s.KayitOl(kul);
-            return Json("+");
-        }
+        //public JsonResult GirisYap(string kulAd,string sifre)
+        //{
+        //    string sonuc=s.GirisYap(kulAd,sifre);
+        //    return Json("+");
+        //}
+        //public JsonResult Kaydol(ServiceReference1.kullanici kul)
+        //{
+        //    s.KayitOl(kul);
+        //    return Json("+");
+        //}
 
     }
 }

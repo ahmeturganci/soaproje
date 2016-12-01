@@ -14,13 +14,15 @@ namespace serviceID.Model
     
     public partial class yorum
     {
+        public yorum()
+        {
+            this.cevaps = new HashSet<cevap>();
+        }
+    
         public int yorumId { get; set; }
         public string yorum1 { get; set; }
         public Nullable<System.DateTime> yorumTarihi { get; set; }
-        public Nullable<int> cevapId { get; set; }
-        public int kullaniciId { get; set; }
     
-        public virtual cevap cevap { get; set; }
-        public virtual kullanici kullanici { get; set; }
+        public virtual ICollection<cevap> cevaps { get; set; }
     }
 }

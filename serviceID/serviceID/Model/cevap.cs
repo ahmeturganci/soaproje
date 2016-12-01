@@ -16,19 +16,17 @@ namespace serviceID.Model
     {
         public cevap()
         {
-            this.begenis = new HashSet<begeni>();
-            this.yorums = new HashSet<yorum>();
+            this.kullanicis = new HashSet<kullanici>();
         }
     
         public int cevapId { get; set; }
+        public Nullable<int> yorumId { get; set; }
+        public Nullable<int> begeniId { get; set; }
         public Nullable<System.DateTime> cevapTarihi { get; set; }
         public string cevap1 { get; set; }
-        public int soruId { get; set; }
-        public int kullaniciId { get; set; }
     
-        public virtual ICollection<begeni> begenis { get; set; }
-        public virtual kullanici kullanici { get; set; }
-        public virtual soru soru { get; set; }
-        public virtual ICollection<yorum> yorums { get; set; }
+        public virtual begeni begeni { get; set; }
+        public virtual yorum yorum { get; set; }
+        public virtual ICollection<kullanici> kullanicis { get; set; }
     }
 }

@@ -10,19 +10,13 @@
 namespace serviceID.Model
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class begeni
+    public partial class sp_helpdiagrams_Result
     {
-        public begeni()
-        {
-            this.cevaps = new HashSet<cevap>();
-        }
-    
-        public int begeniId { get; set; }
-        public Nullable<int> begeniSayisi { get; set; }
-        public Nullable<int> tiksintiSayisi { get; set; }
-    
-        public virtual ICollection<cevap> cevaps { get; set; }
+        public string Database { get; set; }
+        public string Name { get; set; }
+        public int ID { get; set; }
+        public string Owner { get; set; }
+        public int OwnerID { get; set; }
     }
 }

@@ -6,11 +6,11 @@ using serviceID.Model;
 
 namespace serviceID.BL
 {
+    
     public class KullaniciIslem
     {
         public static string KayitOl(kullanici kullanici)
         {
-
             try
             {
                 idDBEntities db = new idDBEntities();
