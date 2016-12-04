@@ -4,25 +4,29 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a265ad6b3ef743048661fd9d170e5708" Name="Diagram1">
-        <EntityTypeShape EntityType="idDBModel.begeni" Width="1.5" PointX="1.5" PointY="14.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="idDBModel.cevap" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="idDBModel.etiket" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="idDBModel.favori" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="idDBModel.kategori" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="idDBModel.kullanici" Width="1.5" PointX="3" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="idDBModel.soru" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="idDBModel.soruDetay" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="idDBModel.sysdiagram" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="idDBModel.yorum" Width="1.5" PointX="1.5" PointY="17.375" IsExpanded="true" />
-        <AssociationConnector Association="idDBModel.FK_cevap_begeni" ManuallyRouted="false" />
-        <AssociationConnector Association="idDBModel.FK_cevap_yorum" ManuallyRouted="false" />
-        <AssociationConnector Association="idDBModel.FK_kullanici_cevap" ManuallyRouted="false" />
-        <AssociationConnector Association="idDBModel.FK_soru_etiket" ManuallyRouted="false" />
-        <AssociationConnector Association="idDBModel.FK_soru_favori" ManuallyRouted="false" />
+      <Diagram DiagramId="f3614c96068d492a8eafe6ef8d024bf6" Name="Diagram1">
+        <EntityTypeShape EntityType="idDBModel.begeni" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="idDBModel.cevap" Width="1.5" PointX="6" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="idDBModel.etiket" Width="1.5" PointX="3" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="idDBModel.favori" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="idDBModel.kategori" Width="1.5" PointX="0.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="idDBModel.kullanici" Width="1.5" PointX="0.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="idDBModel.soru" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="idDBModel.soruEtiket" Width="1.5" PointX="5.25" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="idDBModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="idDBModel.yorum" Width="1.5" PointX="8.25" PointY="6.625" IsExpanded="true" />
+        <AssociationConnector Association="idDBModel.FK_begeni_cevap" ManuallyRouted="false" />
+        <AssociationConnector Association="idDBModel.FK_begeni_kullanici" ManuallyRouted="false" />
+        <AssociationConnector Association="idDBModel.FK_cevap_kullanici" ManuallyRouted="false" />
+        <AssociationConnector Association="idDBModel.FK_cevap_soru" ManuallyRouted="false" />
+        <AssociationConnector Association="idDBModel.FK_yorum_cevap" ManuallyRouted="false" />
+        <AssociationConnector Association="idDBModel.FK_soruEtiket_etiket" ManuallyRouted="false" />
+        <AssociationConnector Association="idDBModel.FK_favori_kullanici" ManuallyRouted="false" />
+        <AssociationConnector Association="idDBModel.FK_favori_soru" ManuallyRouted="false" />
         <AssociationConnector Association="idDBModel.FK_soru_kategori" ManuallyRouted="false" />
-        <AssociationConnector Association="idDBModel.FK_soruDetay_kullanici" ManuallyRouted="false" />
-        <AssociationConnector Association="idDBModel.FK_soruDetay_soru" ManuallyRouted="false" />
+        <AssociationConnector Association="idDBModel.FK_soru_kullanici" ManuallyRouted="false" />
+        <AssociationConnector Association="idDBModel.FK_yorum_kullanici" ManuallyRouted="false" />
+        <AssociationConnector Association="idDBModel.FK_soruEtiket_soru" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

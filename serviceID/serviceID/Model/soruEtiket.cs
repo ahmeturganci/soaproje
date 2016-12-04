@@ -12,13 +12,13 @@ namespace serviceID.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class soruDetay
+    public partial class soruEtiket
     {
-        public int id { get; set; }
-        public Nullable<int> soruId { get; set; }
-        public Nullable<int> kullaniciId { get; set; }
+        public int soruEtiketId { get; set; }
+        public int soruId { get; set; }
+        public int etiketId { get; set; }
     
-        public virtual kullanici kullanici { get; set; }
+        public virtual etiket etiket { get; set; }
         public virtual soru soru { get; set; }
     }
 }

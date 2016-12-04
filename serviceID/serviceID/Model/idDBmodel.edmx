@@ -10,18 +10,19 @@
             <PropertyRef Name="begeniId" />
           </Key>
           <Property Name="begeniId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="begeniSayisi" Type="int" />
-          <Property Name="tiksintiSayisi" Type="int" />
+          <Property Name="begeniTuruId" Type="int" />
+          <Property Name="kullaniciId" Type="int" Nullable="false" />
+          <Property Name="cevapId" Type="int" />
         </EntityType>
         <EntityType Name="cevap">
           <Key>
             <PropertyRef Name="cevapId" />
           </Key>
           <Property Name="cevapId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="yorumId" Type="int" />
-          <Property Name="begeniId" Type="int" />
           <Property Name="cevapTarihi" Type="datetime" />
           <Property Name="cevap" Type="nvarchar(max)" />
+          <Property Name="soruId" Type="int" Nullable="false" />
+          <Property Name="kullaniciId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="etiket">
           <Key>
@@ -35,6 +36,8 @@
             <PropertyRef Name="favoriId" />
           </Key>
           <Property Name="favoriId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="soruId" Type="int" Nullable="false" />
+          <Property Name="kullaniciId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="kategori">
           <Key>
@@ -48,8 +51,6 @@
             <PropertyRef Name="kullaniciId" />
           </Key>
           <Property Name="kullaniciId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="soruId" Type="int" />
-          <Property Name="cevapId" Type="int" />
           <Property Name="kullaniciAdi" Type="nvarchar" MaxLength="20" />
           <Property Name="email" Type="nvarchar" MaxLength="50" />
           <Property Name="sifre" Type="nvarchar" MaxLength="32" />
@@ -64,15 +65,16 @@
           <Property Name="baslik" Type="nvarchar" MaxLength="80" />
           <Property Name="yayinTarihi" Type="datetime" />
           <Property Name="onayDurumu" Type="bit" />
-          <Property Name="favoriId" Type="int" />
-        </EntityType>
-        <EntityType Name="soruDetay">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="soruId" Type="int" />
           <Property Name="kullaniciId" Type="int" />
+          <Property Name="soruIcerik" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="soruEtiket">
+          <Key>
+            <PropertyRef Name="soruEtiketId" />
+          </Key>
+          <Property Name="soruEtiketId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="soruId" Type="int" Nullable="false" />
+          <Property Name="etiketId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -91,64 +93,78 @@
           <Property Name="yorumId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="yorum" Type="nvarchar(max)" />
           <Property Name="yorumTarihi" Type="datetime" />
+          <Property Name="cevapId" Type="int" />
+          <Property Name="kullaniciId" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK_cevap_begeni">
-          <End Role="begeni" Type="Self.begeni" Multiplicity="0..1" />
-          <End Role="cevap" Type="Self.cevap" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="begeni">
-              <PropertyRef Name="begeniId" />
-            </Principal>
-            <Dependent Role="cevap">
-              <PropertyRef Name="begeniId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_cevap_yorum">
-          <End Role="yorum" Type="Self.yorum" Multiplicity="0..1" />
-          <End Role="cevap" Type="Self.cevap" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="yorum">
-              <PropertyRef Name="yorumId" />
-            </Principal>
-            <Dependent Role="cevap">
-              <PropertyRef Name="yorumId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_kullanici_cevap">
+        <Association Name="FK_begeni_cevap">
           <End Role="cevap" Type="Self.cevap" Multiplicity="0..1" />
-          <End Role="kullanici" Type="Self.kullanici" Multiplicity="*" />
+          <End Role="begeni" Type="Self.begeni" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="cevap">
               <PropertyRef Name="cevapId" />
             </Principal>
-            <Dependent Role="kullanici">
+            <Dependent Role="begeni">
               <PropertyRef Name="cevapId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_soru_etiket">
-          <End Role="etiket" Type="Self.etiket" Multiplicity="0..1" />
-          <End Role="soru" Type="Self.soru" Multiplicity="*" />
+        <Association Name="FK_begeni_kullanici">
+          <End Role="kullanici" Type="Self.kullanici" Multiplicity="1" />
+          <End Role="begeni" Type="Self.begeni" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="etiket">
-              <PropertyRef Name="etiketId" />
+            <Principal Role="kullanici">
+              <PropertyRef Name="kullaniciId" />
             </Principal>
-            <Dependent Role="soru">
-              <PropertyRef Name="etiketId" />
+            <Dependent Role="begeni">
+              <PropertyRef Name="kullaniciId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_soru_favori">
-          <End Role="favori" Type="Self.favori" Multiplicity="0..1" />
-          <End Role="soru" Type="Self.soru" Multiplicity="*" />
+        <Association Name="FK_cevap_kullanici">
+          <End Role="kullanici" Type="Self.kullanici" Multiplicity="1" />
+          <End Role="cevap" Type="Self.cevap" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="favori">
-              <PropertyRef Name="favoriId" />
+            <Principal Role="kullanici">
+              <PropertyRef Name="kullaniciId" />
             </Principal>
-            <Dependent Role="soru">
-              <PropertyRef Name="favoriId" />
+            <Dependent Role="cevap">
+              <PropertyRef Name="kullaniciId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cevap_soru">
+          <End Role="soru" Type="Self.soru" Multiplicity="1" />
+          <End Role="cevap" Type="Self.cevap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="soru">
+              <PropertyRef Name="soruId" />
+            </Principal>
+            <Dependent Role="cevap">
+              <PropertyRef Name="soruId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_favori_kullanici">
+          <End Role="kullanici" Type="Self.kullanici" Multiplicity="1" />
+          <End Role="favori" Type="Self.favori" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kullanici">
+              <PropertyRef Name="kullaniciId" />
+            </Principal>
+            <Dependent Role="favori">
+              <PropertyRef Name="kullaniciId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_favori_soru">
+          <End Role="soru" Type="Self.soru" Multiplicity="1" />
+          <End Role="favori" Type="Self.favori" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="soru">
+              <PropertyRef Name="soruId" />
+            </Principal>
+            <Dependent Role="favori">
+              <PropertyRef Name="soruId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -164,27 +180,63 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_soruDetay_kullanici">
+        <Association Name="FK_soru_kullanici">
           <End Role="kullanici" Type="Self.kullanici" Multiplicity="0..1" />
-          <End Role="soruDetay" Type="Self.soruDetay" Multiplicity="*" />
+          <End Role="soru" Type="Self.soru" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="kullanici">
               <PropertyRef Name="kullaniciId" />
             </Principal>
-            <Dependent Role="soruDetay">
+            <Dependent Role="soru">
               <PropertyRef Name="kullaniciId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_soruDetay_soru">
-          <End Role="soru" Type="Self.soru" Multiplicity="0..1" />
-          <End Role="soruDetay" Type="Self.soruDetay" Multiplicity="*" />
+        <Association Name="FK_soruEtiket_etiket">
+          <End Role="etiket" Type="Self.etiket" Multiplicity="1" />
+          <End Role="soruEtiket" Type="Self.soruEtiket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="etiket">
+              <PropertyRef Name="etiketId" />
+            </Principal>
+            <Dependent Role="soruEtiket">
+              <PropertyRef Name="etiketId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_soruEtiket_soru">
+          <End Role="soru" Type="Self.soru" Multiplicity="1" />
+          <End Role="soruEtiket" Type="Self.soruEtiket" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="soru">
               <PropertyRef Name="soruId" />
             </Principal>
-            <Dependent Role="soruDetay">
+            <Dependent Role="soruEtiket">
               <PropertyRef Name="soruId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_yorum_cevap">
+          <End Role="cevap" Type="Self.cevap" Multiplicity="0..1" />
+          <End Role="yorum" Type="Self.yorum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cevap">
+              <PropertyRef Name="cevapId" />
+            </Principal>
+            <Dependent Role="yorum">
+              <PropertyRef Name="cevapId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_yorum_kullanici">
+          <End Role="kullanici" Type="Self.kullanici" Multiplicity="1" />
+          <End Role="yorum" Type="Self.yorum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kullanici">
+              <PropertyRef Name="kullaniciId" />
+            </Principal>
+            <Dependent Role="yorum">
+              <PropertyRef Name="kullaniciId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -227,40 +279,56 @@
           <EntitySet Name="kategori" EntityType="Self.kategori" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="kullanici" EntityType="Self.kullanici" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="soru" EntityType="Self.soru" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="soruDetay" EntityType="Self.soruDetay" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="soruEtiket" EntityType="Self.soruEtiket" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="yorum" EntityType="Self.yorum" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_cevap_begeni" Association="Self.FK_cevap_begeni">
+          <AssociationSet Name="FK_begeni_cevap" Association="Self.FK_begeni_cevap">
+            <End Role="cevap" EntitySet="cevap" />
             <End Role="begeni" EntitySet="begeni" />
-            <End Role="cevap" EntitySet="cevap" />
           </AssociationSet>
-          <AssociationSet Name="FK_cevap_yorum" Association="Self.FK_cevap_yorum">
-            <End Role="yorum" EntitySet="yorum" />
-            <End Role="cevap" EntitySet="cevap" />
-          </AssociationSet>
-          <AssociationSet Name="FK_kullanici_cevap" Association="Self.FK_kullanici_cevap">
-            <End Role="cevap" EntitySet="cevap" />
+          <AssociationSet Name="FK_begeni_kullanici" Association="Self.FK_begeni_kullanici">
             <End Role="kullanici" EntitySet="kullanici" />
+            <End Role="begeni" EntitySet="begeni" />
           </AssociationSet>
-          <AssociationSet Name="FK_soru_etiket" Association="Self.FK_soru_etiket">
-            <End Role="etiket" EntitySet="etiket" />
+          <AssociationSet Name="FK_cevap_kullanici" Association="Self.FK_cevap_kullanici">
+            <End Role="kullanici" EntitySet="kullanici" />
+            <End Role="cevap" EntitySet="cevap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cevap_soru" Association="Self.FK_cevap_soru">
             <End Role="soru" EntitySet="soru" />
+            <End Role="cevap" EntitySet="cevap" />
           </AssociationSet>
-          <AssociationSet Name="FK_soru_favori" Association="Self.FK_soru_favori">
+          <AssociationSet Name="FK_favori_kullanici" Association="Self.FK_favori_kullanici">
+            <End Role="kullanici" EntitySet="kullanici" />
             <End Role="favori" EntitySet="favori" />
+          </AssociationSet>
+          <AssociationSet Name="FK_favori_soru" Association="Self.FK_favori_soru">
             <End Role="soru" EntitySet="soru" />
+            <End Role="favori" EntitySet="favori" />
           </AssociationSet>
           <AssociationSet Name="FK_soru_kategori" Association="Self.FK_soru_kategori">
             <End Role="kategori" EntitySet="kategori" />
             <End Role="soru" EntitySet="soru" />
           </AssociationSet>
-          <AssociationSet Name="FK_soruDetay_kullanici" Association="Self.FK_soruDetay_kullanici">
+          <AssociationSet Name="FK_soru_kullanici" Association="Self.FK_soru_kullanici">
             <End Role="kullanici" EntitySet="kullanici" />
-            <End Role="soruDetay" EntitySet="soruDetay" />
-          </AssociationSet>
-          <AssociationSet Name="FK_soruDetay_soru" Association="Self.FK_soruDetay_soru">
             <End Role="soru" EntitySet="soru" />
-            <End Role="soruDetay" EntitySet="soruDetay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_soruEtiket_etiket" Association="Self.FK_soruEtiket_etiket">
+            <End Role="etiket" EntitySet="etiket" />
+            <End Role="soruEtiket" EntitySet="soruEtiket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_soruEtiket_soru" Association="Self.FK_soruEtiket_soru">
+            <End Role="soru" EntitySet="soru" />
+            <End Role="soruEtiket" EntitySet="soruEtiket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_yorum_cevap" Association="Self.FK_yorum_cevap">
+            <End Role="cevap" EntitySet="cevap" />
+            <End Role="yorum" EntitySet="yorum" />
+          </AssociationSet>
+          <AssociationSet Name="FK_yorum_kullanici" Association="Self.FK_yorum_kullanici">
+            <End Role="kullanici" EntitySet="kullanici" />
+            <End Role="yorum" EntitySet="yorum" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -273,22 +341,25 @@
             <PropertyRef Name="begeniId" />
           </Key>
           <Property Name="begeniId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="begeniSayisi" Type="Int32" />
-          <Property Name="tiksintiSayisi" Type="Int32" />
-          <NavigationProperty Name="cevaps" Relationship="Self.FK_cevap_begeni" FromRole="begeni" ToRole="cevap" />
+          <Property Name="begeniTuruId" Type="Int32" />
+          <Property Name="kullaniciId" Type="Int32" Nullable="false" />
+          <Property Name="cevapId" Type="Int32" />
+          <NavigationProperty Name="cevap" Relationship="Self.FK_begeni_cevap" FromRole="begeni" ToRole="cevap" />
+          <NavigationProperty Name="kullanici" Relationship="Self.FK_begeni_kullanici" FromRole="begeni" ToRole="kullanici" />
         </EntityType>
         <EntityType Name="cevap">
           <Key>
             <PropertyRef Name="cevapId" />
           </Key>
           <Property Name="cevapId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="yorumId" Type="Int32" />
-          <Property Name="begeniId" Type="Int32" />
           <Property Name="cevapTarihi" Type="DateTime" Precision="3" />
           <Property Name="cevap1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="begeni" Relationship="Self.FK_cevap_begeni" FromRole="cevap" ToRole="begeni" />
-          <NavigationProperty Name="yorum" Relationship="Self.FK_cevap_yorum" FromRole="cevap" ToRole="yorum" />
-          <NavigationProperty Name="kullanicis" Relationship="Self.FK_kullanici_cevap" FromRole="cevap" ToRole="kullanici" />
+          <Property Name="soruId" Type="Int32" Nullable="false" />
+          <Property Name="kullaniciId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="begenis" Relationship="Self.FK_begeni_cevap" FromRole="cevap" ToRole="begeni" />
+          <NavigationProperty Name="kullanici" Relationship="Self.FK_cevap_kullanici" FromRole="cevap" ToRole="kullanici" />
+          <NavigationProperty Name="soru" Relationship="Self.FK_cevap_soru" FromRole="cevap" ToRole="soru" />
+          <NavigationProperty Name="yorums" Relationship="Self.FK_yorum_cevap" FromRole="cevap" ToRole="yorum" />
         </EntityType>
         <EntityType Name="etiket">
           <Key>
@@ -296,14 +367,17 @@
           </Key>
           <Property Name="etiketId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="etiketAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="sorus" Relationship="Self.FK_soru_etiket" FromRole="etiket" ToRole="soru" />
+          <NavigationProperty Name="soruEtikets" Relationship="Self.FK_soruEtiket_etiket" FromRole="etiket" ToRole="soruEtiket" />
         </EntityType>
         <EntityType Name="favori">
           <Key>
             <PropertyRef Name="favoriId" />
           </Key>
           <Property Name="favoriId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="sorus" Relationship="Self.FK_soru_favori" FromRole="favori" ToRole="soru" />
+          <Property Name="soruId" Type="Int32" Nullable="false" />
+          <Property Name="kullaniciId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="kullanici" Relationship="Self.FK_favori_kullanici" FromRole="favori" ToRole="kullanici" />
+          <NavigationProperty Name="soru" Relationship="Self.FK_favori_soru" FromRole="favori" ToRole="soru" />
         </EntityType>
         <EntityType Name="kategori">
           <Key>
@@ -318,13 +392,14 @@
             <PropertyRef Name="kullaniciId" />
           </Key>
           <Property Name="kullaniciId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="soruId" Type="Int32" />
-          <Property Name="cevapId" Type="Int32" />
           <Property Name="kullaniciAdi" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="sifre" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="cevap" Relationship="Self.FK_kullanici_cevap" FromRole="kullanici" ToRole="cevap" />
-          <NavigationProperty Name="soruDetays" Relationship="Self.FK_soruDetay_kullanici" FromRole="kullanici" ToRole="soruDetay" />
+          <NavigationProperty Name="begenis" Relationship="Self.FK_begeni_kullanici" FromRole="kullanici" ToRole="begeni" />
+          <NavigationProperty Name="cevaps" Relationship="Self.FK_cevap_kullanici" FromRole="kullanici" ToRole="cevap" />
+          <NavigationProperty Name="favoris" Relationship="Self.FK_favori_kullanici" FromRole="kullanici" ToRole="favori" />
+          <NavigationProperty Name="sorus" Relationship="Self.FK_soru_kullanici" FromRole="kullanici" ToRole="soru" />
+          <NavigationProperty Name="yorums" Relationship="Self.FK_yorum_kullanici" FromRole="kullanici" ToRole="yorum" />
         </EntityType>
         <EntityType Name="soru">
           <Key>
@@ -336,21 +411,23 @@
           <Property Name="baslik" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
           <Property Name="yayinTarihi" Type="DateTime" Precision="3" />
           <Property Name="onayDurumu" Type="Boolean" />
-          <Property Name="favoriId" Type="Int32" />
-          <NavigationProperty Name="etiket" Relationship="Self.FK_soru_etiket" FromRole="soru" ToRole="etiket" />
-          <NavigationProperty Name="favori" Relationship="Self.FK_soru_favori" FromRole="soru" ToRole="favori" />
-          <NavigationProperty Name="kategori" Relationship="Self.FK_soru_kategori" FromRole="soru" ToRole="kategori" />
-          <NavigationProperty Name="soruDetays" Relationship="Self.FK_soruDetay_soru" FromRole="soru" ToRole="soruDetay" />
-        </EntityType>
-        <EntityType Name="soruDetay">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="soruId" Type="Int32" />
           <Property Name="kullaniciId" Type="Int32" />
-          <NavigationProperty Name="kullanici" Relationship="Self.FK_soruDetay_kullanici" FromRole="soruDetay" ToRole="kullanici" />
-          <NavigationProperty Name="soru" Relationship="Self.FK_soruDetay_soru" FromRole="soruDetay" ToRole="soru" />
+          <Property Name="soruIcerik" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="cevaps" Relationship="Self.FK_cevap_soru" FromRole="soru" ToRole="cevap" />
+          <NavigationProperty Name="favoris" Relationship="Self.FK_favori_soru" FromRole="soru" ToRole="favori" />
+          <NavigationProperty Name="kategori" Relationship="Self.FK_soru_kategori" FromRole="soru" ToRole="kategori" />
+          <NavigationProperty Name="kullanici" Relationship="Self.FK_soru_kullanici" FromRole="soru" ToRole="kullanici" />
+          <NavigationProperty Name="soruEtikets" Relationship="Self.FK_soruEtiket_soru" FromRole="soru" ToRole="soruEtiket" />
+        </EntityType>
+        <EntityType Name="soruEtiket">
+          <Key>
+            <PropertyRef Name="soruEtiketId" />
+          </Key>
+          <Property Name="soruEtiketId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="soruId" Type="Int32" Nullable="false" />
+          <Property Name="etiketId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="etiket" Relationship="Self.FK_soruEtiket_etiket" FromRole="soruEtiket" ToRole="etiket" />
+          <NavigationProperty Name="soru" Relationship="Self.FK_soruEtiket_soru" FromRole="soruEtiket" ToRole="soru" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -369,65 +446,104 @@
           <Property Name="yorumId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="yorum1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="yorumTarihi" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="cevaps" Relationship="Self.FK_cevap_yorum" FromRole="yorum" ToRole="cevap" />
+          <Property Name="cevapId" Type="Int32" />
+          <Property Name="kullaniciId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="cevap" Relationship="Self.FK_yorum_cevap" FromRole="yorum" ToRole="cevap" />
+          <NavigationProperty Name="kullanici" Relationship="Self.FK_yorum_kullanici" FromRole="yorum" ToRole="kullanici" />
         </EntityType>
-        <Association Name="FK_cevap_begeni">
-          <End Role="begeni" Type="Self.begeni" Multiplicity="0..1" />
-          <End Role="cevap" Type="Self.cevap" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="begeni">
-              <PropertyRef Name="begeniId" />
-            </Principal>
-            <Dependent Role="cevap">
-              <PropertyRef Name="begeniId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_cevap_yorum">
-          <End Role="yorum" Type="Self.yorum" Multiplicity="0..1" />
-          <End Role="cevap" Type="Self.cevap" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="yorum">
-              <PropertyRef Name="yorumId" />
-            </Principal>
-            <Dependent Role="cevap">
-              <PropertyRef Name="yorumId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_kullanici_cevap">
+        <Association Name="FK_begeni_cevap">
           <End Role="cevap" Type="Self.cevap" Multiplicity="0..1" />
-          <End Role="kullanici" Type="Self.kullanici" Multiplicity="*" />
+          <End Role="begeni" Type="Self.begeni" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="cevap">
               <PropertyRef Name="cevapId" />
             </Principal>
-            <Dependent Role="kullanici">
+            <Dependent Role="begeni">
               <PropertyRef Name="cevapId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_soru_etiket">
-          <End Role="etiket" Type="Self.etiket" Multiplicity="0..1" />
-          <End Role="soru" Type="Self.soru" Multiplicity="*" />
+        <Association Name="FK_begeni_kullanici">
+          <End Role="kullanici" Type="Self.kullanici" Multiplicity="1" />
+          <End Role="begeni" Type="Self.begeni" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kullanici">
+              <PropertyRef Name="kullaniciId" />
+            </Principal>
+            <Dependent Role="begeni">
+              <PropertyRef Name="kullaniciId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cevap_kullanici">
+          <End Role="kullanici" Type="Self.kullanici" Multiplicity="1" />
+          <End Role="cevap" Type="Self.cevap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kullanici">
+              <PropertyRef Name="kullaniciId" />
+            </Principal>
+            <Dependent Role="cevap">
+              <PropertyRef Name="kullaniciId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cevap_soru">
+          <End Role="soru" Type="Self.soru" Multiplicity="1" />
+          <End Role="cevap" Type="Self.cevap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="soru">
+              <PropertyRef Name="soruId" />
+            </Principal>
+            <Dependent Role="cevap">
+              <PropertyRef Name="soruId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_yorum_cevap">
+          <End Role="cevap" Type="Self.cevap" Multiplicity="0..1" />
+          <End Role="yorum" Type="Self.yorum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cevap">
+              <PropertyRef Name="cevapId" />
+            </Principal>
+            <Dependent Role="yorum">
+              <PropertyRef Name="cevapId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_soruEtiket_etiket">
+          <End Role="etiket" Type="Self.etiket" Multiplicity="1" />
+          <End Role="soruEtiket" Type="Self.soruEtiket" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="etiket">
               <PropertyRef Name="etiketId" />
             </Principal>
-            <Dependent Role="soru">
+            <Dependent Role="soruEtiket">
               <PropertyRef Name="etiketId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_soru_favori">
-          <End Role="favori" Type="Self.favori" Multiplicity="0..1" />
-          <End Role="soru" Type="Self.soru" Multiplicity="*" />
+        <Association Name="FK_favori_kullanici">
+          <End Role="kullanici" Type="Self.kullanici" Multiplicity="1" />
+          <End Role="favori" Type="Self.favori" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="favori">
-              <PropertyRef Name="favoriId" />
+            <Principal Role="kullanici">
+              <PropertyRef Name="kullaniciId" />
             </Principal>
-            <Dependent Role="soru">
-              <PropertyRef Name="favoriId" />
+            <Dependent Role="favori">
+              <PropertyRef Name="kullaniciId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_favori_soru">
+          <End Role="soru" Type="Self.soru" Multiplicity="1" />
+          <End Role="favori" Type="Self.favori" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="soru">
+              <PropertyRef Name="soruId" />
+            </Principal>
+            <Dependent Role="favori">
+              <PropertyRef Name="soruId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -443,26 +559,38 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_soruDetay_kullanici">
+        <Association Name="FK_soru_kullanici">
           <End Role="kullanici" Type="Self.kullanici" Multiplicity="0..1" />
-          <End Role="soruDetay" Type="Self.soruDetay" Multiplicity="*" />
+          <End Role="soru" Type="Self.soru" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="kullanici">
               <PropertyRef Name="kullaniciId" />
             </Principal>
-            <Dependent Role="soruDetay">
+            <Dependent Role="soru">
               <PropertyRef Name="kullaniciId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_soruDetay_soru">
-          <End Role="soru" Type="Self.soru" Multiplicity="0..1" />
-          <End Role="soruDetay" Type="Self.soruDetay" Multiplicity="*" />
+        <Association Name="FK_yorum_kullanici">
+          <End Role="kullanici" Type="Self.kullanici" Multiplicity="1" />
+          <End Role="yorum" Type="Self.yorum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kullanici">
+              <PropertyRef Name="kullaniciId" />
+            </Principal>
+            <Dependent Role="yorum">
+              <PropertyRef Name="kullaniciId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_soruEtiket_soru">
+          <End Role="soru" Type="Self.soru" Multiplicity="1" />
+          <End Role="soruEtiket" Type="Self.soruEtiket" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="soru">
               <PropertyRef Name="soruId" />
             </Principal>
-            <Dependent Role="soruDetay">
+            <Dependent Role="soruEtiket">
               <PropertyRef Name="soruId" />
             </Dependent>
           </ReferentialConstraint>
@@ -475,40 +603,56 @@
           <EntitySet Name="kategoris" EntityType="Self.kategori" />
           <EntitySet Name="kullanicis" EntityType="Self.kullanici" />
           <EntitySet Name="sorus" EntityType="Self.soru" />
-          <EntitySet Name="soruDetays" EntityType="Self.soruDetay" />
+          <EntitySet Name="soruEtikets" EntityType="Self.soruEtiket" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="yorums" EntityType="Self.yorum" />
-          <AssociationSet Name="FK_cevap_begeni" Association="Self.FK_cevap_begeni">
+          <AssociationSet Name="FK_begeni_cevap" Association="Self.FK_begeni_cevap">
+            <End Role="cevap" EntitySet="cevaps" />
             <End Role="begeni" EntitySet="begenis" />
-            <End Role="cevap" EntitySet="cevaps" />
           </AssociationSet>
-          <AssociationSet Name="FK_cevap_yorum" Association="Self.FK_cevap_yorum">
-            <End Role="yorum" EntitySet="yorums" />
-            <End Role="cevap" EntitySet="cevaps" />
-          </AssociationSet>
-          <AssociationSet Name="FK_kullanici_cevap" Association="Self.FK_kullanici_cevap">
-            <End Role="cevap" EntitySet="cevaps" />
+          <AssociationSet Name="FK_begeni_kullanici" Association="Self.FK_begeni_kullanici">
             <End Role="kullanici" EntitySet="kullanicis" />
+            <End Role="begeni" EntitySet="begenis" />
           </AssociationSet>
-          <AssociationSet Name="FK_soru_etiket" Association="Self.FK_soru_etiket">
+          <AssociationSet Name="FK_cevap_kullanici" Association="Self.FK_cevap_kullanici">
+            <End Role="kullanici" EntitySet="kullanicis" />
+            <End Role="cevap" EntitySet="cevaps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cevap_soru" Association="Self.FK_cevap_soru">
+            <End Role="soru" EntitySet="sorus" />
+            <End Role="cevap" EntitySet="cevaps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_yorum_cevap" Association="Self.FK_yorum_cevap">
+            <End Role="cevap" EntitySet="cevaps" />
+            <End Role="yorum" EntitySet="yorums" />
+          </AssociationSet>
+          <AssociationSet Name="FK_soruEtiket_etiket" Association="Self.FK_soruEtiket_etiket">
             <End Role="etiket" EntitySet="etikets" />
-            <End Role="soru" EntitySet="sorus" />
+            <End Role="soruEtiket" EntitySet="soruEtikets" />
           </AssociationSet>
-          <AssociationSet Name="FK_soru_favori" Association="Self.FK_soru_favori">
+          <AssociationSet Name="FK_favori_kullanici" Association="Self.FK_favori_kullanici">
+            <End Role="kullanici" EntitySet="kullanicis" />
             <End Role="favori" EntitySet="favoris" />
+          </AssociationSet>
+          <AssociationSet Name="FK_favori_soru" Association="Self.FK_favori_soru">
             <End Role="soru" EntitySet="sorus" />
+            <End Role="favori" EntitySet="favoris" />
           </AssociationSet>
           <AssociationSet Name="FK_soru_kategori" Association="Self.FK_soru_kategori">
             <End Role="kategori" EntitySet="kategoris" />
             <End Role="soru" EntitySet="sorus" />
           </AssociationSet>
-          <AssociationSet Name="FK_soruDetay_kullanici" Association="Self.FK_soruDetay_kullanici">
+          <AssociationSet Name="FK_soru_kullanici" Association="Self.FK_soru_kullanici">
             <End Role="kullanici" EntitySet="kullanicis" />
-            <End Role="soruDetay" EntitySet="soruDetays" />
-          </AssociationSet>
-          <AssociationSet Name="FK_soruDetay_soru" Association="Self.FK_soruDetay_soru">
             <End Role="soru" EntitySet="sorus" />
-            <End Role="soruDetay" EntitySet="soruDetays" />
+          </AssociationSet>
+          <AssociationSet Name="FK_yorum_kullanici" Association="Self.FK_yorum_kullanici">
+            <End Role="kullanici" EntitySet="kullanicis" />
+            <End Role="yorum" EntitySet="yorums" />
+          </AssociationSet>
+          <AssociationSet Name="FK_soruEtiket_soru" Association="Self.FK_soruEtiket_soru">
+            <End Role="soru" EntitySet="sorus" />
+            <End Role="soruEtiket" EntitySet="soruEtikets" />
           </AssociationSet>
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -562,8 +706,9 @@
             <EntityTypeMapping TypeName="idDBModel.begeni">
               <MappingFragment StoreEntitySet="begeni">
                 <ScalarProperty Name="begeniId" ColumnName="begeniId" />
-                <ScalarProperty Name="begeniSayisi" ColumnName="begeniSayisi" />
-                <ScalarProperty Name="tiksintiSayisi" ColumnName="tiksintiSayisi" />
+                <ScalarProperty Name="begeniTuruId" ColumnName="begeniTuruId" />
+                <ScalarProperty Name="kullaniciId" ColumnName="kullaniciId" />
+                <ScalarProperty Name="cevapId" ColumnName="cevapId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -571,10 +716,10 @@
             <EntityTypeMapping TypeName="idDBModel.cevap">
               <MappingFragment StoreEntitySet="cevap">
                 <ScalarProperty Name="cevapId" ColumnName="cevapId" />
-                <ScalarProperty Name="yorumId" ColumnName="yorumId" />
-                <ScalarProperty Name="begeniId" ColumnName="begeniId" />
                 <ScalarProperty Name="cevapTarihi" ColumnName="cevapTarihi" />
                 <ScalarProperty Name="cevap1" ColumnName="cevap" />
+                <ScalarProperty Name="soruId" ColumnName="soruId" />
+                <ScalarProperty Name="kullaniciId" ColumnName="kullaniciId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -590,6 +735,8 @@
             <EntityTypeMapping TypeName="idDBModel.favori">
               <MappingFragment StoreEntitySet="favori">
                 <ScalarProperty Name="favoriId" ColumnName="favoriId" />
+                <ScalarProperty Name="soruId" ColumnName="soruId" />
+                <ScalarProperty Name="kullaniciId" ColumnName="kullaniciId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -605,8 +752,6 @@
             <EntityTypeMapping TypeName="idDBModel.kullanici">
               <MappingFragment StoreEntitySet="kullanici">
                 <ScalarProperty Name="kullaniciId" ColumnName="kullaniciId" />
-                <ScalarProperty Name="soruId" ColumnName="soruId" />
-                <ScalarProperty Name="cevapId" ColumnName="cevapId" />
                 <ScalarProperty Name="kullaniciAdi" ColumnName="kullaniciAdi" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="sifre" ColumnName="sifre" />
@@ -622,16 +767,17 @@
                 <ScalarProperty Name="baslik" ColumnName="baslik" />
                 <ScalarProperty Name="yayinTarihi" ColumnName="yayinTarihi" />
                 <ScalarProperty Name="onayDurumu" ColumnName="onayDurumu" />
-                <ScalarProperty Name="favoriId" ColumnName="favoriId" />
+                <ScalarProperty Name="kullaniciId" ColumnName="kullaniciId" />
+                <ScalarProperty Name="soruIcerik" ColumnName="soruIcerik" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="soruDetays">
-            <EntityTypeMapping TypeName="idDBModel.soruDetay">
-              <MappingFragment StoreEntitySet="soruDetay">
-                <ScalarProperty Name="id" ColumnName="id" />
+          <EntitySetMapping Name="soruEtikets">
+            <EntityTypeMapping TypeName="idDBModel.soruEtiket">
+              <MappingFragment StoreEntitySet="soruEtiket">
+                <ScalarProperty Name="soruEtiketId" ColumnName="soruEtiketId" />
                 <ScalarProperty Name="soruId" ColumnName="soruId" />
-                <ScalarProperty Name="kullaniciId" ColumnName="kullaniciId" />
+                <ScalarProperty Name="etiketId" ColumnName="etiketId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -652,6 +798,8 @@
                 <ScalarProperty Name="yorumId" ColumnName="yorumId" />
                 <ScalarProperty Name="yorum1" ColumnName="yorum" />
                 <ScalarProperty Name="yorumTarihi" ColumnName="yorumTarihi" />
+                <ScalarProperty Name="cevapId" ColumnName="cevapId" />
+                <ScalarProperty Name="kullaniciId" ColumnName="kullaniciId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

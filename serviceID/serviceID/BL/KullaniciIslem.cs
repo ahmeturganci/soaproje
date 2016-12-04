@@ -9,7 +9,7 @@ namespace serviceID.BL
     
     public class KullaniciIslem
     {
-        public static string KayitOl(kullanici kullanici)
+        public static int KayitOl(kullanici kullanici)
         {
             try
             {
@@ -24,44 +24,159 @@ namespace serviceID.BL
                     db.kullanicis.Add(kullanici);
                     db.SaveChanges();
 
-                    return "İşlem başarılı.";
+                    return 0; // kayıt başarılı
                 }
                 else
-                {
-                    kul.kullaniciAdi = kullanici.kullaniciAdi;
-                    kul.email = kullanici.email;
-                    kul.sifre = kullanici.sifre;
-                    db.SaveChanges();
-
-                    return "İşlem başarılı.";
-                }
+                    return 1; // kayıt başarısız
             }
-            catch (Exception ex)
+            catch
             {
-                return "İşlem başarısız!" + ex.Message;
+                return 2; // işlem başarısız
             }
         }
-        public static string GirisYap(string kulAd, string sifre)
+        public static int GirisYap(kullanici kullanici)
         {
             try
             {
                 using (idDBEntities db = new idDBEntities())
                 {
                     var kul = (from k in db.kullanicis
-                               where k.kullaniciAdi == kulAd && k.sifre == sifre
+                               where k.kullaniciAdi == kullanici.kullaniciAdi && k.sifre == kullanici.sifre
                                select k).SingleOrDefault();
                     if (kul == null)
                     {
-                        return "Şifre ya da kullanıcı adı yanlış.";
+                        return 0;
                     }
                     else
-                        return "Giriş başarılı!";
+                        return kul.kullaniciId;
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                return "İşlem başarısız" + ex.Message;
+                return 0;
             }
+        }
+        public static bool SoruEkle(soru soru)
+        {
+            try
+            {
+                using (idDBEntities db = new idDBEntities())
+                {
+                    db.sorus.Add(soru);
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public static bool KategoriEkle(kategori kategori)
+        {
+            try
+            {
+                using (idDBEntities db = new idDBEntities())
+                {
+                    db.kategoris.Add(kategori);
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public static bool EtiketEkle(etiket etiket)
+        {
+            try
+            {
+                using (idDBEntities db = new idDBEntities())
+                {
+                    db.etikets.Add(etiket);
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public static bool SoruyaCevapYaz(cevap cevap)
+        {
+            try
+            {
+                using (idDBEntities db = new idDBEntities())
+                {
+                    db.cevaps.Add(cevap);
+                    db.SaveChanges();
+                    return true;
+                                    
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public static bool CevabaYorumYaz(yorum yorum)
+        {
+            try
+            {
+                using (idDBEntities db = new idDBEntities())
+                {
+                    db.yorums.Add(yorum);
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public static soru SoruAra(string soruBaslik)
+        {
+            soru s = null;
+            try
+            {
+                using (idDBEntities db = new idDBEntities())
+                {
+                    var soruSorgu = (from p in db.sorus where p.baslik == soruBaslik select p).FirstOrDefault();
+                    if (soruSorgu != null)
+                        s = soruSorgu;
+                    else
+                        s = null;
+                }
+            }
+            catch
+            {
+                s = null; ;
+            }
+            return s;
+        }
+        public static List<soru> Sorular()
+        {
+            List<soru> sorular = new List<soru>();
+            sorular = null;
+            try
+            {
+                using (idDBEntities db = new idDBEntities())
+                {
+                    var sorularSorgu = db.sorus;
+                    foreach (soru s in sorularSorgu)
+                    {
+                        sorular.Add(s);
+                    }
+                }
+            }
+            catch
+            {
+                sorular = null;
+            }
+            return sorular;
         }
     }
 }

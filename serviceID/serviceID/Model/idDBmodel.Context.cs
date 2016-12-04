@@ -35,7 +35,7 @@ namespace serviceID.Model
         public DbSet<kategori> kategoris { get; set; }
         public DbSet<kullanici> kullanicis { get; set; }
         public DbSet<soru> sorus { get; set; }
-        public DbSet<soruDetay> soruDetays { get; set; }
+        public DbSet<soruEtiket> soruEtikets { get; set; }
         public DbSet<sysdiagram> sysdiagrams { get; set; }
         public DbSet<yorum> yorums { get; set; }
     

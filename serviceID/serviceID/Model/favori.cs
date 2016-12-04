@@ -14,13 +14,11 @@ namespace serviceID.Model
     
     public partial class favori
     {
-        public favori()
-        {
-            this.sorus = new HashSet<soru>();
-        }
-    
         public int favoriId { get; set; }
+        public int soruId { get; set; }
+        public int kullaniciId { get; set; }
     
-        public virtual ICollection<soru> sorus { get; set; }
+        public virtual kullanici kullanici { get; set; }
+        public virtual soru soru { get; set; }
     }
 }

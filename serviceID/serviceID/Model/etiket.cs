@@ -16,12 +16,12 @@ namespace serviceID.Model
     {
         public etiket()
         {
-            this.sorus = new HashSet<soru>();
+            this.soruEtikets = new HashSet<soruEtiket>();
         }
     
         public int etiketId { get; set; }
         public string etiketAd { get; set; }
     
-        public virtual ICollection<soru> sorus { get; set; }
+        public virtual ICollection<soruEtiket> soruEtikets { get; set; }
     }
 }

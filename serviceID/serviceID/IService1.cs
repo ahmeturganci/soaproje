@@ -16,17 +16,31 @@ namespace serviceID
 
         [OperationContract]
         string GetData(int value);
-
-        [OperationContract]
-        string GirisYap(string kulAd, string sifre);//bu şekilde sonra 
-
-        [OperationContract]
-        void KayitOl(kullanici kul);
-
         [OperationContract]
         CompositeType GetDataUsingDataContract(CompositeType composite);
 
-        // TODO: Add your service operations here
+        [OperationContract]
+        int GirisYap(kullanici kullanici); //int sebebi kullanicid return etmek için
+        [OperationContract]
+        int KayitOl(kullanici kul); // 0 başarılı, 1 başarısız, 2 hata var
+        [OperationContract]
+        bool SoruEkle(soru soru);
+        [OperationContract]
+        bool KategoriEkle(kategori kategori);
+        [OperationContract]
+        bool EtiketEkle(etiket etiket);
+        [OperationContract]
+        bool SoruyaCevapYaz(cevap cevap);
+        [OperationContract]
+        bool CevabaYorumYaz(yorum yorum);
+        [OperationContract]
+        bool SoruFavoriEkle(favori fav);
+        List<soru> Sorular();
+        soru SoruAra(string soruBaslik);
+        
+
+
+
     }
 
 

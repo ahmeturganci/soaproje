@@ -16,7 +16,9 @@ namespace serviceID.Model
     {
         public soru()
         {
-            this.soruDetays = new HashSet<soruDetay>();
+            this.cevaps = new HashSet<cevap>();
+            this.favoris = new HashSet<favori>();
+            this.soruEtikets = new HashSet<soruEtiket>();
         }
     
         public int soruId { get; set; }
@@ -25,11 +27,13 @@ namespace serviceID.Model
         public string baslik { get; set; }
         public Nullable<System.DateTime> yayinTarihi { get; set; }
         public Nullable<bool> onayDurumu { get; set; }
-        public Nullable<int> favoriId { get; set; }
+        public Nullable<int> kullaniciId { get; set; }
+        public string soruIcerik { get; set; }
     
-        public virtual etiket etiket { get; set; }
-        public virtual favori favori { get; set; }
+        public virtual ICollection<cevap> cevaps { get; set; }
+        public virtual ICollection<favori> favoris { get; set; }
         public virtual kategori kategori { get; set; }
-        public virtual ICollection<soruDetay> soruDetays { get; set; }
+        public virtual kullanici kullanici { get; set; }
+        public virtual ICollection<soruEtiket> soruEtikets { get; set; }
     }
 }

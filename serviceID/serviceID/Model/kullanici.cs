@@ -16,17 +16,22 @@ namespace serviceID.Model
     {
         public kullanici()
         {
-            this.soruDetays = new HashSet<soruDetay>();
+            this.begenis = new HashSet<begeni>();
+            this.cevaps = new HashSet<cevap>();
+            this.favoris = new HashSet<favori>();
+            this.sorus = new HashSet<soru>();
+            this.yorums = new HashSet<yorum>();
         }
     
         public int kullaniciId { get; set; }
-        public Nullable<int> soruId { get; set; }
-        public Nullable<int> cevapId { get; set; }
         public string kullaniciAdi { get; set; }
         public string email { get; set; }
         public string sifre { get; set; }
     
-        public virtual cevap cevap { get; set; }
-        public virtual ICollection<soruDetay> soruDetays { get; set; }
+        public virtual ICollection<begeni> begenis { get; set; }
+        public virtual ICollection<cevap> cevaps { get; set; }
+        public virtual ICollection<favori> favoris { get; set; }
+        public virtual ICollection<soru> sorus { get; set; }
+        public virtual ICollection<yorum> yorums { get; set; }
     }
 }

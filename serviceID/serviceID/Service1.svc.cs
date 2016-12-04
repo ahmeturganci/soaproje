@@ -32,13 +32,54 @@ namespace serviceID
             return composite;
         }
 
-        public string GirisYap(string kulAd, string sifre)
+        public int GirisYap(kullanici kullanici)
         {
-            return KullaniciIslem.GirisYap(kulAd, sifre);
+            return KullaniciIslem.GirisYap(kullanici);
         }
-        public void KayitOl(kullanici kul)
+
+        public bool KategoriEkle(kategori kategori)
         {
-            KullaniciIslem.KayitOl(kul);
+            return KullaniciIslem.KategoriEkle(kategori);
+        }
+
+        public int KayitOl(kullanici kul)
+        {
+            return KullaniciIslem.KayitOl(kul);
+        }
+
+        public soru SoruAra(string soruBaslik)
+        {
+            return KullaniciIslem.SoruAra(soruBaslik);
+        }
+
+        public bool SoruEkle(soru soru)
+        {
+            return KullaniciIslem.SoruEkle(soru);
+        }
+
+        public List<soru> Sorular()
+        {
+            return KullaniciIslem.Sorular();
+        }
+
+        public bool SoruyaCevapYaz(cevap cevap)
+        {
+            return KullaniciIslem.SoruyaCevapYaz(cevap);
+        }
+
+        public bool CevabaYorumYaz(yorum yorum)
+        {
+            return KullaniciIslem.CevabaYorumYaz(yorum);
+        }
+
+        public bool EtiketEkle(etiket etiket)
+        {
+            return KullaniciIslem.EtiketEkle(etiket);
+        }
+
+        public bool SoruFavoriEkle(favori fav)
+        {
+            throw new NotImplementedException();
         }
     }
 }

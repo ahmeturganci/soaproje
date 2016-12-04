@@ -14,15 +14,12 @@ namespace serviceID.Model
     
     public partial class begeni
     {
-        public begeni()
-        {
-            this.cevaps = new HashSet<cevap>();
-        }
-    
         public int begeniId { get; set; }
-        public Nullable<int> begeniSayisi { get; set; }
-        public Nullable<int> tiksintiSayisi { get; set; }
+        public Nullable<int> begeniTuruId { get; set; }
+        public int kullaniciId { get; set; }
+        public Nullable<int> cevapId { get; set; }
     
-        public virtual ICollection<cevap> cevaps { get; set; }
+        public virtual cevap cevap { get; set; }
+        public virtual kullanici kullanici { get; set; }
     }
 }
