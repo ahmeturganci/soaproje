@@ -132,6 +132,7 @@
     <Compile Include="Model\sysdiagram.cs">
       <DependentUpon>idDBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\ViewModel\soruView.cs" />
     <Compile Include="Model\yorum.cs">
       <DependentUpon>idDBModel.tt</DependentUpon>
     </Compile>
@@ -153,6 +154,7 @@
     <Content Include="Model\idDBModel.edmx.diagram">
       <DependentUpon>idDBModel.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\ahmet.pubxml" />
     <None Include="Properties\PublishProfiles\serviceID.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

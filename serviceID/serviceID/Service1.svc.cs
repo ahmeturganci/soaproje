@@ -6,6 +6,7 @@ using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
 using serviceID.Model;
+using serviceID.Model.ViewModel;
 
 using serviceID.BL;
 
@@ -17,19 +18,6 @@ namespace serviceID
         public string GetData(int value)
         {
             return string.Format("You entered: {0}", value);
-        }
-
-        public CompositeType GetDataUsingDataContract(CompositeType composite)
-        {
-            if (composite == null)
-            {
-                throw new ArgumentNullException("composite");
-            }
-            if (composite.BoolValue)
-            {
-                composite.StringValue += "Suffix";
-            }
-            return composite;
         }
 
         public int GirisYap(kullanici kullanici)
@@ -57,7 +45,7 @@ namespace serviceID
             return KullaniciIslem.SoruEkle(soru);
         }
 
-        public List<soru> Sorular()
+        public List<soruView> Sorular()
         {
             return KullaniciIslem.Sorular();
         }

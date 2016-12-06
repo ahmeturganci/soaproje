@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using serviceID.Model;
-
+using serviceID.Model.ViewModel;
 namespace serviceID.BL
 {
     
@@ -157,9 +157,9 @@ namespace serviceID.BL
             }
             return s;
         }
-        public static List<soru> Sorular()
+        public static List<soruView> Sorular()
         {
-            List<soru> sorular = new List<soru>();
+            List<soruView> sorular = new List<soruView>();
             sorular = null;
             try
             {
@@ -168,7 +168,19 @@ namespace serviceID.BL
                     var sorularSorgu = db.sorus;
                     foreach (soru s in sorularSorgu)
                     {
-                        sorular.Add(s);
+                        //sıkıntılar var düzeltilecek.
+                        soruView ss = new soruView() {
+                            baslik = s.baslik,
+                            etiketId = s.etiketId,
+                            kategoriId = s. kategoriId,
+                            kullaniciId= s.kullaniciId,
+                            onayDurumu= s.onayDurumu,
+                            soruIcerik=s.soruIcerik,
+                            soruId=s.soruId,
+                            yayinTarihi=s.yayinTarihi
+                        };
+                        sorular.Add(ss);
+                        
                     }
                 }
             }

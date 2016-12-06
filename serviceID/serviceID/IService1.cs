@@ -6,6 +6,8 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using serviceID.Model.ViewModel;
+
 
 namespace serviceID
 {
@@ -16,8 +18,7 @@ namespace serviceID
 
         [OperationContract]
         string GetData(int value);
-        [OperationContract]
-        CompositeType GetDataUsingDataContract(CompositeType composite);
+     
 
         [OperationContract]
         int GirisYap(kullanici kullanici); //int sebebi kullanicid return etmek için
@@ -35,34 +36,13 @@ namespace serviceID
         bool CevabaYorumYaz(yorum yorum);
         [OperationContract]
         bool SoruFavoriEkle(favori fav);
-        List<soru> Sorular();
+        [OperationContract]
+        List<soruView> Sorular();
+        [OperationContract]
         soru SoruAra(string soruBaslik);
         
 
 
 
-    }
-
-
-    // Use a data contract as illustrated in the sample below to add composite types to service operations.
-    [DataContract]
-    public class CompositeType
-    {
-        bool boolValue = true;
-        string stringValue = "Hello ";
-
-        [DataMember]
-        public bool BoolValue
-        {
-            get { return boolValue; }
-            set { boolValue = value; }
-        }
-
-        [DataMember]
-        public string StringValue
-        {
-            get { return stringValue; }
-            set { stringValue = value; }
-        }
     }
 }

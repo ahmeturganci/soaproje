@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewBag.Title = "SoruSor";
+    Layout = "~/Views/Shared/_MainShared.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="header">
+                <h4 class="title">Soru Ekle</h4>
+            </div>
+            <div class="content">
+                <form>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Soru Başlık</label>
+                                <input type="text" class="form-control" placeholder="Soru Başlık" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Soru Konu</label>
+                                <input type="text" class="form-control" placeholder="Soru Konu" value="">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Soru Etiket</label>
+                                <input type="text" class="form-control" placeholder="Soru Başlık" value="">
+                            </div>
+                            <div class="col-md-4">
+                                <p>Gelen Etiket 1 </p>
+                                <p>Gelen Etiket 1 </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <select class="select">
+                                <option>Kategori</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Soru Ayrıntı</label>
+                                <textarea rows="5" class="form-control" placeholder="Sorunuzu ayrıtılı şekilde paylaşın" value=""></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+            </div>
+
+            <button type="submit" class="btn btn-info btn-fill pull-right">Gönder</button>
+            <div class="clearfix"></div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    function Kaydol() {
+        var data = {
+            baslik: $("#").val(),
+            icerik: $("#").val(),
+          
+        };
+        console.log("tetikleri");
+        $.post("/Home/SoruSor", data, function (sonuc) {
+
+            alert(sonuc);
+        });
+    }
+
+</script>
