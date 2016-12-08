@@ -107,9 +107,9 @@
     <script>
         function Kaydol() {
             var data = {
-                KullaniciAdi: $("#txtKulAd").val(),
-                Mail: $("#txtMail").val(),
-                Sifre: $("#txtSifre").val(),
+                kullaniciAdi: $("#txtKulAd").val(),
+                email: $("#txtMail").val(),
+                sifre: $("#txtSifre").val(),
             };
             alert(data.KullaniciAdi);
             $.post("/Home/Kaydol", data, function (sonuc) {
@@ -141,6 +141,7 @@
 
 
         });
+        
     </script>
 </body>
 </html>
