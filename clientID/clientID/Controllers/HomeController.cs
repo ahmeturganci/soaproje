@@ -38,15 +38,15 @@ namespace clientID.Controllers
         public JsonResult Listele()
         {
             s = new ServiceReference1.Service1Client();
-            return Json(s.Sorular());
+            return Json(s.SoruListele());
+            
+          
             s.Close();
         }
         public ActionResult Giris()
         {
-            s = new ServiceReference1.Service1Client();
             return View();
-            s.Close();
-        }
+        }//sayfa çapırmak için
         public ActionResult SoruSor()
         {
             s = new ServiceReference1.Service1Client();

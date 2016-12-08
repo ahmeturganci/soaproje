@@ -1,157 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://mehmetgelmedi-001-site1.htempurl.com/Service1.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/serviceID.Model" />
-  <xs:import schemaLocation="http://mehmetgelmedi-001-site1.htempurl.com/Service1.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/serviceID.Model.ViewModel" />
-  <xs:element name="GetData">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="value" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetDataResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="GetDataResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GirisYap">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/serviceID.Model" minOccurs="0" name="kullanici" nillable="true" type="q1:kullanici" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GirisYapResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="GirisYapResult" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="KayitOl">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/serviceID.Model" minOccurs="0" name="kul" nillable="true" type="q2:kullanici" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="KayitOlResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="KayitOlResult" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SoruEkle">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/serviceID.Model" minOccurs="0" name="soru" nillable="true" type="q3:soru" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SoruEkleResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="SoruEkleResult" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="KategoriEkle">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/serviceID.Model" minOccurs="0" name="kategori" nillable="true" type="q4:kategori" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="KategoriEkleResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="KategoriEkleResult" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="EtiketEkle">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/serviceID.Model" minOccurs="0" name="etiket" nillable="true" type="q5:etiket" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="EtiketEkleResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="EtiketEkleResult" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SoruyaCevapYaz">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/serviceID.Model" minOccurs="0" name="cevap" nillable="true" type="q6:cevap" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SoruyaCevapYazResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="SoruyaCevapYazResult" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CevabaYorumYaz">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/serviceID.Model" minOccurs="0" name="yorum" nillable="true" type="q7:yorum" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CevabaYorumYazResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="CevabaYorumYazResult" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SoruFavoriEkle">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/serviceID.Model" minOccurs="0" name="fav" nillable="true" type="q8:favori" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SoruFavoriEkleResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="SoruFavoriEkleResult" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="Sorular">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SorularResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/serviceID.Model.ViewModel" minOccurs="0" name="SorularResult" nillable="true" type="q9:ArrayOfsoruView" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SoruAra">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="soruBaslik" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SoruAraResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/serviceID.Model" minOccurs="0" name="SoruAraResult" nillable="true" type="q10:soru" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/serviceID.Model.ViewModel" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/serviceID.Model.ViewModel" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfsoruView">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="soruView" nillable="true" type="tns:soruView" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfsoruView" nillable="true" type="tns:ArrayOfsoruView" />
+  <xs:complexType name="soruView">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="baslik" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="etiketId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="kategoriId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="kullaniciId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="onayDurumu" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="soruIcerik" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="soruId" type="xs:int" />
+      <xs:element minOccurs="0" name="yayinTarihi" nillable="true" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="soruView" nillable="true" type="tns:soruView" />
 </xs:schema>

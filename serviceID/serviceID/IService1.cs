@@ -7,6 +7,7 @@ using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
 using serviceID.Model.ViewModel;
+using serviceID.Model.DataModel;
 
 
 namespace serviceID
@@ -40,7 +41,8 @@ namespace serviceID
         List<soruView> Sorular();
         [OperationContract]
         soru SoruAra(string soruBaslik);
-        
+        [OperationContract]
+        List<soruView> SoruListele();
 
 
 

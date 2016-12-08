@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using serviceID.Model;
+using serviceID.Model.DataModel;
 using serviceID.Model.ViewModel;
 namespace serviceID.BL
 {
@@ -160,7 +160,7 @@ namespace serviceID.BL
         public static List<soruView> Sorular()
         {
             List<soruView> sorular = new List<soruView>();
-            sorular = null;
+            
             try
             {
                 using (idDBEntities db = new idDBEntities())
@@ -186,9 +186,15 @@ namespace serviceID.BL
             }
             catch
             {
-                sorular = null;
+                
             }
             return sorular;
+        }
+        public static List<soruView> SoruListele()
+        {
+            idDBEntities db = new idDBEntities();
+            var tblSoru = db.sorus;
+            return soruView.MapData(db.sorus.ToList());
         }
     }
 }

@@ -15,7 +15,7 @@ namespace clientID.ServiceReference1 {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="kullanici", Namespace="http://schemas.datacontract.org/2004/07/serviceID.Model")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="kullanici", Namespace="http://schemas.datacontract.org/2004/07/serviceID.Model.DataModel")]
     [System.SerializableAttribute()]
     public partial class kullanici : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -188,7 +188,7 @@ namespace clientID.ServiceReference1 {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="begeni", Namespace="http://schemas.datacontract.org/2004/07/serviceID.Model")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="begeni", Namespace="http://schemas.datacontract.org/2004/07/serviceID.Model.DataModel")]
     [System.SerializableAttribute()]
     public partial class begeni : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -313,7 +313,7 @@ namespace clientID.ServiceReference1 {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="cevap", Namespace="http://schemas.datacontract.org/2004/07/serviceID.Model")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="cevap", Namespace="http://schemas.datacontract.org/2004/07/serviceID.Model.DataModel")]
     [System.SerializableAttribute()]
     public partial class cevap : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -486,7 +486,7 @@ namespace clientID.ServiceReference1 {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="favori", Namespace="http://schemas.datacontract.org/2004/07/serviceID.Model")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="favori", Namespace="http://schemas.datacontract.org/2004/07/serviceID.Model.DataModel")]
     [System.SerializableAttribute()]
     public partial class favori : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -595,7 +595,7 @@ namespace clientID.ServiceReference1 {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="soru", Namespace="http://schemas.datacontract.org/2004/07/serviceID.Model")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="soru", Namespace="http://schemas.datacontract.org/2004/07/serviceID.Model.DataModel")]
     [System.SerializableAttribute()]
     public partial class soru : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -832,7 +832,7 @@ namespace clientID.ServiceReference1 {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="yorum", Namespace="http://schemas.datacontract.org/2004/07/serviceID.Model")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="yorum", Namespace="http://schemas.datacontract.org/2004/07/serviceID.Model.DataModel")]
     [System.SerializableAttribute()]
     public partial class yorum : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -973,7 +973,7 @@ namespace clientID.ServiceReference1 {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="kategori", Namespace="http://schemas.datacontract.org/2004/07/serviceID.Model")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="kategori", Namespace="http://schemas.datacontract.org/2004/07/serviceID.Model.DataModel")]
     [System.SerializableAttribute()]
     public partial class kategori : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -1050,7 +1050,7 @@ namespace clientID.ServiceReference1 {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="soruEtiket", Namespace="http://schemas.datacontract.org/2004/07/serviceID.Model")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="soruEtiket", Namespace="http://schemas.datacontract.org/2004/07/serviceID.Model.DataModel")]
     [System.SerializableAttribute()]
     public partial class soruEtiket : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -1159,7 +1159,7 @@ namespace clientID.ServiceReference1 {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="etiket", Namespace="http://schemas.datacontract.org/2004/07/serviceID.Model")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="etiket", Namespace="http://schemas.datacontract.org/2004/07/serviceID.Model.DataModel")]
     [System.SerializableAttribute()]
     public partial class etiket : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -1460,6 +1460,12 @@ namespace clientID.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SoruAra", ReplyAction="http://tempuri.org/IService1/SoruAraResponse")]
         System.Threading.Tasks.Task<clientID.ServiceReference1.soru> SoruAraAsync(string soruBaslik);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SoruListele", ReplyAction="http://tempuri.org/IService1/SoruListeleResponse")]
+        clientID.ServiceReference1.soruView[] SoruListele();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SoruListele", ReplyAction="http://tempuri.org/IService1/SoruListeleResponse")]
+        System.Threading.Tasks.Task<clientID.ServiceReference1.soruView[]> SoruListeleAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1575,6 +1581,14 @@ namespace clientID.ServiceReference1 {
         
         public System.Threading.Tasks.Task<clientID.ServiceReference1.soru> SoruAraAsync(string soruBaslik) {
             return base.Channel.SoruAraAsync(soruBaslik);
+        }
+        
+        public clientID.ServiceReference1.soruView[] SoruListele() {
+            return base.Channel.SoruListele();
+        }
+        
+        public System.Threading.Tasks.Task<clientID.ServiceReference1.soruView[]> SoruListeleAsync() {
+            return base.Channel.SoruListeleAsync();
         }
     }
 }

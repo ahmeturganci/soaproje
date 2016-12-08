@@ -67,12 +67,12 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model\idDBModel.Context.tt">
+    <Content Include="Model\DataModel\idDBModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>idDBModel.edmx</DependentUpon>
       <LastGenOutput>idDBModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Model\idDBModel.tt">
+    <Content Include="Model\DataModel\idDBModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>idDBModel.edmx</DependentUpon>
       <LastGenOutput>idDBModel.cs</LastGenOutput>
@@ -84,56 +84,56 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BL\KullaniciIslem.cs" />
-    <Compile Include="Model\begeni.cs">
+    <Compile Include="Model\DataModel\begeni.cs">
       <DependentUpon>idDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\cevap.cs">
+    <Compile Include="Model\DataModel\cevap.cs">
       <DependentUpon>idDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\etiket.cs">
+    <Compile Include="Model\DataModel\etiket.cs">
       <DependentUpon>idDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\favori.cs">
+    <Compile Include="Model\DataModel\favori.cs">
       <DependentUpon>idDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\idDBModel.Context.cs">
+    <Compile Include="Model\DataModel\idDBModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>idDBModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\idDBModel.cs">
+    <Compile Include="Model\DataModel\idDBModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>idDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\idDBModel.Designer.cs">
+    <Compile Include="Model\DataModel\idDBModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>idDBModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Model\kategori.cs">
+    <Compile Include="Model\DataModel\kategori.cs">
       <DependentUpon>idDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\kullanici.cs">
+    <Compile Include="Model\DataModel\kullanici.cs">
       <DependentUpon>idDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\soru.cs">
+    <Compile Include="Model\DataModel\soru.cs">
       <DependentUpon>idDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\soruEtiket.cs">
+    <Compile Include="Model\DataModel\soruEtiket.cs">
       <DependentUpon>idDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\sp_helpdiagramdefinition_Result.cs">
+    <Compile Include="Model\DataModel\sp_helpdiagramdefinition_Result.cs">
       <DependentUpon>idDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\sp_helpdiagrams_Result.cs">
+    <Compile Include="Model\DataModel\sp_helpdiagrams_Result.cs">
       <DependentUpon>idDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\sysdiagram.cs">
+    <Compile Include="Model\DataModel\sysdiagram.cs">
       <DependentUpon>idDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\ViewModel\soruView.cs" />
-    <Compile Include="Model\yorum.cs">
+    <Compile Include="Model\DataModel\yorum.cs">
       <DependentUpon>idDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Service1.svc.cs">
@@ -147,11 +147,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <EntityDeploy Include="Model\idDBModel.edmx">
+    <EntityDeploy Include="Model\DataModel\idDBModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>idDBModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Model\idDBModel.edmx.diagram">
+    <Content Include="Model\DataModel\idDBModel.edmx.diagram">
       <DependentUpon>idDBModel.edmx</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\ahmet.pubxml" />

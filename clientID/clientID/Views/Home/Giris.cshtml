@@ -26,7 +26,7 @@
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>-
+                    <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
@@ -43,7 +43,7 @@
                 </ul>
             </div>
         </div>
-        
+
     </nav>
     <div class="intro-header">
         <div class="container">
@@ -56,12 +56,12 @@
                         <h4>Geliştiriciler</h4>
                         <hr class="intro-divider">
                         <ul class="list-inline intro-social-buttons">
-                            <lfahmeti>
+                            <li>
                                 <a href="https://github.com/ahmeturganci" target="_blank" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Ahmet URGANCI</span></a>
-                                </li>
-                                <li>
-                                    <a href="https://github.com/mehmetgelmedi" target="_blank" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Mehmet Emin GELMEDİ</span></a>
-                                </li>
+                            </li>
+                            <li>
+                                <a href="https://github.com/mehmetgelmedi" target="_blank" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Mehmet Emin GELMEDİ</span></a>
+                            </li>
                         </ul>
                         <hr class="intro-divider">
                         <h4>Teknolojiler</h4>
@@ -80,7 +80,7 @@
             <div class="loginmodal-container">
                 <h1>I am debugger <br>Giriş</h1><br>
                 <form class="form">
-                    <input type="text" name="user" placeholder="Kullanıcı Adı"  id="txtGKulAd" class="form-control">
+                    <input type="text" name="user" placeholder="Kullanıcı Adı" id="txtGKulAd" class="form-control">
                     <input type="password" name="pass" placeholder="Parola" id="txtGSifre" class="form-control">
                     <input type="button" name="login" class="login loginmodal-submit" value="Giriş" onclick="Giris();">
                 </form>
@@ -99,7 +99,7 @@
                     <input type="text" name="user" placeholder="Kullanıcı Adı" id="txtKulAd" class="form-control">
                     <input type="text" name="mai" placeholder="E-Mail" id="txtMail" class="form-control">
                     <input type="password" name="pass" placeholder="Parola" id="txtSifre" class="form-control">
-                    <input type="button" name="login" class="login loginmodal-submit" value="Kaydol"  onclick="Kaydol();">
+                    <input type="button" name="login" class="login loginmodal-submit" value="Kaydol" onclick="Kaydol();">
                 </form>
             </div>
         </div>
@@ -111,10 +111,13 @@
                 Mail: $("#txtMail").val(),
                 Sifre: $("#txtSifre").val(),
             };
-            console.log("tetikleri");
+            alert(data.KullaniciAdi);
             $.post("/Home/Kaydol", data, function (sonuc) {
-                
-                alert(sonuc);
+                if (sonuc == "+")
+                    alert("Başarılı");
+                else
+                    alert("Başarısız");
+
             });
         }
 
@@ -123,7 +126,7 @@
                 kulAd: $("#txtGKulAd").val(),
                 sifre: $("#txtGSifre").val()
             };
-           alert(data.kulAd + " " + data.sifre);
+            alert(data.kulAd + " " + data.sifre);
             $.post("/Home/GirisYap", data, function (sonuc) {
                 if (sonuc == '+')
                     window.location = "/Home/Index";
@@ -131,13 +134,13 @@
                     alert("Hatalı giriş");
             });
         }
-    $(function(){
-        $("a#sifreUnut").click(function(){
-            alert("Bu servis kısa bir sürelğine devre dışı");
+        $(function () {
+            $("a#sifreUnut").click(function () {
+                alert("Bu servis kısa bir sürelğine devre dışı");
+            });
+
+
         });
-
-
-    });
     </script>
 </body>
 </html>

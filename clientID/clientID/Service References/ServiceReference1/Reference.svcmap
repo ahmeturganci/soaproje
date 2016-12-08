@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="75bb8e1a-59d1-4a64-89e7-9fa3ea18a95d" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="af27cd8e-ce3f-4e94-a51f-f7d458c06950" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -19,15 +19,15 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://mehmetgelmedi-001-site1.htempurl.com/Service1.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:64717/Service1.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="Service1.wsdl" MetadataType="Wsdl" ID="8237737c-3cf6-4414-9677-4e6b920edc43" SourceId="1" SourceUrl="http://mehmetgelmedi-001-site1.htempurl.com/Service1.svc?wsdl" />
-    <MetadataFile FileName="Service1.xsd" MetadataType="Schema" ID="2043ad7c-978a-4cea-9f27-42c46f7283b7" SourceId="1" SourceUrl="http://mehmetgelmedi-001-site1.htempurl.com/Service1.svc?xsd=xsd1" />
-    <MetadataFile FileName="Service11.xsd" MetadataType="Schema" ID="e02216c4-397a-464d-a1f5-1bcc9adbd88d" SourceId="1" SourceUrl="http://mehmetgelmedi-001-site1.htempurl.com/Service1.svc?xsd=xsd0" />
-    <MetadataFile FileName="Service12.xsd" MetadataType="Schema" ID="ddf340e0-4957-4a6a-b440-ad6cceae30f8" SourceId="1" SourceUrl="http://mehmetgelmedi-001-site1.htempurl.com/Service1.svc?xsd=xsd3" />
-    <MetadataFile FileName="Service13.xsd" MetadataType="Schema" ID="f8fd77b5-7098-4030-b3ae-8d71f7853549" SourceId="1" SourceUrl="http://mehmetgelmedi-001-site1.htempurl.com/Service1.svc?xsd=xsd2" />
-    <MetadataFile FileName="Service1.disco" MetadataType="Disco" ID="1d9fe167-b99e-4642-86d3-5b433a0c6f8f" SourceId="1" SourceUrl="http://mehmetgelmedi-001-site1.htempurl.com/Service1.svc?disco" />
+    <MetadataFile FileName="Service1.xsd" MetadataType="Schema" ID="f09f8020-de6a-4e5c-8ba7-fe76f3183393" SourceId="1" SourceUrl="http://localhost:64717/Service1.svc?xsd=xsd2" />
+    <MetadataFile FileName="Service11.xsd" MetadataType="Schema" ID="d9d9c8e6-8e99-4449-b0bc-66765f820c12" SourceId="1" SourceUrl="http://localhost:64717/Service1.svc?xsd=xsd3" />
+    <MetadataFile FileName="Service12.xsd" MetadataType="Schema" ID="7be5f4ff-3023-4fb8-ba34-690b8a743005" SourceId="1" SourceUrl="http://localhost:64717/Service1.svc?xsd=xsd0" />
+    <MetadataFile FileName="Service1.wsdl" MetadataType="Wsdl" ID="95bad4fd-db68-4a86-9273-eca93a3d379b" SourceId="1" SourceUrl="http://localhost:64717/Service1.svc?wsdl" />
+    <MetadataFile FileName="Service1.disco" MetadataType="Disco" ID="d87be4a0-8e45-4562-a84d-183390fbef97" SourceId="1" SourceUrl="http://localhost:64717/Service1.svc?disco" />
+    <MetadataFile FileName="Service13.xsd" MetadataType="Schema" ID="b235fb0c-f644-457c-bdff-b51910131893" SourceId="1" SourceUrl="http://localhost:64717/Service1.svc?xsd=xsd1" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

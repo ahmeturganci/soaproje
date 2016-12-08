@@ -5,8 +5,9 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
-using serviceID.Model;
+
 using serviceID.Model.ViewModel;
+using serviceID.Model.DataModel;
 
 using serviceID.BL;
 
@@ -68,6 +69,11 @@ namespace serviceID
         public bool SoruFavoriEkle(favori fav)
         {
             throw new NotImplementedException();
+        }
+
+        public List<soruView> SoruListele()
+        {
+            return KullaniciIslem.SoruListele();
         }
     }
 }
