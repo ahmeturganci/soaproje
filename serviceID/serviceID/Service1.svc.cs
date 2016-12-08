@@ -41,7 +41,7 @@ namespace serviceID
             return KullaniciIslem.SoruAra(soruBaslik);
         }
 
-        public bool SoruEkle(soru soru)
+        public string SoruEkle(soru soru)
         {
             return KullaniciIslem.SoruEkle(soru);
         }
@@ -74,6 +74,16 @@ namespace serviceID
         public List<soruView> SoruListele()
         {
             return KullaniciIslem.SoruListele();
+        }
+
+        public List<string> KategoriListele()
+        {
+            return KullaniciIslem.KategoriListele();
+        }
+
+        public List<string> EtiketListele()
+        {
+            return KullaniciIslem.EtiketListele();
         }
     }
 }

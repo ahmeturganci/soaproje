@@ -56,7 +56,7 @@ namespace serviceID.BL
                 return 0;
             }
         }
-        public static bool SoruEkle(soru soru)
+        public static string SoruEkle(soru soru)
         {
             try
             {
@@ -64,12 +64,12 @@ namespace serviceID.BL
                 {
                     db.sorus.Add(soru);
                     db.SaveChanges();
-                    return true;
+                    return "+";
                 }
             }
             catch
             {
-                return false;
+                return "-";
             }
         }
         public static bool KategoriEkle(kategori kategori)
@@ -144,7 +144,7 @@ namespace serviceID.BL
             {
                 using (idDBEntities db = new idDBEntities())
                 {
-                    var soruSorgu = (from p in db.sorus where p.baslik == soruBaslik select p).FirstOrDefault();
+                    var soruSorgu = (from p in db.sorus where p.baslik.Contains(soruBaslik) select p).FirstOrDefault();
                     if (soruSorgu != null)
                         s = soruSorgu;
                     else
@@ -195,6 +195,44 @@ namespace serviceID.BL
             idDBEntities db = new idDBEntities();
             var tblSoru = db.sorus;
             return soruView.MapData(db.sorus.ToList());
+        }
+        public static List<string> KategoriListele()
+        {
+            List<string> kategoriler = new List<string>();
+            using (idDBEntities db=new idDBEntities())
+            {
+                try
+                {
+                    var tblKategori = db.kategoris;
+                    foreach (kategori item in tblKategori)
+                    {
+                        kategoriler.Add(item.kategorId+","+item.kategoriAd);
+                    }
+                }
+                catch
+                {
+                }
+            }
+            return kategoriler;
+        }
+        public static List<string> EtiketListele()
+        {
+            List<string> etiketler = new List<string>();
+            using (idDBEntities db = new idDBEntities())
+            {
+                try
+                {
+                    var tblEtiket = db.etikets;
+                    foreach (etiket item in tblEtiket)
+                    {
+                        etiketler.Add(item.etiketAd);
+                    }
+                }
+                catch
+                {
+                }
+            }
+            return etiketler;
         }
     }
 }

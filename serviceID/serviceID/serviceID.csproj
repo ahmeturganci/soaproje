@@ -132,10 +132,10 @@
     <Compile Include="Model\DataModel\sysdiagram.cs">
       <DependentUpon>idDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\ViewModel\soruView.cs" />
     <Compile Include="Model\DataModel\yorum.cs">
       <DependentUpon>idDBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\ViewModel\soruView.cs" />
     <Compile Include="Service1.svc.cs">
       <DependentUpon>Service1.svc</DependentUpon>
     </Compile>
@@ -155,11 +155,15 @@
       <DependentUpon>idDBModel.edmx</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\ahmet.pubxml" />
+    <None Include="Properties\PublishProfiles\service.pubxml" />
     <None Include="Properties\PublishProfiles\serviceID.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.serviceID.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>

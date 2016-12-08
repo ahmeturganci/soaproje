@@ -26,7 +26,7 @@ namespace serviceID
         [OperationContract]
         int KayitOl(kullanici kul); // 0 başarılı, 1 başarısız, 2 hata var
         [OperationContract]
-        bool SoruEkle(soru soru);
+        string SoruEkle(soru soru);
         [OperationContract]
         bool KategoriEkle(kategori kategori);
         [OperationContract]
@@ -43,6 +43,10 @@ namespace serviceID
         soru SoruAra(string soruBaslik);
         [OperationContract]
         List<soruView> SoruListele();
+        [OperationContract]
+        List<string> KategoriListele();
+        [OperationContract]
+        List<string> EtiketListele();
 
 
 

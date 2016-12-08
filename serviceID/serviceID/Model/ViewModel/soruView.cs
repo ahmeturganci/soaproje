@@ -17,7 +17,6 @@ namespace serviceID.Model.ViewModel
         public Nullable<int> kullaniciId { get; set; }
         public string soruIcerik { get; set; }
 
-
         public static soruView MapData(soru s)
         {
             soruView gonderi = new soruView()
@@ -30,6 +29,7 @@ namespace serviceID.Model.ViewModel
                 soruIcerik = s.soruIcerik,
                 soruId = s.soruId,
                 yayinTarihi = s.yayinTarihi
+                
             };
             return gonderi;
         }// ne nereye dicek anladık sanırım 
@@ -73,8 +73,6 @@ namespace serviceID.Model.ViewModel
 
             return liste;
         }
-
-
-
+     
     }
 }
