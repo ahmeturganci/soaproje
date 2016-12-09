@@ -165,6 +165,12 @@
     <Content Include="Service References\ServiceReference1\clientID.ServiceReference1.soruView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Service References\ServiceReference1\clientID.ServiceReference1.cevaplarim.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ServiceReference1\clientID.ServiceReference1.yorumlarim.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Service References\ServiceReference1\Service1.disco" />
     <None Include="Service References\ServiceReference1\configuration91.svcinfo" />
     <None Include="Service References\ServiceReference1\configuration.svcinfo" />
@@ -288,6 +294,7 @@
     <None Include="Service References\ServiceReference1\Service15.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Views\Home\SoruGoster.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

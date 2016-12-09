@@ -204,4 +204,46 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="Cevaplarim">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="soruId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CevaplarimResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/serviceID" minOccurs="0" name="CevaplarimResult" nillable="true" type="q15:ArrayOfcevaplarim" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Yorumlarim">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="cevapId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="YorumlarimResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/serviceID" minOccurs="0" name="YorumlarimResult" nillable="true" type="q16:ArrayOfyorumlarim" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="hangiSorum">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="soruId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="hangiSorumResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/serviceID" minOccurs="0" name="hangiSorumResult" nillable="true" type="q17:sorularim" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

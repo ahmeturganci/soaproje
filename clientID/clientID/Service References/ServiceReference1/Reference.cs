@@ -1419,6 +1419,9 @@ namespace clientID.ServiceReference1 {
         private string OnayDurumField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SoruIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string YayinTarihiField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -1510,6 +1513,19 @@ namespace clientID.ServiceReference1 {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public int SoruId {
+            get {
+                return this.SoruIdField;
+            }
+            set {
+                if ((this.SoruIdField.Equals(value) != true)) {
+                    this.SoruIdField = value;
+                    this.RaisePropertyChanged("SoruId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string YayinTarihi {
             get {
                 return this.YayinTarihiField;
@@ -1518,6 +1534,176 @@ namespace clientID.ServiceReference1 {
                 if ((object.ReferenceEquals(this.YayinTarihiField, value) != true)) {
                     this.YayinTarihiField = value;
                     this.RaisePropertyChanged("YayinTarihi");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="cevaplarim", Namespace="http://schemas.datacontract.org/2004/07/serviceID")]
+    [System.SerializableAttribute()]
+    public partial class cevaplarim : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CevapField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int CevapIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CevapTarihiField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string KullaniciAdiField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Cevap {
+            get {
+                return this.CevapField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CevapField, value) != true)) {
+                    this.CevapField = value;
+                    this.RaisePropertyChanged("Cevap");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CevapId {
+            get {
+                return this.CevapIdField;
+            }
+            set {
+                if ((this.CevapIdField.Equals(value) != true)) {
+                    this.CevapIdField = value;
+                    this.RaisePropertyChanged("CevapId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CevapTarihi {
+            get {
+                return this.CevapTarihiField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CevapTarihiField, value) != true)) {
+                    this.CevapTarihiField = value;
+                    this.RaisePropertyChanged("CevapTarihi");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string KullaniciAdi {
+            get {
+                return this.KullaniciAdiField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.KullaniciAdiField, value) != true)) {
+                    this.KullaniciAdiField = value;
+                    this.RaisePropertyChanged("KullaniciAdi");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="yorumlarim", Namespace="http://schemas.datacontract.org/2004/07/serviceID")]
+    [System.SerializableAttribute()]
+    public partial class yorumlarim : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string KullaniciAdiField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string YorumField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string YorumTarihiField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string KullaniciAdi {
+            get {
+                return this.KullaniciAdiField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.KullaniciAdiField, value) != true)) {
+                    this.KullaniciAdiField = value;
+                    this.RaisePropertyChanged("KullaniciAdi");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Yorum {
+            get {
+                return this.YorumField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.YorumField, value) != true)) {
+                    this.YorumField = value;
+                    this.RaisePropertyChanged("Yorum");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string YorumTarihi {
+            get {
+                return this.YorumTarihiField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.YorumTarihiField, value) != true)) {
+                    this.YorumTarihiField = value;
+                    this.RaisePropertyChanged("YorumTarihi");
                 }
             }
         }
@@ -1625,6 +1811,24 @@ namespace clientID.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Sorularim", ReplyAction="http://tempuri.org/IService1/SorularimResponse")]
         System.Threading.Tasks.Task<clientID.ServiceReference1.sorularim[]> SorularimAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Cevaplarim", ReplyAction="http://tempuri.org/IService1/CevaplarimResponse")]
+        clientID.ServiceReference1.cevaplarim[] Cevaplarim(int soruId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Cevaplarim", ReplyAction="http://tempuri.org/IService1/CevaplarimResponse")]
+        System.Threading.Tasks.Task<clientID.ServiceReference1.cevaplarim[]> CevaplarimAsync(int soruId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Yorumlarim", ReplyAction="http://tempuri.org/IService1/YorumlarimResponse")]
+        clientID.ServiceReference1.yorumlarim[] Yorumlarim(int cevapId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Yorumlarim", ReplyAction="http://tempuri.org/IService1/YorumlarimResponse")]
+        System.Threading.Tasks.Task<clientID.ServiceReference1.yorumlarim[]> YorumlarimAsync(int cevapId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/hangiSorum", ReplyAction="http://tempuri.org/IService1/hangiSorumResponse")]
+        clientID.ServiceReference1.sorularim hangiSorum(int soruId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/hangiSorum", ReplyAction="http://tempuri.org/IService1/hangiSorumResponse")]
+        System.Threading.Tasks.Task<clientID.ServiceReference1.sorularim> hangiSorumAsync(int soruId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1772,6 +1976,30 @@ namespace clientID.ServiceReference1 {
         
         public System.Threading.Tasks.Task<clientID.ServiceReference1.sorularim[]> SorularimAsync() {
             return base.Channel.SorularimAsync();
+        }
+        
+        public clientID.ServiceReference1.cevaplarim[] Cevaplarim(int soruId) {
+            return base.Channel.Cevaplarim(soruId);
+        }
+        
+        public System.Threading.Tasks.Task<clientID.ServiceReference1.cevaplarim[]> CevaplarimAsync(int soruId) {
+            return base.Channel.CevaplarimAsync(soruId);
+        }
+        
+        public clientID.ServiceReference1.yorumlarim[] Yorumlarim(int cevapId) {
+            return base.Channel.Yorumlarim(cevapId);
+        }
+        
+        public System.Threading.Tasks.Task<clientID.ServiceReference1.yorumlarim[]> YorumlarimAsync(int cevapId) {
+            return base.Channel.YorumlarimAsync(cevapId);
+        }
+        
+        public clientID.ServiceReference1.sorularim hangiSorum(int soruId) {
+            return base.Channel.hangiSorum(soruId);
+        }
+        
+        public System.Threading.Tasks.Task<clientID.ServiceReference1.sorularim> hangiSorumAsync(int soruId) {
+            return base.Channel.hangiSorumAsync(soruId);
         }
     }
 }

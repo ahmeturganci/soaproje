@@ -82,13 +82,6 @@ namespace clientID.Controllers
             s.Close();
         }
 
-        public JsonResult SorulariListele()
-        {
-            s = new ServiceReference1.Service1Client();
-            var sonuc = s.Sorularim();
-            return Json(sonuc);
-            s.Close();
-        }
         public JsonResult KategoriCek()
         {
             s = new ServiceReference1.Service1Client();
@@ -106,10 +99,10 @@ namespace clientID.Controllers
             {
                 baslik = sr.baslik,
                 soruIcerik = sr.soruIcerik,
-                kategoriId=sr.kategoriId
+                kategoriId = sr.kategoriId
 
             };
-            
+
             sr.kullaniciId = kId;
             sr.onayDurumu = false;
             sr.yayinTarihi = DateTime.Now;
@@ -127,30 +120,49 @@ namespace clientID.Controllers
             return View();
             s.Close();
         }
-
-
-        public int parcala(string s)
+        public JsonResult KategoriEkle(ServiceReference1.kategori ktg)
         {
-           
-                char[] arr = s.ToArray();
-                string res = "";
-                string res2 = "";
-                for (int i = 0; i < arr.Length; i++)
-                {
-                    res += arr[i];
-                    if (arr[i] == ',')
-                    {
-                        res = res.TrimEnd(',');
-                        for (int j = i + 1; j < arr.Length; j++)
-                        {
-                            res2 += arr[j];
-                        }
-                        break;
-                    }
-                }
-                
-            
-            return Convert.ToInt16(res);
+            s = new ServiceReference1.Service1Client();
+            ktg = new ServiceReference1.kategori()
+            {
+                kategoriAd = ktg.kategoriAd
+            };
+            bool sonuc = s.KategoriEkle(ktg);
+            if (sonuc)
+                return Json("+");
+            else
+                return Json("-");
         }
+        public JsonResult SorulariListele()
+        {
+            s = new ServiceReference1.Service1Client();
+            var sonuc = s.Sorularim();
+            return Json(sonuc);
+            s.Close();
+        }
+        public ActionResult SoruGoster()
+        {
+            return View();
+        }
+        public JsonResult SoruCek(int soruId)
+       {
+            s = new ServiceReference1.Service1Client();
+            ServiceReference1.sorularim ss = s.hangiSorum(soruId);
+            //ss geri gönder 
+          
+           
+            return Json(ss);//soru
+                            
+            //CevapCek(ss.SoruId);
+            
+            s.Close();
+        }
+        public JsonResult CevapCek(int soruId)
+        {
+            s = new ServiceReference1.Service1Client();
+            return Json(s.Cevaplarim(soruId));
+            s.Close();
+        }
+        
     }
 }

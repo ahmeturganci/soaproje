@@ -24,10 +24,21 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <select class="form-control" id="kategoriler">
-                                    
-                                </select>
+                                <select class="form-control" id="kategoriler"></select>
                             </div>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="#" id="katEkle">Kategorimi kendim eklemek istiyorum.</a>
+                        </div>
+                    </div>
+                    <div class="row" id="kategoriEkle">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Kategori Ad</label>
+                                <input type="text" class="form-control" placeholder="Kategori Adı" id="sKategoriAdi" value="">
+                            </div>
+
+                            <button type="button" class="btn btn-primary" onclick="KategoriEkle();">Kategori Ekle</button>
                         </div>
                     </div>
                     <div class="row">
@@ -40,9 +51,11 @@
                     </div>
 
             </div>
+            <!-- Modal -->
+
 
             <button type="button" class="btn btn-info btn-fill pull-right" onclick="SoruEkle();">Gönder</button>
-            <button type="button" id="kontol">Kontrol</button>
+            
             <div class="clearfix"></div>
 
             </form>
@@ -52,6 +65,13 @@
 <script>
 
     $("#soruSor").load(KategoriListele());
+
+    $("#kategoriEkle").hide();
+
+    $("#katEkle").click(function () {
+        $("#kategoriEkle").show(2000);
+    });
+
     function KategoriListele() {
         //item.Baslik+" "+item.Icerik +" "+item.KategoriAd+" "+item.OnayDurum+" "+item.YayinTarihi
         $.post("/Home/KategoriCek", function (data) {
@@ -67,14 +87,27 @@
             baslik: $("#sBaslik").val(),
             soruIcerik: $("#sIcerik").val(),
             kategoriId: parseInt($("#kategoriler option:selected").val()),
-            
         };
-        alert(data.kategoriId);
-
-        console.log("tetikleri");
         $.post("/Home/SoruEkle", data, function (sonuc) {
             if (sonuc == "+")
                 $("#sonuc").append(' <div class="alert alert-info alert-with-icon" data-notify="container"><button type="button" aria-hidden="true" class="close">×</button><span data-notify="icon" class="pe-7s-bell"></span><span data-notify="message">Soru Başarılı Şekilde Eklendi.</span></div>').toggle(3000);
+            else
+                $("#sonuc").append(' <div class="alert alert-info alert-with-icon" data-notify="container"><button type="button" aria-hidden="true" class="close">×</button><span data-notify="icon" class="pe-7s-bell"></span><span data-notify="message">Soru Başarılı Şekilde Eklenemedi..</span></div>').toggle(3000);
+        });
+
+    }
+    function KategoriEkle() {
+        var data = {
+            kategoriAd: $("#sKategoriAdi").val()
+        };
+        alert(data.kategoriAdi);
+        $.post("/Home/KategoriEkle", data, function (sonuc) {
+            if (sonuc == "+") {
+                $("#kategoriEkle").hide();
+                KategoriListele();
+            }
+            else
+                alert("Kategori Eklenemedi");
         });
 
     }
