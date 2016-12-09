@@ -19,6 +19,10 @@ namespace clientID.Controllers
             }
             return View();
         }
+        public ActionResult Giris()
+        {
+            return View();
+        }
         public JsonResult GirisYap(string kulAd, string sifre)
         {
             s = new ServiceReference1.Service1Client();
@@ -78,24 +82,43 @@ namespace clientID.Controllers
             s.Close();
         }
 
-        public JsonResult Listele()
+        public JsonResult SorulariListele()
         {
             s = new ServiceReference1.Service1Client();
-            return Json(s.SoruListele());
-
-
+            var sonuc = s.Sorularim();
+            return Json(sonuc);
             s.Close();
         }
-        public ActionResult Giris()
+        public JsonResult KategoriCek()
         {
-            return View();
+            s = new ServiceReference1.Service1Client();
+            return Json(s.KategoriListele());
+            s.Close();
         }
         public ActionResult SoruSor()
         {
-            s = new ServiceReference1.Service1Client();
-            ServiceReference1.soru ss = new ServiceReference1.soru();
-            s.SoruEkle(ss);
             return View();
+        }
+        public JsonResult SoruEkle(ServiceReference1.soru sr)
+        {
+            s = new ServiceReference1.Service1Client();
+            sr = new ServiceReference1.soru()
+            {
+                baslik = sr.baslik,
+                soruIcerik = sr.soruIcerik,
+                kategoriId=sr.kategoriId
+
+            };
+            
+            sr.kullaniciId = kId;
+            sr.onayDurumu = false;
+            sr.yayinTarihi = DateTime.Now;
+
+
+            string sonuc = s.SoruEkle(sr);
+            if (sonuc == "+")
+                return Json("+");
+            else return Json("-");
             s.Close();
         }
         public ActionResult Cevaplarim()
@@ -106,5 +129,28 @@ namespace clientID.Controllers
         }
 
 
+        public int parcala(string s)
+        {
+           
+                char[] arr = s.ToArray();
+                string res = "";
+                string res2 = "";
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    res += arr[i];
+                    if (arr[i] == ',')
+                    {
+                        res = res.TrimEnd(',');
+                        for (int j = i + 1; j < arr.Length; j++)
+                        {
+                            res2 += arr[j];
+                        }
+                        break;
+                    }
+                }
+                
+            
+            return Convert.ToInt16(res);
+        }
     }
 }

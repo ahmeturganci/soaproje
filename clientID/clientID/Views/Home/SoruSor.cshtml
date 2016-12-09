@@ -4,7 +4,8 @@
     Layout = "~/Views/Shared/_MainShared.cshtml";
 }
 
-<div class="row">
+<div class="row" id="soruSor">
+    <div id="sonuc"></div>
     <div class="col-md-12">
         <div class="card">
             <div class="header">
@@ -16,67 +17,67 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Soru Başlık</label>
-                                <input type="text" class="form-control" placeholder="Soru Başlık" value="">
+                                <input type="text" class="form-control" placeholder="Soru Başlık" id="sBaslik" value="">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Soru Konu</label>
-                                <input type="text" class="form-control" placeholder="Soru Konu" value="">
+                                <select class="form-control" id="kategoriler">
+                                    
+                                </select>
                             </div>
-                        </div>
-
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Soru Etiket</label>
-                                <input type="text" class="form-control" placeholder="Soru Başlık" value="">
-                            </div>
-                            <div class="col-md-4">
-                                <p>Gelen Etiket 1 </p>
-                                <p>Gelen Etiket 1 </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <select class="select">
-                                <option>Kategori</option>
-                            </select>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Soru Ayrıntı</label>
-                                <textarea rows="5" class="form-control" placeholder="Sorunuzu ayrıtılı şekilde paylaşın" value=""></textarea>
+                                <textarea rows="5" class="form-control" placeholder="Sorunuzu ayrıtılı şekilde paylaşın" value="" id="sIcerik"></textarea>
                             </div>
                         </div>
                     </div>
 
             </div>
 
-            <button type="submit" class="btn btn-info btn-fill pull-right">Gönder</button>
+            <button type="button" class="btn btn-info btn-fill pull-right" onclick="SoruEkle();">Gönder</button>
+            <button type="button" id="kontol">Kontrol</button>
             <div class="clearfix"></div>
+
             </form>
         </div>
     </div>
 </div>
 <script>
-    function Kaydol() {
-        var data = {
-            baslik: $("#").val(),
-            icerik: $("#").val(),
-          
-        };
-        console.log("tetikleri");
-        $.post("/Home/SoruSor", data, function (sonuc) {
 
-            alert(sonuc);
+    $("#soruSor").load(KategoriListele());
+    function KategoriListele() {
+        //item.Baslik+" "+item.Icerik +" "+item.KategoriAd+" "+item.OnayDurum+" "+item.YayinTarihi
+        $.post("/Home/KategoriCek", function (data) {
+            $("#kategoriler").html("");
+            $.each(data, function (i, item) {
+                $("#kategoriler").append('<option>' + item + '</option>');
+            });
         });
+
     }
+    function SoruEkle() {
+        var data = {
+            baslik: $("#sBaslik").val(),
+            soruIcerik: $("#sIcerik").val(),
+            kategoriId: parseInt($("#kategoriler option:selected").val()),
+            
+        };
+        alert(data.kategoriId);
+
+        console.log("tetikleri");
+        $.post("/Home/SoruEkle", data, function (sonuc) {
+            if (sonuc == "+")
+                $("#sonuc").append(' <div class="alert alert-info alert-with-icon" data-notify="container"><button type="button" aria-hidden="true" class="close">×</button><span data-notify="icon" class="pe-7s-bell"></span><span data-notify="message">Soru Başarılı Şekilde Eklendi.</span></div>').toggle(3000);
+        });
+
+    }
+
 
 </script>
