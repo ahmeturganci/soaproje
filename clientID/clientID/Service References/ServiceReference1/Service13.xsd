@@ -1,42 +1,207 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:element name="anyType" nillable="true" type="xs:anyType" />
-  <xs:element name="anyURI" nillable="true" type="xs:anyURI" />
-  <xs:element name="base64Binary" nillable="true" type="xs:base64Binary" />
-  <xs:element name="boolean" nillable="true" type="xs:boolean" />
-  <xs:element name="byte" nillable="true" type="xs:byte" />
-  <xs:element name="dateTime" nillable="true" type="xs:dateTime" />
-  <xs:element name="decimal" nillable="true" type="xs:decimal" />
-  <xs:element name="double" nillable="true" type="xs:double" />
-  <xs:element name="float" nillable="true" type="xs:float" />
-  <xs:element name="int" nillable="true" type="xs:int" />
-  <xs:element name="long" nillable="true" type="xs:long" />
-  <xs:element name="QName" nillable="true" type="xs:QName" />
-  <xs:element name="short" nillable="true" type="xs:short" />
-  <xs:element name="string" nillable="true" type="xs:string" />
-  <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte" />
-  <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt" />
-  <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong" />
-  <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort" />
-  <xs:element name="char" nillable="true" type="tns:char" />
-  <xs:simpleType name="char">
-    <xs:restriction base="xs:int" />
-  </xs:simpleType>
-  <xs:element name="duration" nillable="true" type="tns:duration" />
-  <xs:simpleType name="duration">
-    <xs:restriction base="xs:duration">
-      <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?" />
-      <xs:minInclusive value="-P10675199DT2H48M5.4775808S" />
-      <xs:maxInclusive value="P10675199DT2H48M5.4775807S" />
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:element name="guid" nillable="true" type="tns:guid" />
-  <xs:simpleType name="guid">
-    <xs:restriction base="xs:string">
-      <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}" />
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:attribute name="FactoryType" type="xs:QName" />
-  <xs:attribute name="Id" type="xs:ID" />
-  <xs:attribute name="Ref" type="xs:IDREF" />
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://mehmetgelmedi-001-site1.htempurl.com/Service1.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/serviceID.Model.DataModel" />
+  <xs:import schemaLocation="http://mehmetgelmedi-001-site1.htempurl.com/Service1.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/serviceID.Model.ViewModel" />
+  <xs:import schemaLocation="http://mehmetgelmedi-001-site1.htempurl.com/Service1.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://mehmetgelmedi-001-site1.htempurl.com/Service1.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/serviceID" />
+  <xs:element name="GetData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="value" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetDataResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GirisYap">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/serviceID.Model.DataModel" minOccurs="0" name="kullanici" nillable="true" type="q1:kullanici" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GirisYapResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GirisYapResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="KayitOl">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/serviceID.Model.DataModel" minOccurs="0" name="kul" nillable="true" type="q2:kullanici" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="KayitOlResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="KayitOlResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SoruEkle">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/serviceID.Model.DataModel" minOccurs="0" name="soru" nillable="true" type="q3:soru" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SoruEkleResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SoruEkleResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="KategoriEkle">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/serviceID.Model.DataModel" minOccurs="0" name="kategori" nillable="true" type="q4:kategori" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="KategoriEkleResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="KategoriEkleResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EtiketEkle">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/serviceID.Model.DataModel" minOccurs="0" name="etiket" nillable="true" type="q5:etiket" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EtiketEkleResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="EtiketEkleResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SoruyaCevapYaz">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/serviceID.Model.DataModel" minOccurs="0" name="cevap" nillable="true" type="q6:cevap" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SoruyaCevapYazResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SoruyaCevapYazResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CevabaYorumYaz">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/serviceID.Model.DataModel" minOccurs="0" name="yorum" nillable="true" type="q7:yorum" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CevabaYorumYazResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CevabaYorumYazResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SoruFavoriEkle">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/serviceID.Model.DataModel" minOccurs="0" name="fav" nillable="true" type="q8:favori" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SoruFavoriEkleResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SoruFavoriEkleResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Sorular">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SorularResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/serviceID.Model.ViewModel" minOccurs="0" name="SorularResult" nillable="true" type="q9:ArrayOfsoruView" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SoruAra">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="soruBaslik" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SoruAraResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/serviceID.Model.DataModel" minOccurs="0" name="SoruAraResult" nillable="true" type="q10:soru" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SoruListele">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SoruListeleResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/serviceID.Model.ViewModel" minOccurs="0" name="SoruListeleResult" nillable="true" type="q11:ArrayOfsoruView" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="KategoriListele">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="KategoriListeleResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="KategoriListeleResult" nillable="true" type="q12:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EtiketListele">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EtiketListeleResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="EtiketListeleResult" nillable="true" type="q13:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Sorularim">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SorularimResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/serviceID" minOccurs="0" name="SorularimResult" nillable="true" type="q14:ArrayOfsorularim" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

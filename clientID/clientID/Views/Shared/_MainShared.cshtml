@@ -9,6 +9,7 @@
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
+    <script src="~/Scripts/jquery-3.js"></script>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link href="~/UI_1/assets/css/animate.min.css" rel="stylesheet" />
     <link href="~/UI_1/assets/css/light-bootstrap-dashboard.css" rel="stylesheet" />
@@ -96,7 +97,7 @@
 
                             </li>
                             <li>
-                                <a href="#"> Çıkış</a>
+                                <a href="#" id="cikis"> Çıkış</a>
                             </li>
                         </ul>
                     </div>
@@ -138,7 +139,16 @@
     </div>
 
 </body>
-
+<script>
+    $(function () {
+        $("a#cikis").click(function () {
+            $.post("/Home/Cikis", "", function (sonuc) {
+                if (sonuc == '+')
+                    window.location = "/Home/Giris";
+            });
+        });
+    });
+</script>
 <script src="~/UI_1/assets/js/bootstrap-checkbox-radio-switch.js"></script>
 <script src="~/UI_1/assets/js/bootstrap-notify.js"></script>
 <script src="~/UI_1/assets/js/bootstrap-select.js"></script>

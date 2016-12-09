@@ -1391,6 +1391,147 @@ namespace clientID.ServiceReference1 {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="sorularim", Namespace="http://schemas.datacontract.org/2004/07/serviceID")]
+    [System.SerializableAttribute()]
+    public partial class sorularim : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string BaslikField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EtiketAdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string IcerikField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string KategoriAdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string KullaniciAdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string OnayDurumField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string YayinTarihiField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Baslik {
+            get {
+                return this.BaslikField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BaslikField, value) != true)) {
+                    this.BaslikField = value;
+                    this.RaisePropertyChanged("Baslik");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string EtiketAd {
+            get {
+                return this.EtiketAdField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EtiketAdField, value) != true)) {
+                    this.EtiketAdField = value;
+                    this.RaisePropertyChanged("EtiketAd");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Icerik {
+            get {
+                return this.IcerikField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IcerikField, value) != true)) {
+                    this.IcerikField = value;
+                    this.RaisePropertyChanged("Icerik");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string KategoriAd {
+            get {
+                return this.KategoriAdField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.KategoriAdField, value) != true)) {
+                    this.KategoriAdField = value;
+                    this.RaisePropertyChanged("KategoriAd");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string KullaniciAd {
+            get {
+                return this.KullaniciAdField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.KullaniciAdField, value) != true)) {
+                    this.KullaniciAdField = value;
+                    this.RaisePropertyChanged("KullaniciAd");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string OnayDurum {
+            get {
+                return this.OnayDurumField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.OnayDurumField, value) != true)) {
+                    this.OnayDurumField = value;
+                    this.RaisePropertyChanged("OnayDurum");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string YayinTarihi {
+            get {
+                return this.YayinTarihiField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.YayinTarihiField, value) != true)) {
+                    this.YayinTarihiField = value;
+                    this.RaisePropertyChanged("YayinTarihi");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IService1")]
     public interface IService1 {
@@ -1414,10 +1555,10 @@ namespace clientID.ServiceReference1 {
         System.Threading.Tasks.Task<int> KayitOlAsync(clientID.ServiceReference1.kullanici kul);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SoruEkle", ReplyAction="http://tempuri.org/IService1/SoruEkleResponse")]
-        bool SoruEkle(clientID.ServiceReference1.soru soru);
+        string SoruEkle(clientID.ServiceReference1.soru soru);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SoruEkle", ReplyAction="http://tempuri.org/IService1/SoruEkleResponse")]
-        System.Threading.Tasks.Task<bool> SoruEkleAsync(clientID.ServiceReference1.soru soru);
+        System.Threading.Tasks.Task<string> SoruEkleAsync(clientID.ServiceReference1.soru soru);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/KategoriEkle", ReplyAction="http://tempuri.org/IService1/KategoriEkleResponse")]
         bool KategoriEkle(clientID.ServiceReference1.kategori kategori);
@@ -1466,6 +1607,24 @@ namespace clientID.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SoruListele", ReplyAction="http://tempuri.org/IService1/SoruListeleResponse")]
         System.Threading.Tasks.Task<clientID.ServiceReference1.soruView[]> SoruListeleAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/KategoriListele", ReplyAction="http://tempuri.org/IService1/KategoriListeleResponse")]
+        string[] KategoriListele();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/KategoriListele", ReplyAction="http://tempuri.org/IService1/KategoriListeleResponse")]
+        System.Threading.Tasks.Task<string[]> KategoriListeleAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/EtiketListele", ReplyAction="http://tempuri.org/IService1/EtiketListeleResponse")]
+        string[] EtiketListele();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/EtiketListele", ReplyAction="http://tempuri.org/IService1/EtiketListeleResponse")]
+        System.Threading.Tasks.Task<string[]> EtiketListeleAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Sorularim", ReplyAction="http://tempuri.org/IService1/SorularimResponse")]
+        clientID.ServiceReference1.sorularim[] Sorularim();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Sorularim", ReplyAction="http://tempuri.org/IService1/SorularimResponse")]
+        System.Threading.Tasks.Task<clientID.ServiceReference1.sorularim[]> SorularimAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1519,11 +1678,11 @@ namespace clientID.ServiceReference1 {
             return base.Channel.KayitOlAsync(kul);
         }
         
-        public bool SoruEkle(clientID.ServiceReference1.soru soru) {
+        public string SoruEkle(clientID.ServiceReference1.soru soru) {
             return base.Channel.SoruEkle(soru);
         }
         
-        public System.Threading.Tasks.Task<bool> SoruEkleAsync(clientID.ServiceReference1.soru soru) {
+        public System.Threading.Tasks.Task<string> SoruEkleAsync(clientID.ServiceReference1.soru soru) {
             return base.Channel.SoruEkleAsync(soru);
         }
         
@@ -1589,6 +1748,30 @@ namespace clientID.ServiceReference1 {
         
         public System.Threading.Tasks.Task<clientID.ServiceReference1.soruView[]> SoruListeleAsync() {
             return base.Channel.SoruListeleAsync();
+        }
+        
+        public string[] KategoriListele() {
+            return base.Channel.KategoriListele();
+        }
+        
+        public System.Threading.Tasks.Task<string[]> KategoriListeleAsync() {
+            return base.Channel.KategoriListeleAsync();
+        }
+        
+        public string[] EtiketListele() {
+            return base.Channel.EtiketListele();
+        }
+        
+        public System.Threading.Tasks.Task<string[]> EtiketListeleAsync() {
+            return base.Channel.EtiketListeleAsync();
+        }
+        
+        public clientID.ServiceReference1.sorularim[] Sorularim() {
+            return base.Channel.Sorularim();
+        }
+        
+        public System.Threading.Tasks.Task<clientID.ServiceReference1.sorularim[]> SorularimAsync() {
+            return base.Channel.SorularimAsync();
         }
     }
 }

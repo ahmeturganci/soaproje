@@ -82,7 +82,7 @@
                 <form class="form">
                     <input type="text" name="user" placeholder="Kullanıcı Adı" id="txtGKulAd" class="form-control">
                     <input type="password" name="pass" placeholder="Parola" id="txtGSifre" class="form-control">
-                    <input type="button" name="login" class="login loginmodal-submit" value="Giriş" onclick="Giris();">
+                    <input type="button" name="login" class="btn btn-primary" value="Giriş" onclick="Giris();">
                 </form>
                 <div class="login-help">
                     <a href="#singin-modal" data-toggle="modal" data-target="#singin-modal">Kaydol</a> - <a href="#" id="sifreUnut">Şifremi Unuttum</a>
@@ -99,7 +99,7 @@
                     <input type="text" name="user" placeholder="Kullanıcı Adı" id="txtKulAd" class="form-control">
                     <input type="text" name="mai" placeholder="E-Mail" id="txtMail" class="form-control">
                     <input type="password" name="pass" placeholder="Parola" id="txtSifre" class="form-control">
-                    <input type="button" name="login" class="login loginmodal-submit" value="Kaydol" onclick="Kaydol();">
+                    <input type="button" name="login" class="btn btn-primary" value="Kaydol" onclick="Kaydol();">
                 </form>
             </div>
         </div>
@@ -111,7 +111,7 @@
                 email: $("#txtMail").val(),
                 sifre: $("#txtSifre").val(),
             };
-            alert(data.KullaniciAdi);
+            alert(data);
             $.post("/Home/Kaydol", data, function (sonuc) {
                 if (sonuc == "+")
                     alert("Başarılı");

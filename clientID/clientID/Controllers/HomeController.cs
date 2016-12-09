@@ -9,29 +9,72 @@ namespace clientID.Controllers
     public class HomeController : Controller
     {
         ServiceReference1.Service1Client s;
+        public static int kId = 0;
         public ActionResult Index()
         {
+            if (Request.Cookies["idUserID"] == null)
+            {
+                Response.Redirect("/Home/Giris");
+
+            }
             return View();
-            s.Close();
         }
         public JsonResult GirisYap(string kulAd, string sifre)
         {
+            s = new ServiceReference1.Service1Client();
             ServiceReference1.kullanici k = new ServiceReference1.kullanici();
             k.kullaniciAdi = kulAd;
             k.sifre = sifre;
 
-            int sonuc = s.GirisYap(k);
-            if (sonuc != 0)
+            kId = s.GirisYap(k);
+
+            if (k != null && kId != 0)
+            {
+                Response.Cookies["idUserID"].Value = k.kullaniciId.ToString();
+                Response.Cookies["idUserID"].Expires = DateTime.Now.AddDays(1);
+                Response.Cookies["idUserName"].Value = k.kullaniciAdi.ToString();
+                Response.Cookies["idUserName"].Expires = DateTime.Now.AddDays(1);
+
+                HttpCookie aCookie = new HttpCookie("lastVisit");
+                aCookie.Value = DateTime.Now.ToString();
+                aCookie.Expires = DateTime.Now.AddDays(1);
+                Response.Cookies.Add(aCookie);
                 return Json("+");
+
+            }
             else
-                return Json("-");
+                return Json("- Giriş yapılamadı.");
             s.Close();
+        }
+        public JsonResult Cikis()
+        {
+            Response.Cookies["idUserID"].Value = null;
+            Response.Cookies["idUserID"].Expires = DateTime.Now.AddDays(-1);
+            Response.Cookies["idUserName"].Value = null;
+            Response.Cookies["idUserName"].Expires = DateTime.Now.AddDays(-1);
+
+            HttpCookie aCookie = new HttpCookie("lastVisit");
+            aCookie.Value = DateTime.Now.ToString();
+            aCookie.Expires = DateTime.Now.AddDays(1);
+            Response.Cookies.Add(aCookie);
+            return Json("+");
+
         }
         public JsonResult Kaydol(ServiceReference1.kullanici kul)
         {
             s = new ServiceReference1.Service1Client();
-            s.KayitOl(kul);
-            return Json("+");
+            kul = new ServiceReference1.kullanici()
+            {
+                kullaniciAdi = kul.kullaniciAdi,
+                sifre = kul.sifre,
+                email = kul.email
+            };
+            kId = s.KayitOl(kul);
+
+            if (kId == 0)
+                return Json("+");
+            else
+                return Json("-");
             s.Close();
         }
 
@@ -39,14 +82,14 @@ namespace clientID.Controllers
         {
             s = new ServiceReference1.Service1Client();
             return Json(s.SoruListele());
-            
-          
+
+
             s.Close();
         }
         public ActionResult Giris()
         {
             return View();
-        }//sayfa çapırmak için
+        }
         public ActionResult SoruSor()
         {
             s = new ServiceReference1.Service1Client();
