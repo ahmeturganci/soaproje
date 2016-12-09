@@ -85,5 +85,21 @@ namespace serviceID
         {
             return KullaniciIslem.EtiketListele();
         }
+
+        public List<sorularim> Sorularim()
+        {
+            return KullaniciIslem.Sorularim();
+                 
+        }
+
+        public List<cevaplarim> Cevaplarim(int soruId)
+        {
+            return KullaniciIslem.Cevaplarim(soruId);
+        }
+
+        public List<yorumlarim> Yorumlarim(int cevapId)
+        {
+            return KullaniciIslem.Yorumlarim(cevapId);
+        }
     }
 }

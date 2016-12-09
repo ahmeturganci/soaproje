@@ -6,7 +6,7 @@ using serviceID.Model.DataModel;
 using serviceID.Model.ViewModel;
 namespace serviceID.BL
 {
-    
+
     public class KullaniciIslem
     {
         public static int KayitOl(kullanici kullanici)
@@ -113,7 +113,7 @@ namespace serviceID.BL
                     db.cevaps.Add(cevap);
                     db.SaveChanges();
                     return true;
-                                    
+
                 }
             }
             catch
@@ -160,7 +160,7 @@ namespace serviceID.BL
         public static List<soruView> Sorular()
         {
             List<soruView> sorular = new List<soruView>();
-            
+
             try
             {
                 using (idDBEntities db = new idDBEntities())
@@ -169,24 +169,25 @@ namespace serviceID.BL
                     foreach (soru s in sorularSorgu)
                     {
                         //sıkıntılar var düzeltilecek.
-                        soruView ss = new soruView() {
+                        soruView ss = new soruView()
+                        {
                             baslik = s.baslik,
                             etiketId = s.etiketId,
-                            kategoriId = s. kategoriId,
-                            kullaniciId= s.kullaniciId,
-                            onayDurumu= s.onayDurumu,
-                            soruIcerik=s.soruIcerik,
-                            soruId=s.soruId,
-                            yayinTarihi=s.yayinTarihi
+                            kategoriId = s.kategoriId,
+                            kullaniciId = s.kullaniciId,
+                            onayDurumu = s.onayDurumu,
+                            soruIcerik = s.soruIcerik,
+                            soruId = s.soruId,
+                            yayinTarihi = s.yayinTarihi
                         };
                         sorular.Add(ss);
-                        
+
                     }
                 }
             }
             catch
             {
-                
+
             }
             return sorular;
         }
@@ -199,14 +200,14 @@ namespace serviceID.BL
         public static List<string> KategoriListele()
         {
             List<string> kategoriler = new List<string>();
-            using (idDBEntities db=new idDBEntities())
+            using (idDBEntities db = new idDBEntities())
             {
                 try
                 {
                     var tblKategori = db.kategoris;
                     foreach (kategori item in tblKategori)
                     {
-                        kategoriler.Add(item.kategorId+","+item.kategoriAd);
+                        kategoriler.Add(item.kategorId + "," + item.kategoriAd);
                     }
                 }
                 catch
@@ -233,6 +234,114 @@ namespace serviceID.BL
                 }
             }
             return etiketler;
+        }
+        public static List<sorularim> Sorularim()
+        {
+            List<sorularim> sr = new List<sorularim>();
+            using (idDBEntities db = new idDBEntities())
+            {
+                try
+                {
+
+                    var tblSorgu = from p in db.sorus
+                                   select new
+                                   {
+                                       p.soruIcerik,
+                                       p.baslik,
+                                       p.yayinTarihi,
+                                       p.onayDurumu,
+                                       p.kullanici.kullaniciAdi,
+                                       p.kategori.kategoriAd,
+                                       p.soruId
+                                   };
+                    foreach (var i in tblSorgu)
+                    {
+                        sorularim ss = new sorularim
+                        {
+                            Icerik = i.soruIcerik,
+                            Baslik = i.baslik,
+                            YayinTarihi = i.yayinTarihi.ToString(),
+                            OnayDurum = i.onayDurumu.ToString(),
+                            KullaniciAd = i.kullaniciAdi,
+                            KategoriAd = i.kategoriAd,
+                            SoruId = i.soruId
+                        };
+                        sr.Add(ss);
+
+                    }
+                }
+                catch
+                {
+
+                }
+            }
+            return sr;
+        }
+        public static List<cevaplarim> Cevaplarim(int soruId)
+        {
+            List<cevaplarim> cv = new List<cevaplarim>();
+            try
+            {
+                using (idDBEntities db=new idDBEntities())
+                {
+                    var tblCevap = from p in db.cevaps
+                                   where p.soruId == soruId
+                                   select new
+                                   {
+                                       p.cevap1,
+                                       p.cevapTarihi,
+                                       p.kullanici.kullaniciAdi,
+                                       p.cevapId
+                                   };
+                    foreach (var item in tblCevap)
+                    {
+                        cevaplarim cc = new cevaplarim
+                        {
+                            Cevap = item.cevap1,
+                            CevapTarihi = item.cevapTarihi.ToString(),
+                            KullaniciAdi = item.kullaniciAdi,
+                            CevapId=item.cevapId
+                        };
+                        cv.Add(cc);
+                    }
+                }
+            }
+            catch
+            {
+            }
+            return cv;
+        }
+        public static List<yorumlarim> Yorumlarim(int cevapId)
+        {
+            List<yorumlarim> yr = new List<yorumlarim>();
+            try
+            {
+                using (idDBEntities db=new idDBEntities())
+                {
+                    var tblYorum = from p in db.yorums
+                                   where p.cevapId == cevapId
+                                   select new
+                                   {
+                                       p.yorum1,
+                                       p.yorumTarihi,
+                                       p.kullanici.kullaniciAdi
+                                   };
+                    foreach (var item in tblYorum)
+                    {
+                        yorumlarim yy = new yorumlarim()
+                        {
+                            Yorum = item.yorum1,
+                            YorumTarihi = item.yorumTarihi.ToString(),
+                            KullaniciAdi = item.kullaniciAdi
+                        };
+                        yr.Add(yy);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+            }
+            return yr;
         }
     }
 }
