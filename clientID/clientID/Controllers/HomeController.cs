@@ -81,7 +81,6 @@ namespace clientID.Controllers
                 return Json("-");
             s.Close();
         }
-
         public JsonResult KategoriCek()
         {
             s = new ServiceReference1.Service1Client();
@@ -145,7 +144,7 @@ namespace clientID.Controllers
             return View();
         }
         public JsonResult SoruCek(int soruId)
-       {
+        {
             s = new ServiceReference1.Service1Client();
             ServiceReference1.sorularim ss = s.hangiSorum(soruId);
             return Json(ss);//soru
@@ -157,7 +156,7 @@ namespace clientID.Controllers
             var cevapListe = s.Cevaplarim(soruId);
             //foreach (var item in cevapListe)
             //{
-            //    item.CevapId
+
             //}
             return Json(cevapListe);
             s.Close();
@@ -166,8 +165,43 @@ namespace clientID.Controllers
         {
             s = new ServiceReference1.Service1Client();
             var yorumListe = s.Yorumlarim(cevapId);
+            //foreach (var item in yorumListe)
+            //{
+
+            //}
             return Json(yorumListe);
+            s.Close()
         }
-        
+
+        public JsonResult CevapVer(ServiceReference1.cevap c)
+        {
+            s = new ServiceReference1.Service1Client();
+            c = new ServiceReference1.cevap()
+            {
+                cevap1 = c.cevap1,
+                soruId = c.soruId
+           
+            };
+            c.cevapTarihi = DateTime.Now;
+            c.kullaniciId = kId;
+            bool sonuc = s.SoruyaCevapYaz(c);
+            if (sonuc)
+                return Json("+",kId.ToString());
+            else
+                return Json("-", kId.ToString());
+
+            s.Close()
+
+
+
+
+        }
+        public JsonResult KulCek()
+        {
+            if (kId != 0)
+                return Json(kId.ToString());
+            else
+                return Json("-");
+        }
     }
 }

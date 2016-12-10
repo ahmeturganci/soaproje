@@ -1783,10 +1783,10 @@ namespace clientID.ServiceReference1 {
         System.Threading.Tasks.Task<clientID.ServiceReference1.soruView[]> SorularAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SoruAra", ReplyAction="http://tempuri.org/IService1/SoruAraResponse")]
-        clientID.ServiceReference1.soru SoruAra(string soruBaslik);
+        clientID.ServiceReference1.sorularim[] SoruAra(string soruBaslik);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SoruAra", ReplyAction="http://tempuri.org/IService1/SoruAraResponse")]
-        System.Threading.Tasks.Task<clientID.ServiceReference1.soru> SoruAraAsync(string soruBaslik);
+        System.Threading.Tasks.Task<clientID.ServiceReference1.sorularim[]> SoruAraAsync(string soruBaslik);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SoruListele", ReplyAction="http://tempuri.org/IService1/SoruListeleResponse")]
         clientID.ServiceReference1.soruView[] SoruListele();
@@ -1938,11 +1938,11 @@ namespace clientID.ServiceReference1 {
             return base.Channel.SorularAsync();
         }
         
-        public clientID.ServiceReference1.soru SoruAra(string soruBaslik) {
+        public clientID.ServiceReference1.sorularim[] SoruAra(string soruBaslik) {
             return base.Channel.SoruAra(soruBaslik);
         }
         
-        public System.Threading.Tasks.Task<clientID.ServiceReference1.soru> SoruAraAsync(string soruBaslik) {
+        public System.Threading.Tasks.Task<clientID.ServiceReference1.sorularim[]> SoruAraAsync(string soruBaslik) {
             return base.Channel.SoruAraAsync(soruBaslik);
         }
         

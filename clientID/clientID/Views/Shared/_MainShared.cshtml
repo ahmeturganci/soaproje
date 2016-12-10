@@ -8,7 +8,8 @@
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
-
+    <!--SoruDetay Ekranı için-->
+    <link href="~/Content/soruDetay.css" />
     <script src="~/Scripts/jquery-3.js"></script>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link href="~/UI_1/assets/css/animate.min.css" rel="stylesheet" />
@@ -30,13 +31,13 @@
         <div class="sidebar" data-color="red">
             <div class="sidebar-wrapper">
                 <div class="logo">
-                    <a href="" @Url.Action("Index", "Home") " class="simple-text">
+                    <a href="@Url.Action("Index", "Home") " class="simple-text">
                         I Am Debugger
                     </a>
                 </div>
                 <ul class="nav">
                     <li class="active">
-                        <a href="" @Url.Action("Index", "Home")>
+                        <a href=" @Url.Action("Index", "Home")">
                             <i class="pe-7s-graph"></i>
                             <p>Anasayfa</p>
                         </a>
@@ -48,7 +49,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="" @Url.Action("EnCokSorulan", "Home")>
+                        <a href=" @Url.Action("EnCokSorulan", "Home")">
                             <i class="pe-7s-note2"></i>
                             <p>En Çok Sorulanlar</p>
                         </a>
