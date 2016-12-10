@@ -148,20 +148,25 @@ namespace clientID.Controllers
        {
             s = new ServiceReference1.Service1Client();
             ServiceReference1.sorularim ss = s.hangiSorum(soruId);
-            //ss geri gönder 
-          
-           
             return Json(ss);//soru
-                            
-            //CevapCek(ss.SoruId);
-            
             s.Close();
         }
         public JsonResult CevapCek(int soruId)
         {
             s = new ServiceReference1.Service1Client();
-            return Json(s.Cevaplarim(soruId));
+            var cevapListe = s.Cevaplarim(soruId);
+            //foreach (var item in cevapListe)
+            //{
+            //    item.CevapId
+            //}
+            return Json(cevapListe);
             s.Close();
+        }
+        public JsonResult YorumCek(int cevapId)
+        {
+            s = new ServiceReference1.Service1Client();
+            var yorumListe = s.Yorumlarim(cevapId);
+            return Json(yorumListe);
         }
         
     }

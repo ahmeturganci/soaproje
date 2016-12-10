@@ -13,11 +13,23 @@
 
             </div>
         </div>
+        <div class="clearfix"></div>
+        <div class="card">
+            <div class="header">
+                <h4 class="title">Soru Cevaplar</h4>
+            </div>
+            <div id="sCevaplar">
+
+            </div>
+
+        </div>
     </div>
 </div>
 
 <script>
     $("#soruDetay").load(SoruCek());
+    $("#sDetay").load(CevapCek());
+
     function SoruCek() {
         var url = window.location.pathname;
         var id = url.substring(url.lastIndexOf('/') + 1);
@@ -27,12 +39,47 @@
         };
         console.log(data);
         $.post("/Home/SoruCek", data, function (data) {
-            $("#sDetay  ").append('<div class="typo-line"><p class="category">' + data.KategoriAd + '</p><blockquote><p class="text-primary"><b>' + data.KullaniciAd + 'kullanıcı soruyor;</b></p><p text-success><b>' + data.Baslik + '</b></p><p>' + data.Icerik + '</p><small>' + data.YayinTarihi + '</small></blockquote><strong>' + data.OnayDurum + '</strong></div>');
+            $("#sDetay").append('<div class="typo-line"><p class="category"><strong>' + data.KategoriAd + '</strong></p><blockquote><p class="text-primary"><b>' + data.KullaniciAd + 'takma adlı kullanıcı soruyor;</b></p><p text-success><b>' + data.Baslik + '</b></p><p>' + data.Icerik + '</p><small>' + data.YayinTarihi + '</small></blockquote><strong>' + data.OnayDurum + '</strong></div>');
+        });
+    }
+
+    function CevapCek() {
+
+        var url = window.location.pathname;
+        var id = url.substring(url.lastIndexOf('/') + 1);
+        alert(id);
+        var data = {
+            soruId: id
+        };
+        console.log(data);
+        $.post("/Home/CevapCek", data, function (data) {
+
+            $.each(data, function (i, item) {
+                $("#sCevaplar").append('<p><b>BU BİR CEVAP</b>' + item.Cevap + '<p id="sYorumlar'+i+'">OOO</p></p></b>');
+                YorumCek(item.CevapId,i);
+            });
+
+
         });
 
-
-
-
     }
+    function YorumCek(deger,sayac) {
+        alert(deger);
+        var data = {
+            cevapId: deger
+        };
+        console.log(data);
+        $.post("/Home/YorumCek", data, function (data) {
+            
+            $.each(data, function (i, item) {
+                $("#sYorumlar" + sayac + "").append('<b>' + item.Yorum + '</b>');
+
+            });
+        });
+      
+       
+    }
+
+
 
 </script>
