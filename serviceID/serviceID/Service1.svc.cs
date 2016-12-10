@@ -36,7 +36,7 @@ namespace serviceID
             return KullaniciIslem.KayitOl(kul);
         }
 
-        public soru SoruAra(string soruBaslik)
+        public List<sorularim> SoruAra(string soruBaslik)
         {
             return KullaniciIslem.SoruAra(soruBaslik);
         }
@@ -100,6 +100,16 @@ namespace serviceID
         public List<yorumlarim> Yorumlarim(int cevapId)
         {
             return KullaniciIslem.Yorumlarim(cevapId);
+        }
+
+        public sorularim hangiSorum(int soruId)
+        {
+            return KullaniciIslem.hangiSorum(soruId);
+        }
+
+        public char FavoriSoruEkle(int soruId,int kullaniciId)
+        {
+            return KullaniciIslem.FavoriSoruEkle(soruId, kullaniciId);
         }
     }
 }

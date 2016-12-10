@@ -4,11 +4,26 @@ using System.Linq;
 using System.Web;
 using serviceID.Model.DataModel;
 using serviceID.Model.ViewModel;
+using System.Security.Cryptography;
+using System.Text;
+
 namespace serviceID.BL
 {
 
     public class KullaniciIslem
     {
+        public static string MD5Sifrele(string metin)
+        {
+            MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
+            byte[] btr = Encoding.UTF8.GetBytes(metin);
+            btr = md5.ComputeHash(btr);
+            StringBuilder sb = new StringBuilder();
+            foreach (byte ba in btr)
+            {
+                sb.Append(ba.ToString("x2").ToLower());
+            }
+            return sb.ToString();
+        }
         public static int KayitOl(kullanici kullanici)
         {
             try
@@ -16,11 +31,12 @@ namespace serviceID.BL
                 idDBEntities db = new idDBEntities();
 
                 var kul = (from k in db.kullanicis
-                           where k.kullaniciId == kullanici.kullaniciId
+                           where k.kullaniciAdi == kullanici.kullaniciAdi
                            select k).SingleOrDefault();
 
                 if (kul == null)
                 {
+                    kullanici.sifre = MD5Sifrele(kullanici.sifre);
                     db.kullanicis.Add(kullanici);
                     db.SaveChanges();
 
@@ -40,6 +56,7 @@ namespace serviceID.BL
             {
                 using (idDBEntities db = new idDBEntities())
                 {
+                    kullanici.sifre = MD5Sifrele(kullanici.sifre);
                     var kul = (from k in db.kullanicis
                                where k.kullaniciAdi == kullanici.kullaniciAdi && k.sifre == kullanici.sifre
                                select k).SingleOrDefault();
@@ -137,25 +154,48 @@ namespace serviceID.BL
                 return false;
             }
         }
-        public static soru SoruAra(string soruBaslik)
+        public static List<sorularim> SoruAra(string soruBaslik)
         {
-            soru s = null;
+            List<sorularim> sr = new List<sorularim>();
             try
             {
                 using (idDBEntities db = new idDBEntities())
                 {
-                    var soruSorgu = (from p in db.sorus where p.baslik.Contains(soruBaslik) select p).FirstOrDefault();
-                    if (soruSorgu != null)
-                        s = soruSorgu;
-                    else
-                        s = null;
+                    var soruSorgu = (from p in db.sorus
+                                     where p.baslik.Contains(soruBaslik)
+                                     select new
+                                     {
+                                         p.soruIcerik,
+                                         p.baslik,
+                                         p.yayinTarihi,
+                                         p.onayDurumu,
+                                         p.kullanici.kullaniciAdi,
+                                         p.kategori.kategoriAd,
+                                         p.soruId
+                                     });
+                    if (soruSorgu != null) {
+                        foreach (var i in soruSorgu)
+                        {
+                            sorularim ss = new sorularim
+                            {
+                                Icerik = i.soruIcerik,
+                                Baslik = i.baslik,
+                                YayinTarihi = i.yayinTarihi.ToString(),
+                                OnayDurum = i.onayDurumu.ToString(),
+                                KullaniciAd = i.kullaniciAdi,
+                                KategoriAd = i.kategoriAd,
+                                SoruId = i.soruId
+                            };
+                            sr.Add(ss);
+                        }   
+                    }
                 }
             }
             catch
             {
-                s = null; ;
+                sr = null; ;
             }
-            return s;
+            return sr;
         }
         public static List<soruView> Sorular()
         {
@@ -342,6 +382,64 @@ namespace serviceID.BL
             {
             }
             return yr;
+        }
+        public static sorularim hangiSorum(int soruId)
+        {
+            sorularim ss=null;
+            using (idDBEntities db = new idDBEntities())
+            {
+                try
+                {
+                    var tblHangiSoruSorgu = (from p in db.sorus where p.soruId == soruId select p).FirstOrDefault();
+
+                    ss= new sorularim
+                    {
+                        Icerik = tblHangiSoruSorgu.soruIcerik,
+                        Baslik = tblHangiSoruSorgu.baslik,
+                        YayinTarihi = tblHangiSoruSorgu.yayinTarihi.ToString(),
+                        OnayDurum = tblHangiSoruSorgu.onayDurumu.ToString(),
+                        KullaniciAd = tblHangiSoruSorgu.kullanici.kullaniciAdi,
+                        KategoriAd = tblHangiSoruSorgu.kategori.kategoriAd,
+                        SoruId = tblHangiSoruSorgu.soruId
+                    };
+                }
+                catch
+                {
+
+                }
+            }
+            return ss;
+        }
+        public static char FavoriSoruEkle(int soruId, int kullaniciId)
+        {
+            char res = '*';
+            try
+            {
+                using (idDBEntities db = new idDBEntities())
+                {
+                    var favSoru = (from p in db.favoris where p.soruId == soruId && p.kullaniciId == kullaniciId select p).SingleOrDefault();
+                    if (favSoru == null)
+                    {
+                        favori f = new favori();
+                        f.soruId = soruId;
+                        f.kullaniciId = kullaniciId;
+                        db.favoris.Add(f);
+                        db.SaveChanges();
+                        res = '+';
+                    }
+                    else
+                    {
+                        db.favoris.Remove(favSoru);
+                        db.SaveChanges();
+                        res = '-';
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                res = '?';
+            }
+            return res;
         }
     }
 }

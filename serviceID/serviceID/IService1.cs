@@ -40,7 +40,7 @@ namespace serviceID
         [OperationContract]
         List<soruView> Sorular();
         [OperationContract]
-        soru SoruAra(string soruBaslik);
+        List<sorularim> SoruAra(string soruBaslik);
         [OperationContract]
         List<soruView> SoruListele();
         [OperationContract]
@@ -53,6 +53,10 @@ namespace serviceID
         List<cevaplarim> Cevaplarim(int soruId);
         [OperationContract]
         List<yorumlarim> Yorumlarim(int cevapId);
+        [OperationContract]
+        sorularim hangiSorum(int soruId);
+        [OperationContract]
+        char FavoriSoruEkle(int soruId, int kullaniciId); // json için + başarılı , - silindi , ? db hata , * başarısız
     }
     [DataContract]
     public class sorularim
