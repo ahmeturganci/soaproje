@@ -4,7 +4,6 @@
     Layout = "~/Views/Shared/_MainShared.cshtml";
 }
 <button id="test">Test</button>
-
 <div class="row" id="soruDetay">
     <div class="col-md-12">
         <div class="card">
@@ -12,30 +11,30 @@
                 <h4 class="title">Soru Detay</h4>
             </div>
             <div id="sDetay">
-
+                <button onclick="cevapvermeistek()">Cevap vermek istiyorum</button>
             </div>
         </div>
         <div class="clearfix"></div>
         <div id="cevapVerDiv">
 
-            
-                <div class="card">
-                    <div class="header">
-                        <h4 class="title">Cevap Ekle</h4>
+
+            <div class="card">
+                <div class="header">
+                    <h4 class="title">Cevap Ekle</h4>
+                </div>
+
+                <form class="form">
+
+                    <div class="form-group">
+                        <textarea type="text" class="form-control" placeholder="Cevap" id="sCevap" value="" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="button" class="btn btn-success" value="Cevap Ver" onclick="CevapVer();" />
                     </div>
 
-                    <form class="form">
 
-                        <div class="form-group">
-                            <textarea type="text" class="form-control" placeholder="Cevap" id="sCevap" value="" rows="3"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <input type="button" class="btn btn-success" value="Cevap Ver" onclick="CevapVer();" />
-                        </div>
+                </form>
 
-
-                    </form>
-                
             </div>
         </div>
 
@@ -60,42 +59,32 @@
 
             </div>
 
+
         </div>
     </div>
 </div>
-<!--modal-->
-<div class="modal fade" id="modalYorum" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-            </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 
 <script>
-
+    var cevapId = 0;
     $("#test").click(function () {
-        CevapVer();
+        KisiCek();
     });
+
     $("#soruDetay").load(SoruCek());
-    $("#sDetay").load(CevapCek());
-    $("body").load(KisiCek());
+    $("body").load(CevapCek());
     $("#cevapVerDiv").hide();
-    $("#yEkle").on('shown',function () {
+
+    $("#yEkle").on('shown', function () {
         alert("hooop");
         $('#modalYorum').modal();
     });
+
+
+    function cevapvermeistek() {
+        $("#cevapVerDiv").show();
+    }
     function UrlCevir() {
         var url = window.location.pathname;
         var id = url.substring(url.lastIndexOf('/') + 1);
@@ -107,7 +96,7 @@
         var data = {
             soruId: id
         };
-        console.log(data);
+        //console.log(data);
         $.post("/Home/SoruCek", data, function (data) {
             $("#sDetay").append('<div class="typo-line"><p class="category"><strong>' + data.KategoriAd + '</strong></p><blockquote><p class="text-primary"><b>' + data.KullaniciAd + 'takma adlı kullanıcı soruyor;</b></p><p text-success><b>' + data.Baslik + '</b></p><p>' + data.Icerik + '</p><small>' + data.YayinTarihi + '</small></blockquote><strong>' + data.OnayDurum + '</strong></div>');
         });
@@ -118,43 +107,58 @@
         var data = {
             soruId: id
         };
-        console.log(data);
+        //console.log(data);
         $.post("/Home/CevapCek", data, function (data) {
 
             $.each(data, function (i, item) {
-                $("#sCevaplar").append(' <div class="panel panel-primary"> <div class="panel-heading"><h4 class="panel-title"><b>' + item.KullaniciAdi + '</b><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" id="yEkle">' + item.Cevap + '</a></h4> <button type="button" data-toggle="modal" data-target="#modalYorum">Launch modal</button></div><div id="sYorumlar' + i + '"></div></div>');
+                cevapIdGetir(item.cevapId);
+                $("#sCevaplar").append(' <div class="panel panel-primary"> <div class="panel-heading"><h4 class="panel-title"><b>' + item.KullaniciAdi + '</b><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" id="yEkle">' + item.Cevap + '</a></h4></div><div id="sYorumlar' + i + '"><p id="yorumYaz"></div></div>');
+                YorumCek(item.CevapId, i);
+                SoruCevapIdVer(item.cevapId);
 
                 //$("#sCevaplar").append('<p><b>BU BİR CEVAP</b>' + item.Cevap + '<p id="sYorumlar' + i + '"><i>Yorum</i></p></p></b>');
-                YorumCek(item.CevapId, i);
+                
             });
 
 
         });
 
+    }
+    
+    function cevapIdGetir(deger) {
+        var cevapId = deger;
+        return deger;
     }
     function YorumCek(deger, sayac) {
         //alert(deger);
         var data = {
             cevapId: deger
         };
-        console.log(data);
+
         $.post("/Home/YorumCek", data, function (data) {
 
             $.each(data, function (i, item) {
-                $("#sYorumlar" + sayac + "").append('<div id="collapseOne" class="panel-collapse collapse in"><div class="panel-body">' + item.Cevap + '<p>' + item.KullaniciAdi + '</p></div></div>');
+                $("#sYorumlar" + sayac + "").append('<p>' + item.Cevap + '</p><p>' + item.KullaniciAdi + '</p>');
+
 
             });
         });
-
-
     }
 
+    function KisiCek() {
+        $.post("/Home/KulCek", function (sonuc) {
+            alert(sonuc);
+            return sonuc;
+
+        });
+    }
     function CevapVer() {
+
         var kisi =
-             $.post("/Home/KulCek", function (sonuc) {
-                 sonuc = kisi;
-             });
-        if (kisi != null) {
+               $.post("/Home/KulCek", function (sonuc) {
+                   sonuc = kisi;
+               });
+        if (kisi != 0) {
             $("#cevapVerDiv").show();
             var data = {
                 cevap1: $("#sCevap").val(),
@@ -169,15 +173,32 @@
 
             });
         }
-        //function YorumaCevap() {
-
-        //    var data{
-
-        //    };
-
-        //}
 
     }
+
+
+
+
+    function YorumYap() {
+
+        var data = {
+            yorum1: $("#sCyorum").val(),
+            cevapId: cevapId
+
+        };
+        console.log(data);
+        $.post("/Home/YorumYap", data, function (sonuc) {
+            if (sonuc == "+")
+                alert("başarılı bir şekilde yorum elendi");
+            else
+                console.log("hata var hacım" + sonuc);
+        });
+
+
+
+    }
+
+
 
 
 </script>

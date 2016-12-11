@@ -237,9 +237,6 @@
     <Content Include="UI\font-awesome\scss\_spinning.scss" />
     <Content Include="UI\font-awesome\scss\_stacked.scss" />
     <Content Include="UI\font-awesome\scss\_variables.scss" />
-    <Content Include="UI_1\assets\fonts\Pe-icon-7-stroke.eot" />
-    <Content Include="UI_1\assets\fonts\Pe-icon-7-stroke.ttf" />
-    <Content Include="UI_1\assets\fonts\Pe-icon-7-stroke.woff" />
     <Content Include="UI_1\assets\sass\lbd\mixins\_buttons.scss" />
     <Content Include="UI_1\assets\sass\lbd\mixins\_cards.scss" />
     <Content Include="UI_1\assets\sass\lbd\mixins\_chartist.scss" />
@@ -293,6 +290,9 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="Views\Home\SoruGoster.cshtml" />
+    <Content Include="UI_1\assets\fonts\Pe-icon-7-stroke.eot" />
+    <Content Include="UI_1\assets\fonts\Pe-icon-7-stroke.ttf" />
+    <Content Include="UI_1\assets\fonts\Pe-icon-7-stroke.woff" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

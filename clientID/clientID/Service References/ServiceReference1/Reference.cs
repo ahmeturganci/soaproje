@@ -1829,6 +1829,18 @@ namespace clientID.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/hangiSorum", ReplyAction="http://tempuri.org/IService1/hangiSorumResponse")]
         System.Threading.Tasks.Task<clientID.ServiceReference1.sorularim> hangiSorumAsync(int soruId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/FavoriSoruEkle", ReplyAction="http://tempuri.org/IService1/FavoriSoruEkleResponse")]
+        char FavoriSoruEkle(int soruId, int kullaniciId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/FavoriSoruEkle", ReplyAction="http://tempuri.org/IService1/FavoriSoruEkleResponse")]
+        System.Threading.Tasks.Task<char> FavoriSoruEkleAsync(int soruId, int kullaniciId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/BegeniCevap", ReplyAction="http://tempuri.org/IService1/BegeniCevapResponse")]
+        char BegeniCevap(int cevapId, int kullaniciId, int begeniTuruId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/BegeniCevap", ReplyAction="http://tempuri.org/IService1/BegeniCevapResponse")]
+        System.Threading.Tasks.Task<char> BegeniCevapAsync(int cevapId, int kullaniciId, int begeniTuruId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2000,6 +2012,22 @@ namespace clientID.ServiceReference1 {
         
         public System.Threading.Tasks.Task<clientID.ServiceReference1.sorularim> hangiSorumAsync(int soruId) {
             return base.Channel.hangiSorumAsync(soruId);
+        }
+        
+        public char FavoriSoruEkle(int soruId, int kullaniciId) {
+            return base.Channel.FavoriSoruEkle(soruId, kullaniciId);
+        }
+        
+        public System.Threading.Tasks.Task<char> FavoriSoruEkleAsync(int soruId, int kullaniciId) {
+            return base.Channel.FavoriSoruEkleAsync(soruId, kullaniciId);
+        }
+        
+        public char BegeniCevap(int cevapId, int kullaniciId, int begeniTuruId) {
+            return base.Channel.BegeniCevap(cevapId, kullaniciId, begeniTuruId);
+        }
+        
+        public System.Threading.Tasks.Task<char> BegeniCevapAsync(int cevapId, int kullaniciId, int begeniTuruId) {
+            return base.Channel.BegeniCevapAsync(cevapId, kullaniciId, begeniTuruId);
         }
     }
 }

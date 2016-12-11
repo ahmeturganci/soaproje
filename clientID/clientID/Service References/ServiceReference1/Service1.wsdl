@@ -118,6 +118,18 @@
   <wsdl:message name="IService1_hangiSorum_OutputMessage">
     <wsdl:part name="parameters" element="tns:hangiSorumResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_FavoriSoruEkle_InputMessage">
+    <wsdl:part name="parameters" element="tns:FavoriSoruEkle" />
+  </wsdl:message>
+  <wsdl:message name="IService1_FavoriSoruEkle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FavoriSoruEkleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_BegeniCevap_InputMessage">
+    <wsdl:part name="parameters" element="tns:BegeniCevap" />
+  </wsdl:message>
+  <wsdl:message name="IService1_BegeniCevap_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BegeniCevapResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="GetData">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetData" message="tns:IService1_GetData_InputMessage" />
@@ -190,6 +202,14 @@
     <wsdl:operation name="hangiSorum">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/hangiSorum" message="tns:IService1_hangiSorum_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/hangiSorumResponse" message="tns:IService1_hangiSorum_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FavoriSoruEkle">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/FavoriSoruEkle" message="tns:IService1_FavoriSoruEkle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/FavoriSoruEkleResponse" message="tns:IService1_FavoriSoruEkle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BegeniCevap">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/BegeniCevap" message="tns:IService1_BegeniCevap_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/BegeniCevapResponse" message="tns:IService1_BegeniCevap_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
@@ -349,6 +369,24 @@
     </wsdl:operation>
     <wsdl:operation name="hangiSorum">
       <soap:operation soapAction="http://tempuri.org/IService1/hangiSorum" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FavoriSoruEkle">
+      <soap:operation soapAction="http://tempuri.org/IService1/FavoriSoruEkle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BegeniCevap">
+      <soap:operation soapAction="http://tempuri.org/IService1/BegeniCevap" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

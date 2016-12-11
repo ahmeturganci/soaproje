@@ -4,6 +4,7 @@
   <xs:import schemaLocation="http://mehmetgelmedi-001-site1.htempurl.com/Service1.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/serviceID.Model.ViewModel" />
   <xs:import schemaLocation="http://mehmetgelmedi-001-site1.htempurl.com/Service1.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/serviceID" />
   <xs:import schemaLocation="http://mehmetgelmedi-001-site1.htempurl.com/Service1.svc?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://mehmetgelmedi-001-site1.htempurl.com/Service1.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
   <xs:element name="GetData">
     <xs:complexType>
       <xs:sequence>
@@ -243,6 +244,37 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/serviceID" minOccurs="0" name="hangiSorumResult" nillable="true" type="q17:sorularim" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FavoriSoruEkle">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="soruId" type="xs:int" />
+        <xs:element minOccurs="0" name="kullaniciId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FavoriSoruEkleResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="FavoriSoruEkleResult" type="q18:char" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BegeniCevap">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="cevapId" type="xs:int" />
+        <xs:element minOccurs="0" name="kullaniciId" type="xs:int" />
+        <xs:element minOccurs="0" name="begeniTuruId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BegeniCevapResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="BegeniCevapResult" type="q19:char" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

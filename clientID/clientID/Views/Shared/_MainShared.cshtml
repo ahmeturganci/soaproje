@@ -9,8 +9,9 @@
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <!--SoruDetay Ekranı için-->
-    <link href="~/Content/soruDetay.css" />
+    <link href="~/Content/soruDetay.css" rel="stylesheet"  />
     <script src="~/Scripts/jquery-3.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link href="~/UI_1/assets/css/animate.min.css" rel="stylesheet" />
     <link href="~/UI_1/assets/css/light-bootstrap-dashboard.css" rel="stylesheet" />
@@ -36,34 +37,32 @@
                     </a>
                 </div>
                 <ul class="nav">
+
                     <li class="active">
-                        <a href=" @Url.Action("Index", "Home")">
+                        <a href="@Url.Action("Index", "Home")">
                             <i class="pe-7s-graph"></i>
                             <p>Anasayfa</p>
                         </a>
                     </li>
+
                     <li>
                         <a href="@Url.Action("Index","Profil")">
                             <i class="pe-7s-user"></i>
                             <p>Profil</p>
                         </a>
                     </li>
+
                     <li>
-                        <a href=" @Url.Action("EnCokSorulan", "Home")">
+                        <a href="@Url.Action("EnCokSorulan", "Home")">
                             <i class="pe-7s-note2"></i>
                             <p>En Çok Sorulanlar</p>
                         </a>
                     </li>
+
                     <li>
                         <a href="@Url.Action("SoruSor","Home")">
                             <i class="pe-7s-note2"></i>
                             <p>Soru Sor</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <i class="pe-7s-bell"></i>
-                            <p>Keşif</p>
                         </a>
                     </li>
 
@@ -77,65 +76,81 @@
                 </ul>
             </div>
         </div>
+
         <div class="main-panel">
             <nav class="navbar navbar-default navbar-fixed">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <button type="button" class="navbar-to1ggle" data-toggle="collapse" data-target="#navigation-example-2">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
                             <span class="sr-only">Toggle navigation</span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-
+                        <a class="navbar-brand" href="/Home/Index">ID</a>
                     </div>
                     <div class="collapse navbar-collapse">
 
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="dropdown">
-                                <a href="#"> Ayarlar</a>
-
-
+                            <li>
+                                <a href="@Url.Action("KisiGetir", "Home")">
+                                    Kişi:
+                                </a>
                             </li>
                             <li>
-                                <a href="#" id="cikis"> Çıkış</a>
+                                <a href="@Url.Action("Cikis","Home")" id="cikis">
+                                    Çıkış
+                                </a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </nav>
 
+
             <div class="content">
-                @RenderBody()
-                <!--Hangi sayfa gelecek se -->
-                <!---ActionPar-->
+                <div class="container-fluid">
+
+
+                    @RenderBody()
+
+
+                </div>
             </div>
+
+
             <footer class="footer">
                 <div class="container-fluid">
                     <nav class="pull-left">
                         <ul>
                             <li>
                                 <a href="#">
-                                    Anasayfa
+                                    Home
                                 </a>
                             </li>
                             <li>
                                 <a href="#">
-                                    Kuruluş
+                                    Company
                                 </a>
                             </li>
                             <li>
                                 <a href="#">
-                                    MEGAUSOFTWARE
+                                    Portfolio
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Blog
                                 </a>
                             </li>
                         </ul>
                     </nav>
                     <p class="copyright pull-right">
-                        &copy; 2016 <a href="http://www.iamdebugger.com"> MegAu Yapımıdır.</a>,Sevgi ve saygılarımızla
+                        &copy; 2016 <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
                     </p>
                 </div>
             </footer>
+
         </div>
     </div>
 
@@ -150,14 +165,13 @@
         });
     });
 </script>
-script
-<script src="/UI_1/assets/js/bootstrap-checkbox-radio-switch.js"></script>
-<script src="/UI_1/assets/js/bootstrap-notify.js"></script>
-<script src="/UI_1/assets/js/bootstrap-select.js"></script>
-<script src="/UI_1/assets/js/bootstrap.min.js"></script>
-<script src="/UI_1/assets/js/chartist.min.js"></script>
+
+<script src="~/UI_1/assets/js/bootstrap-checkbox-radio-switch.js"></script>
+<script src="~/UI_1/assets/js/bootstrap-notify.js"></script>
+<script src="~/UI_1/assets/js/bootstrap-select.js"></script>
+<script src="~/UI_1/assets/js/bootstrap.min.js"></script>
+<script src="~/UI_1/assets/js/chartist.min.js"></script>
 <script src="~/UI_1/assets/js/demo.js"></script>
 <script src="~/UI_1/assets/js/jquery-1.10.2.js"></script>
 <script src="~/UI_1/assets/js/light-bootstrap-dashboard.js"></script>
-
 </html>

@@ -170,9 +170,8 @@ namespace clientID.Controllers
 
             //}
             return Json(yorumListe);
-            s.Close()
+            s.Close();
         }
-
         public JsonResult CevapVer(ServiceReference1.cevap c)
         {
             s = new ServiceReference1.Service1Client();
@@ -180,17 +179,17 @@ namespace clientID.Controllers
             {
                 cevap1 = c.cevap1,
                 soruId = c.soruId
-           
+
             };
             c.cevapTarihi = DateTime.Now;
             c.kullaniciId = kId;
             bool sonuc = s.SoruyaCevapYaz(c);
             if (sonuc)
-                return Json("+",kId.ToString());
+                return Json("+", kId.ToString());
             else
                 return Json("-", kId.ToString());
 
-            s.Close()
+            s.Close();
 
 
 
@@ -202,6 +201,23 @@ namespace clientID.Controllers
                 return Json(kId.ToString());
             else
                 return Json("-");
+        }
+        public JsonResult YorumYap(ServiceReference1.yorum yorum)
+        {
+            s = new ServiceReference1.Service1Client();
+            yorum = new ServiceReference1.yorum()
+            {
+                yorum1 = yorum.yorum1,
+                kullaniciId = kId
+
+            };
+            yorum.yorumTarihi = DateTime.Now;
+            bool sonuc = s.CevabaYorumYaz(yorum);
+            if (sonuc)
+                return Json("+");
+            else
+                return Json("-");
+            s.Close();
         }
     }
 }
