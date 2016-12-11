@@ -156,10 +156,10 @@ namespace clientID.Controllers
         {
             s = new ServiceReference1.Service1Client();
             var cevapListe = s.Cevaplarim(soruId);
-            foreach (var item in cevapListe)
-            {
+            //foreach (var item in cevapListe)
+            //{
                 
-            }
+            //}
             return Json(cevapListe);
             s.Close();
         }
@@ -210,9 +210,11 @@ namespace clientID.Controllers
             yorum = new ServiceReference1.yorum()
             {
                 yorum1 = yorum.yorum1,
-                kullaniciId = kId
+                kullaniciId = kId,
+                cevapId =yorum.cevapId
 
             };
+            
             yorum.yorumTarihi = DateTime.Now;
             bool sonuc = s.CevabaYorumYaz(yorum);
             if (sonuc)
@@ -220,6 +222,16 @@ namespace clientID.Controllers
             else
                 return Json("-");
             s.Close();
+        }
+
+        public JsonResult FavoriEkle(int soruId)
+        {
+            s = new ServiceReference1.Service1Client();
+
+            var favSonuc= s.FavoriSoruEkle(soruId, kId); 
+            return Json(favSonuc);
+            s.Close();
+
         }
     }
 }

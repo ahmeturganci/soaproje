@@ -3,12 +3,23 @@
     ViewBag.Title = "Soru Detay";
     Layout = "~/Views/Shared/_MainShared.cshtml";
 }
+<style>
+    #favIco {
+  filter: gray; /* IE6-9 */
+  filter: grayscale(1); /* Microsoft Edge and Firefox 35+ */
+  -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
+}
+</style>
 <button id="test">Test</button>
 <div class="row" id="soruDetay">
+    
     <div class="col-md-12">
         <div class="card">
+            <div style="float:right"><img src="~/img/favorite.png" id="favIco" onclick="SoruFavoriEkle();"/></div>
             <div class="header">
+                
                 <h4 class="title">Soru Detay</h4>
+                
             </div>
             <div id="sDetay">
                 <button onclick="cevapvermeistek()">Cevap vermek istiyorum</button>
@@ -67,6 +78,7 @@
 
 
 <script>
+    
     var cevapId = 0;
     $("#test").click(function () {
         YorumCek();
@@ -75,6 +87,7 @@
     $("#soruDetay").load(SoruCek());
     $("body").load(CevapCek());
     $("#cevapVerDiv").hide();
+    $("body").load(FavoriKontrol());
 
     $("#yEkle").on('shown', function () {
         alert("hooop");
@@ -99,6 +112,7 @@
         //console.log(data);
         $.post("/Home/SoruCek", data, function (data) {
             $("#sDetay").append('<div class="typo-line"><p class="category"><strong>' + data.KategoriAd + '</strong></p><blockquote><p class="text-primary"><b>' + data.KullaniciAd + '  takma adlı kullanıcı soruyor;</b></p><p text-success><b>' + data.Baslik + '</b></p><p>' + data.Icerik + '</p><small>' + data.YayinTarihi + '</small></blockquote><strong>' + data.OnayDurum + '</strong></div>');
+            
         });
     }
     function CevapCek() {
@@ -112,7 +126,7 @@
 
             $.each(data, function (i, item) {
                 cevapIdGetir(item.cevapId);
-                $("#sCevaplar").append(' <div class="panel panel-primary"> <div class="panel-heading"><h4 class="panel-title"><b>Kullanıcı: ' + item.KullaniciAdi + '</b><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" id="yEkle">' + item.Cevap + '</a></h4></div><div id="sYorumlar' + i + '"><p id="yorumYaz"></div></div>');
+                $("#sCevaplar").append(' <div class="panel panel-primary"> <div class="panel-heading"><h4 class="panel-title"><b>Kullanıcı: ' + item.KullaniciAdi + '</b><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" id="yEkle">' + item.Cevap + '</a></h4></div><div id="sYorumlar' + i + '"><p id="yorumYaz"></div></div><div id="yorumYaz"><form class="form"><div class="form-group"><textarea type="text" class="form-control" placeholder="Yorum" id="sCyorum" value="" rows="3"></textarea></div><div class="form-group"><input type="button" class="btn btn-danger" value="Yorum Yap" onclick="YorumYap(' + item.CevapId + ');"  id="yYap"/></div></form></div>');
                 YorumCek(item.CevapId, i);
                 //$("#sCevaplar").append('<p><b>BU BİR CEVAP</b>' + item.Cevap + '<p id="sYorumlar' + i + '"><i>Yorum</i></p></p></b>');
                 
@@ -122,7 +136,6 @@
         });
 
     }
-    
     function cevapIdGetir(deger) {
         var cevapId = deger;
         return deger;
@@ -142,7 +155,6 @@
             });
         });
     }
-
     function KisiCek() {
         $.post("/Home/KulCek", function (sonuc) {
             alert(sonuc);
@@ -165,23 +177,23 @@
             $.post("/Home/CevapVer", data, function (sonuc) {
                 if (sonuc == "+") {
                     alert("Cevabınız başarılı şekilde alındı.");
-                    location.reload();
+                    window.location.reload();
                 }
+                else if ( sonuc =="-")
+                    window.location = "/Home/Giris";
 
 
             });
         }
 
     }
-
-
-
-
-    function YorumYap() {
+    function YorumYap(cId) {
+        var sonuc = cId;
+        alert(cId);
 
         var data = {
             yorum1: $("#sCyorum").val(),
-            cevapId: cevapId
+            cevapId: cId
 
         };
         console.log(data);
@@ -196,6 +208,30 @@
 
     }
 
+    function FavoriKontrol() {
+        var data = {
+            soruId: UrlCevir()
+        };
+        $.post("/Home/FavoriEkle", data, function (sonuc) {
+            if (sonuc == "+") {
+                console.log("aaaa");
+                $("#favIco").css("-webkit-filter", "grayscale(0)");
+            }
+        });
+    }
+    function SoruFavoriEkle() {
+        var data = {
+            soruId: UrlCevir()
+        };
+        $.post("/Home/FavoriEkle", data, function (sonuc) {
+            if (sonuc == "+") {
+                console.log("aaaa");
+                $("#favIco").css("-webkit-filter", "grayscale(0)");
+            }
+            else
+                $("#favIco").css("-webkit-filter", "grayscale(1)");
+        });
+    }
 
 
 
