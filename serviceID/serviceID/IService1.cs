@@ -57,6 +57,8 @@ namespace serviceID
         sorularim hangiSorum(int soruId);
         [OperationContract]
         char FavoriSoruEkle(int soruId, int kullaniciId); // json için + başarılı , - silindi , ? db hata , * başarısız
+        [OperationContract]
+        char BegeniCevap(int cevapId,int kullaniciId, int begeniTuruId); // + başarılı, - silindi, / güncellendi, * başarısız, ? db hata
     }
     [DataContract]
     public class sorularim

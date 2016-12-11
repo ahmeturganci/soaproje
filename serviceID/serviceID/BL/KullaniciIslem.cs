@@ -441,5 +441,43 @@ namespace serviceID.BL
             }
             return res;
         }
+        public static char BegeniCevap(int cevapId, int kullaniciId,int begeniTuruId)
+        {
+            char res = '*';
+            try
+            {
+                using (idDBEntities db = new idDBEntities())
+                {
+                    var tblBegeni = (from p in db.begenis where p.cevapId == cevapId && p.kullaniciId == kullaniciId select p).SingleOrDefault();
+                    if (tblBegeni == null)
+                    {
+                        begeni b = new begeni();
+                        b.cevapId = cevapId;
+                        b.kullaniciId = kullaniciId;
+                        b.begeniTuruId = begeniTuruId;
+                        db.begenis.Add(b);
+                        db.SaveChanges();
+                        res = '+';
+                    }
+                    else if(tblBegeni!=null && tblBegeni.begeniTuruId!=begeniTuruId)
+                    {
+                        tblBegeni.begeniTuruId = begeniTuruId;
+                        db.SaveChanges();
+                        res = '/';
+                    }
+                    else
+                    {
+                        db.begenis.Remove(tblBegeni);
+                        db.SaveChanges();
+                        res = '-';
+                    }
+                }
+            }
+            catch
+            {
+                res = '?';
+            }
+            return res;
+        }
     }
 }
