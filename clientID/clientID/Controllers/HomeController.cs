@@ -152,13 +152,14 @@ namespace clientID.Controllers
             s.Close();
         }
         public JsonResult CevapCek(int soruId)
+
         {
             s = new ServiceReference1.Service1Client();
             var cevapListe = s.Cevaplarim(soruId);
-            //foreach (var item in cevapListe)
-            //{
-
-            //}
+            foreach (var item in cevapListe)
+            {
+                
+            }
             return Json(cevapListe);
             s.Close();
         }
@@ -168,7 +169,7 @@ namespace clientID.Controllers
             var yorumListe = s.Yorumlarim(cevapId);
             //foreach (var item in yorumListe)
             //{
-
+                
             //}
             return Json(yorumListe);
             s.Close();
