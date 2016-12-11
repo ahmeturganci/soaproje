@@ -139,6 +139,7 @@ namespace clientID.Controllers
             return Json(sonuc);
             s.Close();
         }
+
         public ActionResult SoruGoster()
         {
             return View();

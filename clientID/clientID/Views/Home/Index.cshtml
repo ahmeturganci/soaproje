@@ -1,62 +1,72 @@
-﻿@{
+﻿
+@{
     ViewBag.Title = "Home Page";
     Layout = "~/Views/Shared/_MainShared.cshtml";
 }
 
-<div id="sorular">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="header">
-                    <h4 class="title">Tüm Sorular</h4>
-                    <p class="category"> i am debugger adresine kullanıcıların sorduğu sorular.</p>
+@model   IEnumerable<clientID.ServiceReference1.sorularim>
+
+  @foreach (var item in Model)
+  {
+      
+      <p>item.Baslik</p>
+      <p>item.Icerik</p>
+  }
+
+
+
+                <div id="sorular">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="header">
+                                    <h4 class="title">Tüm Sorular</h4>
+                                    <p class="category"> i am debugger adresine kullanıcıların sorduğu sorular.</p>
+                                </div>
+
+                                <div class="content table-responsive table-full-width">
+                                    <table class="table table-hover table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Takma Ad</th>
+                                                <th>Baslık</th>
+                                                <th>Kategori</th>
+                                                <th>Onay Durumu</th>
+                                                <th>Yayınlanma Tarihi</th>
+                                                <th>Cevap Ver</th>
+                                            </tr>
+                                        <tbody id="sorularList"></tbody>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <script>
+                    var soruId;
+                    $("#sorular").load(Listele());
 
-                <div class="content table-responsive table-full-width">
-                    <table class="table table-hover table-striped">
-                        <thead>
-                            <tr>
-                                <th>Takma Ad</th>
-                                <th>Baslık</th>
-                                <th>Kategori</th>
-                                <th>Onay Durumu</th>
-                                <th>Yayınlanma Tarihi</th>
-                                <th>Cevap Ver</th>
-                            </tr>
-                        <tbody id="sorularList">
+                    function Listele() {
 
-                        </tbody>
-                        </thead>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<script>
-    var soruId;
-    $("#sorular").load(Listele());
+                        $.post("/Home/SorulariListele", function (data) {
+                            $("#sorularList").html("");
+                            $.each(data, function (i, item) {
+                                $("#sorularList").append('<tr><td>' + item.KullaniciAd + '</td><td>' + item.Baslik + '</td><td>' + item.KategoriAd + '</td><td>' + item.OnayDurum + '</td><td>' + item.YayinTarihi + '</td><td><a href="/Home/SoruGoster/' + item.SoruId + '">Ayrıntılar</a></td></tr>');
 
-    function Listele() {
-        
-        $.post("/Home/SorulariListele", function (data) {
-            $("#sorularList").html("");
-            $.each(data, function (i, item) {
-                $("#sorularList").append('<tr><td>' + item.KullaniciAd + '</td><td>' + item.Baslik + '</td><td>' + item.KategoriAd + '</td><td>' + item.OnayDurum + '</td><td>' + item.YayinTarihi + '</td><td><a href="/Home/SoruGoster/' + item.SoruId + '">Ayrıntılar</a></td></tr>');
+                            });
+                        });
+                        /*  var data = {
 
-            });
-        });
-        /*  var data = {
+                          }
+                          $.post("/Home/SoruCek",data, function (data) {
+                              $("#sorularList").html("");
+                              $.each(data, function (i, item) {
+                                  $("#sorularList").append('<tr><td>' + item.KullaniciAd + '</td><td>' + item.Baslik + '</td><td>' + item.KategoriAd + '</td><td>' + item.OnayDurum + '</td><td>' + item.YayinTarihi + '</td><td><a href="/Home/SoruGoster/?' + item.SoruId + '">Ayrıntılar</a></td></tr>');
 
-          }
-          $.post("/Home/SoruCek",data, function (data) {
-              $("#sorularList").html("");
-              $.each(data, function (i, item) {
-                  $("#sorularList").append('<tr><td>' + item.KullaniciAd + '</td><td>' + item.Baslik + '</td><td>' + item.KategoriAd + '</td><td>' + item.OnayDurum + '</td><td>' + item.YayinTarihi + '</td><td><a href="/Home/SoruGoster/?' + item.SoruId + '">Ayrıntılar</a></td></tr>');
-
-              });
-          });*/
-    }
+                              });
+                          });*/
+                    }
 
 
 
@@ -64,4 +74,4 @@
 
 
 
-</script>
+                </script>
