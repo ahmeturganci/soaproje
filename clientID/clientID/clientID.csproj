@@ -135,28 +135,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\soruDetay.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-3.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\_references.js" />
     <Content Include="Service References\ServiceReference1\clientID.ServiceReference1.sorularim.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -211,32 +194,6 @@
     <Content Include="UI\font-awesome\fonts\fontawesome-webfont.ttf" />
     <Content Include="UI\font-awesome\fonts\fontawesome-webfont.woff" />
     <Content Include="UI\font-awesome\fonts\FontAwesome.otf" />
-    <Content Include="UI\font-awesome\less\bordered-pulled.less" />
-    <Content Include="UI\font-awesome\less\core.less" />
-    <Content Include="UI\font-awesome\less\fixed-width.less" />
-    <Content Include="UI\font-awesome\less\font-awesome.less" />
-    <Content Include="UI\font-awesome\less\icons.less" />
-    <Content Include="UI\font-awesome\less\larger.less" />
-    <Content Include="UI\font-awesome\less\list.less" />
-    <Content Include="UI\font-awesome\less\mixins.less" />
-    <Content Include="UI\font-awesome\less\path.less" />
-    <Content Include="UI\font-awesome\less\rotated-flipped.less" />
-    <Content Include="UI\font-awesome\less\spinning.less" />
-    <Content Include="UI\font-awesome\less\stacked.less" />
-    <Content Include="UI\font-awesome\less\variables.less" />
-    <Content Include="UI\font-awesome\scss\font-awesome.scss" />
-    <Content Include="UI\font-awesome\scss\_bordered-pulled.scss" />
-    <Content Include="UI\font-awesome\scss\_core.scss" />
-    <Content Include="UI\font-awesome\scss\_fixed-width.scss" />
-    <Content Include="UI\font-awesome\scss\_icons.scss" />
-    <Content Include="UI\font-awesome\scss\_larger.scss" />
-    <Content Include="UI\font-awesome\scss\_list.scss" />
-    <Content Include="UI\font-awesome\scss\_mixins.scss" />
-    <Content Include="UI\font-awesome\scss\_path.scss" />
-    <Content Include="UI\font-awesome\scss\_rotated-flipped.scss" />
-    <Content Include="UI\font-awesome\scss\_spinning.scss" />
-    <Content Include="UI\font-awesome\scss\_stacked.scss" />
-    <Content Include="UI\font-awesome\scss\_variables.scss" />
     <Content Include="UI_1\assets\sass\lbd\mixins\_buttons.scss" />
     <Content Include="UI_1\assets\sass\lbd\mixins\_cards.scss" />
     <Content Include="UI_1\assets\sass\lbd\mixins\_chartist.scss" />
@@ -304,7 +261,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
