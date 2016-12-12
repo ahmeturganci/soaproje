@@ -243,7 +243,7 @@ namespace serviceID.BL
                 try
                 {
 
-                    var tblSorgu = from p in db.sorus
+                    var tblSorgu = from p in db.sorus orderby p.yayinTarihi descending
                                    select new
                                    {
                                        p.soruIcerik,
@@ -465,6 +465,43 @@ namespace serviceID.BL
                 throw;
             }
             return bg;
+        }
+        public static char CevapOnayla(int kullaniciId, int soruId, int cevapId)
+        {
+            char res = '*';
+            try
+            {
+                using (idDBEntities db = new idDBEntities())
+                {
+                    var tblCevap =(dynamic)null;
+                    var tblSoru = (from p in db.sorus where p.soruId == soruId && p.kullaniciId == kullaniciId select p).SingleOrDefault();//sadece soruyu soran kullanıcı
+                    if(tblSoru!=null) //tblsoru null ise tblcevap için gereksiz sorgulama yapılmamas
+                        tblCevap = (from p in db.cevaps where p.cevapId == cevapId select p).SingleOrDefault();// bu cevabı onaylayabilir
+                    if (tblSoru != null && tblCevap != null) // tblcevap kontrolü öyle bir cevap yoksa ve aşağıdaki durumların patlama kontrolü
+                    {
+                        if (tblCevap.onayDurumu == false)
+                        {
+                            tblCevap.onayDurumu = true;
+                            db.SaveChanges();
+                            res = '+';
+                        }
+                        else
+                        {
+                            tblCevap.onayDurumu = false;
+                            db.SaveChanges();
+                            res = '-';
+                        }
+                    }
+                    else
+                        res = '/';
+                }
+            }
+            catch (Exception)
+            {
+
+                return '?';
+            }
+            return res;
         }
     }
 }

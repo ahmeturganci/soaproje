@@ -24,8 +24,6 @@ namespace serviceID
         [OperationContract]
         bool CevabaYorumYaz(yorum yorum);
         [OperationContract]
-        bool SoruFavoriEkle(favori fav);
-        [OperationContract]
         List<sorularim> SoruAra(string soruBaslik);
         [OperationContract]
         List<string> KategoriListele();
@@ -45,5 +43,7 @@ namespace serviceID
         char BegeniCevap(int cevapId,int kullaniciId, int begeniTuruId); // + başarılı, - silindi, / güncellendi, * başarısız, ? db hata
         [OperationContract]
         List<begenilerim> BegeniSayisi(int cevapId);
+        [OperationContract]
+        char CevapOnayla(int kullaniciId,int soruId, int cevapId);
     }
 }

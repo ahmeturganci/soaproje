@@ -50,11 +50,6 @@ namespace serviceID
             return KullaniciIslem.EtiketEkle(etiket);
         }
 
-        public bool SoruFavoriEkle(favori fav)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<string> KategoriListele()
         {
             return KullaniciIslem.KategoriListele();
@@ -99,6 +94,11 @@ namespace serviceID
         public List<begenilerim> BegeniSayisi(int cevapId)
         {
             return KullaniciIslem.BegeniSayisi(cevapId);
+        }
+
+        public char CevapOnayla(int kullaniciId, int soruId, int cevapId)
+        {
+            return KullaniciIslem.CevapOnayla(kullaniciId, soruId, cevapId);
         }
     }
 }
