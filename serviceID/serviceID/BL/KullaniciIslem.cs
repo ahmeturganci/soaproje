@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using serviceID.Model.DataModel;
 using serviceID.Model.ViewModel;
 using System.Security.Cryptography;
@@ -197,46 +196,7 @@ namespace serviceID.BL
             }
             return sr;
         }
-        public static List<soruView> Sorular()
-        {
-            List<soruView> sorular = new List<soruView>();
-
-            try
-            {
-                using (idDBEntities db = new idDBEntities())
-                {
-                    var sorularSorgu = db.sorus;
-                    foreach (soru s in sorularSorgu)
-                    {
-                        //sıkıntılar var düzeltilecek.
-                        soruView ss = new soruView()
-                        {
-                            baslik = s.baslik,
-                            etiketId = s.etiketId,
-                            kategoriId = s.kategoriId,
-                            kullaniciId = s.kullaniciId,
-                            onayDurumu = s.onayDurumu,
-                            soruIcerik = s.soruIcerik,
-                            soruId = s.soruId,
-                            yayinTarihi = s.yayinTarihi
-                        };
-                        sorular.Add(ss);
-
-                    }
-                }
-            }
-            catch
-            {
-
-            }
-            return sorular;
-        }
-        public static List<soruView> SoruListele()
-        {
-            idDBEntities db = new idDBEntities();
-            var tblSoru = db.sorus;
-            return soruView.MapData(db.sorus.ToList());
-        }
+        
         public static List<string> KategoriListele()
         {
             List<string> kategoriler = new List<string>();
@@ -478,6 +438,33 @@ namespace serviceID.BL
                 res = '?';
             }
             return res;
+        }
+        public static List<begenilerim> BegeniSayisi(int cevapId)
+        {
+            List<begenilerim> bg = new List<begenilerim>();
+            try
+            {
+                using (idDBEntities db = new idDBEntities()) {
+                    var tblBegeniler = from p in db.begenis
+                                       where p.cevapId == cevapId
+                                       group p.begeniTuruId by p.begeniTuruId;
+                    foreach (var item in tblBegeniler)
+                    {
+                        begenilerim bb = new begenilerim
+                        {
+                            BegeniTuruId = (int)item.Key,
+                            BegeniTuruSayisi = item.Count()
+                        };
+                        bg.Add(bb);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return bg;
         }
     }
 }

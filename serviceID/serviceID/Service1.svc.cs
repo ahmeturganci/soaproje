@@ -1,25 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.ServiceModel.Web;
-using System.Text;
-
-using serviceID.Model.ViewModel;
 using serviceID.Model.DataModel;
-
 using serviceID.BL;
+using serviceID.Model.ViewModel;
 
 namespace serviceID
 {
    
     public class Service1 : IService1
     {
-        public string GetData(int value)
-        {
-            return string.Format("You entered: {0}", value);
-        }
 
         public int GirisYap(kullanici kullanici)
         {
@@ -46,11 +35,6 @@ namespace serviceID
             return KullaniciIslem.SoruEkle(soru);
         }
 
-        public List<soruView> Sorular()
-        {
-            return KullaniciIslem.Sorular();
-        }
-
         public bool SoruyaCevapYaz(cevap cevap)
         {
             return KullaniciIslem.SoruyaCevapYaz(cevap);
@@ -69,11 +53,6 @@ namespace serviceID
         public bool SoruFavoriEkle(favori fav)
         {
             throw new NotImplementedException();
-        }
-
-        public List<soruView> SoruListele()
-        {
-            return KullaniciIslem.SoruListele();
         }
 
         public List<string> KategoriListele()
@@ -115,6 +94,11 @@ namespace serviceID
         public char BegeniCevap(int cevapId, int kullaniciId, int begeniTuruId)
         {
             return KullaniciIslem.BegeniCevap(cevapId, kullaniciId, begeniTuruId);
+        }
+
+        public List<begenilerim> BegeniSayisi(int cevapId)
+        {
+            return KullaniciIslem.BegeniSayisi(cevapId);
         }
     }
 }

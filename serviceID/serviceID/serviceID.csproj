@@ -135,7 +135,10 @@
     <Compile Include="Model\DataModel\yorum.cs">
       <DependentUpon>idDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\ViewModel\soruView.cs" />
+    <Compile Include="Model\ViewModel\begenilerim.cs" />
+    <Compile Include="Model\ViewModel\cevaplarim.cs" />
+    <Compile Include="Model\ViewModel\sorularim.cs" />
+    <Compile Include="Model\ViewModel\yorumlarim.cs" />
     <Compile Include="Service1.svc.cs">
       <DependentUpon>Service1.svc</DependentUpon>
     </Compile>
