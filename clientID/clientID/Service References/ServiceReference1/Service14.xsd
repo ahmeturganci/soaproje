@@ -1,22 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/serviceID.Model.ViewModel" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/serviceID.Model.ViewModel" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:complexType name="ArrayOfsoruView">
+  <xs:complexType name="ArrayOfsorularim">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="soruView" nillable="true" type="tns:soruView" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="sorularim" nillable="true" type="tns:sorularim" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfsoruView" nillable="true" type="tns:ArrayOfsoruView" />
-  <xs:complexType name="soruView">
+  <xs:element name="ArrayOfsorularim" nillable="true" type="tns:ArrayOfsorularim" />
+  <xs:complexType name="sorularim">
     <xs:sequence>
-      <xs:element minOccurs="0" name="baslik" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="etiketId" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="kategoriId" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="kullaniciId" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="onayDurumu" nillable="true" type="xs:boolean" />
-      <xs:element minOccurs="0" name="soruIcerik" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="soruId" type="xs:int" />
-      <xs:element minOccurs="0" name="yayinTarihi" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Baslik" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EtiketAd" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Icerik" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="KategoriAd" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="KullaniciAd" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OnayDurum" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SoruId" type="xs:int" />
+      <xs:element minOccurs="0" name="YayinTarihi" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="soruView" nillable="true" type="tns:soruView" />
+  <xs:element name="sorularim" nillable="true" type="tns:sorularim" />
+  <xs:complexType name="ArrayOfcevaplarim">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="cevaplarim" nillable="true" type="tns:cevaplarim" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfcevaplarim" nillable="true" type="tns:ArrayOfcevaplarim" />
+  <xs:complexType name="cevaplarim">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Cevap" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CevapId" type="xs:int" />
+      <xs:element minOccurs="0" name="CevapTarihi" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="KullaniciAdi" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="cevaplarim" nillable="true" type="tns:cevaplarim" />
+  <xs:complexType name="ArrayOfyorumlarim">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="yorumlarim" nillable="true" type="tns:yorumlarim" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfyorumlarim" nillable="true" type="tns:ArrayOfyorumlarim" />
+  <xs:complexType name="yorumlarim">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="KullaniciAdi" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Yorum" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="YorumTarihi" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="yorumlarim" nillable="true" type="tns:yorumlarim" />
+  <xs:complexType name="ArrayOfbegenilerim">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="begenilerim" nillable="true" type="tns:begenilerim" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfbegenilerim" nillable="true" type="tns:ArrayOfbegenilerim" />
+  <xs:complexType name="begenilerim">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BegeniTuruId" type="xs:int" />
+      <xs:element minOccurs="0" name="BegeniTuruSayisi" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="begenilerim" nillable="true" type="tns:begenilerim" />
 </xs:schema>

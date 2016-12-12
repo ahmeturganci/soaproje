@@ -5,9 +5,9 @@
 }
 <style>
     #favIco {
-  filter: gray; /* IE6-9 */
-  filter: grayscale(1); /* Microsoft Edge and Firefox 35+ */
-  -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
+  filter: gray; 
+  filter: grayscale(1);
+  -webkit-filter: grayscale(1);
 }
 </style>
 <button id="test">Test</button>
@@ -126,7 +126,7 @@
 
             $.each(data, function (i, item) {
                 cevapIdGetir(item.cevapId);
-                $("#sCevaplar").append(' <div class="panel panel-primary"> <div class="panel-heading"><h4 class="panel-title"><b>Kullanıcı: ' + item.KullaniciAdi + '</b><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" id="yEkle">' + item.Cevap + '</a></h4></div><div id="sYorumlar' + i + '"><p id="yorumYaz"></div></div><div id="yorumYaz"><form class="form"><div class="form-group"><textarea type="text" class="form-control" placeholder="Yorum" id="sCyorum" value="" rows="3"></textarea></div><div class="form-group"><input type="button" class="btn btn-danger" value="Yorum Yap" onclick="YorumYap(' + item.CevapId + ');"  id="yYap"/></div></form></div>');
+                $("#sCevaplar").append(' <div class="panel panel-primary"> <div class="panel-heading"><h4 class="panel-title">                 <div style="float: right;"><button onclick="Gene<img src="/img/begendi.png" onclick="Begeni(' + item.CevapId + ');"/>   <b>45</b>   <img src="/img/begenmedi.png" onclick="Begenmeme(' + item.CevapId + ');"/>   <b>34</b> </div><b>Kullanıcı: ' + item.KullaniciAdi + '</b><p id="yEkle">' + item.Cevap + '</p></h4></div><div id="sYorumlar' + i + '"><p id="yorumYaz"></div></div><div id="yorumYaz"><form class="form"><div class="form-group"><textarea type="text" class="form-control" placeholder="Yorum" id="sCyorum" value="" rows="3"></textarea></div><div class="form-group"><input type="button" class="btn btn-danger" value="Yorum Yap" onclick="YorumYap(' + item.CevapId + ');"  id="yYap"/></div></form></div>');
                 YorumCek(item.CevapId, i);
                 //$("#sCevaplar").append('<p><b>BU BİR CEVAP</b>' + item.Cevap + '<p id="sYorumlar' + i + '"><i>Yorum</i></p></p></b>');
                 
@@ -188,11 +188,12 @@
 
     }
     function YorumYap(cId) {
+        alert("ID li soruya Yorum Ypaıyorum" + cId);
         var sonuc = cId;
         alert(cId);
 
         var data = {
-            yorum1: $("#sCyorum").val(),
+            Yorum: $("#sCyorum").val(),
             cevapId: cId
 
         };
@@ -213,9 +214,11 @@
             soruId: UrlCevir()
         };
         $.post("/Home/FavoriEkle", data, function (sonuc) {
-            if (sonuc == "+") {
+            alert(sonuc);
+            if (sonuc != "+") {
                 console.log("aaaa");
-                $("#favIco").css("-webkit-filter", "grayscale(0)");
+                $("#favIco").css("-webkit-filter", "grayscale(1)");
+            
             }
         });
     }
@@ -232,7 +235,27 @@
                 $("#favIco").css("-webkit-filter", "grayscale(1)");
         });
     }
+    function Begeni(cId) {
+        var data = {
+            cevapId: cId,
+            begeniTurId:1
+        };
+        $("/Home/Begen",data,function(sonucs){
+            alert(sonuc);
+        });
+    }
+    function Begenmeme(cId) {
+        var data = {
+            cevapId: cId,
+            begeniTurId: 2
+        };
+        $("/Home/Begen", data, function (sonucs) {
+            alert(sonuc);
+        });
+    }
+    function BegeniCek() {
 
+    }
 
 
 </script>

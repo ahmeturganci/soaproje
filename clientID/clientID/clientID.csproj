@@ -139,18 +139,20 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="img\begendi.png" />
+    <Content Include="img\begenmedi.png" />
     <Content Include="img\favorite.png" />
     <Content Include="Scripts\jquery-3.js" />
     <Content Include="Service References\ServiceReference1\clientID.ServiceReference1.sorularim.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\ServiceReference1\clientID.ServiceReference1.soruView.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Service References\ServiceReference1\clientID.ServiceReference1.cevaplarim.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Service References\ServiceReference1\clientID.ServiceReference1.yorumlarim.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ServiceReference1\clientID.ServiceReference1.begenilerim.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Service References\ServiceReference1\Service1.disco" />
@@ -229,9 +231,6 @@
     <Content Include="Views\Home\SoruSor.cshtml" />
     <Content Include="Views\Home\Listele.cshtml" />
     <None Include="Service References\ServiceReference1\Service1.wsdl" />
-    <None Include="Service References\ServiceReference1\Service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\ServiceReference1\Service11.xsd">
       <SubType>Designer</SubType>
     </None>

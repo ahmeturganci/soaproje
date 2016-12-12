@@ -2,23 +2,8 @@
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://mehmetgelmedi-001-site1.htempurl.com/Service1.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/serviceID.Model.DataModel" />
   <xs:import schemaLocation="http://mehmetgelmedi-001-site1.htempurl.com/Service1.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/serviceID.Model.ViewModel" />
-  <xs:import schemaLocation="http://mehmetgelmedi-001-site1.htempurl.com/Service1.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/serviceID" />
-  <xs:import schemaLocation="http://mehmetgelmedi-001-site1.htempurl.com/Service1.svc?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://mehmetgelmedi-001-site1.htempurl.com/Service1.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:import schemaLocation="http://mehmetgelmedi-001-site1.htempurl.com/Service1.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-  <xs:element name="GetData">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="value" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetDataResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="GetDataResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="GirisYap">
     <xs:complexType>
       <xs:sequence>
@@ -131,18 +116,6 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="Sorular">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SorularResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/serviceID.Model.ViewModel" minOccurs="0" name="SorularResult" nillable="true" type="q9:ArrayOfsoruView" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="SoruAra">
     <xs:complexType>
       <xs:sequence>
@@ -153,19 +126,7 @@
   <xs:element name="SoruAraResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/serviceID" minOccurs="0" name="SoruAraResult" nillable="true" type="q10:ArrayOfsorularim" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SoruListele">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SoruListeleResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/serviceID.Model.ViewModel" minOccurs="0" name="SoruListeleResult" nillable="true" type="q11:ArrayOfsoruView" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/serviceID.Model.ViewModel" minOccurs="0" name="SoruAraResult" nillable="true" type="q9:ArrayOfsorularim" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -177,7 +138,7 @@
   <xs:element name="KategoriListeleResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="KategoriListeleResult" nillable="true" type="q12:ArrayOfstring" />
+        <xs:element xmlns:q10="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="KategoriListeleResult" nillable="true" type="q10:ArrayOfstring" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -189,7 +150,7 @@
   <xs:element name="EtiketListeleResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="EtiketListeleResult" nillable="true" type="q13:ArrayOfstring" />
+        <xs:element xmlns:q11="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="EtiketListeleResult" nillable="true" type="q11:ArrayOfstring" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -201,7 +162,7 @@
   <xs:element name="SorularimResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/serviceID" minOccurs="0" name="SorularimResult" nillable="true" type="q14:ArrayOfsorularim" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/serviceID.Model.ViewModel" minOccurs="0" name="SorularimResult" nillable="true" type="q12:ArrayOfsorularim" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -215,7 +176,7 @@
   <xs:element name="CevaplarimResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/serviceID" minOccurs="0" name="CevaplarimResult" nillable="true" type="q15:ArrayOfcevaplarim" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/serviceID.Model.ViewModel" minOccurs="0" name="CevaplarimResult" nillable="true" type="q13:ArrayOfcevaplarim" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -229,7 +190,7 @@
   <xs:element name="YorumlarimResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/serviceID" minOccurs="0" name="YorumlarimResult" nillable="true" type="q16:ArrayOfyorumlarim" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/serviceID.Model.ViewModel" minOccurs="0" name="YorumlarimResult" nillable="true" type="q14:ArrayOfyorumlarim" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -243,7 +204,7 @@
   <xs:element name="hangiSorumResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/serviceID" minOccurs="0" name="hangiSorumResult" nillable="true" type="q17:sorularim" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/serviceID.Model.ViewModel" minOccurs="0" name="hangiSorumResult" nillable="true" type="q15:sorularim" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -258,7 +219,7 @@
   <xs:element name="FavoriSoruEkleResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q18="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="FavoriSoruEkleResult" type="q18:char" />
+        <xs:element xmlns:q16="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="FavoriSoruEkleResult" type="q16:char" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -274,7 +235,21 @@
   <xs:element name="BegeniCevapResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q19="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="BegeniCevapResult" type="q19:char" />
+        <xs:element xmlns:q17="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="BegeniCevapResult" type="q17:char" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BegeniSayisi">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="cevapId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BegeniSayisiResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/serviceID.Model.ViewModel" minOccurs="0" name="BegeniSayisiResult" nillable="true" type="q18:ArrayOfbegenilerim" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
