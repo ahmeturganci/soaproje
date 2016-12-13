@@ -11,6 +11,7 @@
 }
 </style>
 <button id="test">Test</button>
+>
 <div class="row" id="soruDetay">
     
     <div class="col-md-12">
@@ -93,8 +94,6 @@
         alert("hooop");
         $('#modalYorum').modal();
     });
-
-
     function cevapvermeistek() {
         $("#cevapVerDiv").show();
     }
@@ -111,7 +110,7 @@
         };
         //console.log(data);
         $.post("/Home/SoruCek", data, function (data) {
-            $("#sDetay").append('<div class="typo-line"><p class="category"><strong>' + data.KategoriAd + '</strong></p><blockquote><p class="text-primary"><b>' + data.KullaniciAd + '  takma adlı kullanıcı soruyor;</b></p><p text-success><b>' + data.Baslik + '</b></p><p>' + data.Icerik + '</p><small>' + data.YayinTarihi + '</small></blockquote><strong>' + data.OnayDurum + '</strong></div>');
+            $("#sDetay").append('<div class="typo-line"><p class="categ     ory"><strong>' + data.KategoriAd + '</strong></p><blockquote><p class="text-primary"><b>' + data.KullaniciAd + '  takma adlı kullanıcı soruyor;</b></p><p text-success><b>' + data.Baslik + '</b></p><p>' + data.Icerik + '</p><small>' + data.YayinTarihi + '</small></blockquote><strong>' + data.OnayDurum + '</strong></div>');
             
         });
     }
@@ -208,7 +207,6 @@
 
 
     }
-
     function FavoriKontrol() {
         var data = {
             soruId: UrlCevir()
@@ -256,6 +254,5 @@
     function BegeniCek() {
 
     }
-
-
+   
 </script>

@@ -3,6 +3,20 @@
     ViewBag.Title = "Home Page";
     Layout = "~/Views/Shared/_MainShared.cshtml";
 }
+<div class="row">
+    <div class="col-md-6">
+
+        <form class="form">
+
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Ara" id="sAra" value="" />
+            </div>
+        </form>
+    </div>
+</div>
+<div id="listara">
+
+</div>
 
 <div id="sorular">
     <div class="row">
@@ -45,20 +59,42 @@
 
             });
         });
-        /*  var data = {
-
-          }
-          $.post("/Home/SoruCek",data, function (data) {
-              $("#sorularList").html("");
-              $.each(data, function (i, item) {
-                  $("#sorularList").append('<tr><td>' + item.KullaniciAd + '</td><td>' + item.Baslik + '</td><td>' + item.KategoriAd + '</td><td>' + item.OnayDurum + '</td><td>' + item.YayinTarihi + '</td><td><a href="/Home/SoruGoster/?' + item.SoruId + '">Ayrıntılar</a></td></tr>');
-
-              });
-          });*/
     }
 
+    $("#sAra").keypress(function () {
+        var data = {
+            baslik: $("#sAra").val()
+        };
+        console.log(data);
+        if (data == "")
+            Listele();
+        $.post("/Home/SoruAra", data, function (sonuc) {
+            $("#sorularList").html("");
+            $.each(sonuc, function (i, item) {
+                $("#sorularList").append('<tr><td>' + item.KullaniciAd + '</td><td>' + item.Baslik + '</td><td>' + item.KategoriAd + '</td><td>' + item.OnayDurum + '</td><td>' + item.YayinTarihi + '</td><td><a href="/Home/SoruGoster/' + item.SoruId + '">Ayrıntılar</a></td></tr>');
 
+            });
+        });
+    });
+  /*  function SoruAra() {//button için 
+        
+        var data = {
+            baslik: $("#sAra").val()
+        };
+        console.log(data);
+        $.post("/Home/SoruAra", data, function (sonuc) {
+            $("#sorularList").html("");
+            $.each(sonuc, function (i, item) {
+                $("#sorularList").append('<tr><td>' + item.KullaniciAd + '</td><td>' + item.Baslik + '</td><td>' + item.KategoriAd + '</td><td>' + item.OnayDurum + '</td><td>' + item.YayinTarihi + '</td><td><a href="/Home/SoruGoster/' + item.SoruId + '">Ayrıntılar</a></td></tr>');
 
+            });
+
+           
+        });
+            
+    }
+
+    */
 
 
 

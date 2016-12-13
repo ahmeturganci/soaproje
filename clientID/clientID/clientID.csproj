@@ -229,7 +229,6 @@
     <Content Include="Views\Profil\Index.cshtml" />
     <Content Include="Views\Shared\_MainShared.cshtml" />
     <Content Include="Views\Home\SoruSor.cshtml" />
-    <Content Include="Views\Home\Listele.cshtml" />
     <None Include="Service References\ServiceReference1\Service1.wsdl" />
     <None Include="Service References\ServiceReference1\Service11.xsd">
       <SubType>Designer</SubType>

@@ -246,5 +246,11 @@ namespace clientID.Controllers
             return Json(s.BegeniSayisi(cevapId));
             s.Close();
         }
+        public JsonResult SoruAra(string baslik)
+        {
+            s = new ServiceReference1.Service1Client();
+            return Json(s.SoruAra(baslik));
+            s.Close();
+        }
     }
 }
