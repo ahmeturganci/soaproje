@@ -51,12 +51,6 @@
   <wsdl:message name="IService1_CevabaYorumYaz_OutputMessage">
     <wsdl:part name="parameters" element="tns:CevabaYorumYazResponse" />
   </wsdl:message>
-  <wsdl:message name="IService1_SoruFavoriEkle_InputMessage">
-    <wsdl:part name="parameters" element="tns:SoruFavoriEkle" />
-  </wsdl:message>
-  <wsdl:message name="IService1_SoruFavoriEkle_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SoruFavoriEkleResponse" />
-  </wsdl:message>
   <wsdl:message name="IService1_SoruAra_InputMessage">
     <wsdl:part name="parameters" element="tns:SoruAra" />
   </wsdl:message>
@@ -117,6 +111,18 @@
   <wsdl:message name="IService1_BegeniSayisi_OutputMessage">
     <wsdl:part name="parameters" element="tns:BegeniSayisiResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_CevapOnayla_InputMessage">
+    <wsdl:part name="parameters" element="tns:CevapOnayla" />
+  </wsdl:message>
+  <wsdl:message name="IService1_CevapOnayla_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CevapOnaylaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SifreGuncelle_InputMessage">
+    <wsdl:part name="parameters" element="tns:SifreGuncelle" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SifreGuncelle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SifreGuncelleResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="GirisYap">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GirisYap" message="tns:IService1_GirisYap_InputMessage" />
@@ -145,10 +151,6 @@
     <wsdl:operation name="CevabaYorumYaz">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/CevabaYorumYaz" message="tns:IService1_CevabaYorumYaz_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/CevabaYorumYazResponse" message="tns:IService1_CevabaYorumYaz_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="SoruFavoriEkle">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SoruFavoriEkle" message="tns:IService1_SoruFavoriEkle_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SoruFavoriEkleResponse" message="tns:IService1_SoruFavoriEkle_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="SoruAra">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/SoruAra" message="tns:IService1_SoruAra_InputMessage" />
@@ -189,6 +191,14 @@
     <wsdl:operation name="BegeniSayisi">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/BegeniSayisi" message="tns:IService1_BegeniSayisi_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/BegeniSayisiResponse" message="tns:IService1_BegeniSayisi_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CevapOnayla">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/CevapOnayla" message="tns:IService1_CevapOnayla_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/CevapOnaylaResponse" message="tns:IService1_CevapOnayla_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SifreGuncelle">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SifreGuncelle" message="tns:IService1_SifreGuncelle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SifreGuncelleResponse" message="tns:IService1_SifreGuncelle_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
@@ -249,15 +259,6 @@
     </wsdl:operation>
     <wsdl:operation name="CevabaYorumYaz">
       <soap:operation soapAction="http://tempuri.org/IService1/CevabaYorumYaz" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="SoruFavoriEkle">
-      <soap:operation soapAction="http://tempuri.org/IService1/SoruFavoriEkle" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -348,6 +349,24 @@
     </wsdl:operation>
     <wsdl:operation name="BegeniSayisi">
       <soap:operation soapAction="http://tempuri.org/IService1/BegeniSayisi" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CevapOnayla">
+      <soap:operation soapAction="http://tempuri.org/IService1/CevapOnayla" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SifreGuncelle">
+      <soap:operation soapAction="http://tempuri.org/IService1/SifreGuncelle" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

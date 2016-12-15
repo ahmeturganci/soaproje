@@ -9,9 +9,9 @@
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <!--SoruDetay Ekranı için-->
-    <link href="~/Content/soruDetay.css" rel="stylesheet"  />
+    <link href="~/Content/soruDetay.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-3.js"></script>
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link href="~/UI_1/assets/css/animate.min.css" rel="stylesheet" />
     <link href="~/UI_1/assets/css/light-bootstrap-dashboard.css" rel="stylesheet" />
@@ -53,26 +53,11 @@
                     </li>
 
                     <li>
-                        <a href="@Url.Action("EnCokSorulan", "Home")">
-                            <i class="pe-7s-note2"></i>
-                            <p>En Çok Sorulanlar</p>
-                        </a>
-                    </li>
-
-                    <li>
                         <a href="@Url.Action("SoruSor","Home")">
                             <i class="pe-7s-note2"></i>
                             <p>Soru Sor</p>
                         </a>
                     </li>
-
-                    <li>
-                        <a href="@Url.Action("Cevaplarim","Home")">
-                            <i class="pe-7s-science"></i>
-                            <p>Cevaplarım</p>
-                        </a>
-                    </li>
-
                 </ul>
             </div>
         </div>
@@ -93,11 +78,6 @@
 
                         <ul class="nav navbar-nav navbar-right">
                             <li>
-                                <a href="@Url.Action("KisiGetir", "Home")">
-                                    Kişi:
-                                </a>
-                            </li>
-                            <li>
                                 <a href="@Url.Action("Cikis","Home")" id="cikis">
                                     Çıkış
                                 </a>
@@ -106,47 +86,16 @@
                     </div>
                 </div>
             </nav>
-
-
             <div class="content">
                 <div class="container-fluid">
-
-
                     @RenderBody()
-
-
                 </div>
             </div>
-
-
             <footer class="footer">
                 <div class="container-fluid">
-                    <nav class="pull-left">
-                        <ul>
-                            <li>
-                                <a href="#">
-                                    Home
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Company
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Portfolio
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Blog
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
+
                     <p class="copyright pull-right">
-                        &copy; 2016 <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
+                        &copy; 2016 <a href="#">MEGAU</a>, Geliştirici ekibi tarfından yapılmıştır.
                     </p>
                 </div>
             </footer>
@@ -156,6 +105,7 @@
 
 </body>
 <script>
+
     $(function () {
         $("a#cikis").click(function () {
             $.post("/Home/Cikis", "", function (sonuc) {
@@ -163,6 +113,8 @@
                     window.location = "/Home/Giris";
             });
         });
+
+
     });
 </script>
 

@@ -39,6 +39,7 @@
       <xs:element minOccurs="0" name="cevapTarihi" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="kullanici" nillable="true" type="tns:kullanici" />
       <xs:element minOccurs="0" name="kullaniciId" type="xs:int" />
+      <xs:element minOccurs="0" name="onayDurumu" nillable="true" type="xs:boolean" />
       <xs:element minOccurs="0" name="soru" nillable="true" type="tns:soru" />
       <xs:element minOccurs="0" name="soruId" type="xs:int" />
       <xs:element minOccurs="0" name="yorums" nillable="true" type="tns:ArrayOfyorum" />

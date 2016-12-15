@@ -113,8 +113,11 @@
             };
             alert(data);
             $.post("/Home/Kaydol", data, function (sonuc) {
-                if (sonuc == "+")
+                if (sonuc == "+") {
+
                     alert("Başarılı");
+                    window.location = "/Home/Giris";
+                }
                 else
                     alert("Başarısız");
 

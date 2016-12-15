@@ -4,14 +4,19 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace clientID.Controllers
 {
     public class ProfilController : Controller
     {
-        // GET: Profil
+
+        ServiceReference1.Service1Client s;
         public ActionResult Index()
         {
             return View();
         }
+        
+
+
     }
 }

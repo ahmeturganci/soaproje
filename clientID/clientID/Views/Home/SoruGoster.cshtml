@@ -5,27 +5,23 @@
 }
 <style>
     #favIco {
-  filter: gray; 
-  filter: grayscale(1);
-  -webkit-filter: grayscale(1);
-}
+        filter: gray;
+        filter: grayscale(1);
+        -webkit-filter: grayscale(1);
+    }
 </style>
-<button id="test">Test</button>
->
 <div class="row" id="soruDetay">
-    
+
     <div class="col-md-12">
         <div class="card">
-            <div style="float:right"><img src="~/img/favorite.png" id="favIco" onclick="SoruFavoriEkle();"/></div>
+            <div style="float:right"><img src="~/img/favorite.png" id="favIco" onclick="SoruFavoriEkle();" /></div>
             <div class="header">
-                
+
                 <h4 class="title">Soru Detay</h4>
-                
+
             </div>
-            <div id="sDetay">
-                <button onclick="cevapvermeistek()">Cevap vermek istiyorum</button>
-            </div>
-        </div>
+            <div id="sDetay"></div>
+           </div>
         <div class="clearfix"></div>
         <div id="cevapVerDiv">
 
@@ -76,27 +72,17 @@
     </div>
 </div>
 
-
+g<img src="~/img/favorite.png"  id=""/>
 
 <script>
-    
-    var cevapId = 0;
-    $("#test").click(function () {
-        YorumCek();
-    });
 
     $("#soruDetay").load(SoruCek());
     $("body").load(CevapCek());
-    $("#cevapVerDiv").hide();
     $("body").load(FavoriKontrol());
-
     $("#yEkle").on('shown', function () {
         alert("hooop");
         $('#modalYorum').modal();
     });
-    function cevapvermeistek() {
-        $("#cevapVerDiv").show();
-    }
     function UrlCevir() {
         var url = window.location.pathname;
         var id = url.substring(url.lastIndexOf('/') + 1);
@@ -104,14 +90,15 @@
     }
     function SoruCek() {
         var id = UrlCevir();
-        //alert(id);
+        alert(id);
         var data = {
             soruId: id
         };
-        //console.log(data);
+        console.log(data);
         $.post("/Home/SoruCek", data, function (data) {
-            $("#sDetay").append('<div class="typo-line"><p class="categ     ory"><strong>' + data.KategoriAd + '</strong></p><blockquote><p class="text-primary"><b>' + data.KullaniciAd + '  takma adlı kullanıcı soruyor;</b></p><p text-success><b>' + data.Baslik + '</b></p><p>' + data.Icerik + '</p><small>' + data.YayinTarihi + '</small></blockquote><strong>' + data.OnayDurum + '</strong></div>');
-            
+            console.log(data.KullaniciAd);
+            $("#sDetay").append('<div class="typo-line"><p class="category"><strong>' + data.KategoriAd + '</strong></p><blockquote><p class="text-primary"><b>' + data.KullaniciAd + '  takma adlı kullanıcı soruyor;</b></p><p text-success><b>' + data.Baslik + '</b></p><p>' + data.Icerik + '</p><small>' + data.YayinTarihi + '</small></blockquote><strong>' + data.OnayDurum + '</strong></div>');
+
         });
     }
     function CevapCek() {
@@ -125,10 +112,11 @@
 
             $.each(data, function (i, item) {
                 cevapIdGetir(item.cevapId);
-                $("#sCevaplar").append(' <div class="panel panel-primary"> <div class="panel-heading"><h4 class="panel-title">                 <div style="float: right;"><button onclick="Gene<img src="/img/begendi.png" onclick="Begeni(' + item.CevapId + ');"/>   <b>45</b>   <img src="/img/begenmedi.png" onclick="Begenmeme(' + item.CevapId + ');"/>   <b>34</b> </div><b>Kullanıcı: ' + item.KullaniciAdi + '</b><p id="yEkle">' + item.Cevap + '</p></h4></div><div id="sYorumlar' + i + '"><p id="yorumYaz"></div></div><div id="yorumYaz"><form class="form"><div class="form-group"><textarea type="text" class="form-control" placeholder="Yorum" id="sCyorum" value="" rows="3"></textarea></div><div class="form-group"><input type="button" class="btn btn-danger" value="Yorum Yap" onclick="YorumYap(' + item.CevapId + ');"  id="yYap"/></div></form></div>');
+                
+                $("#sCevaplar").append('<img =""id=onay> <div class="panel panel-primary"> <div class="panel-heading"><h4 class="panel-title">                 <div style="float: right;"><button onclick="Gene<img src="/img/begendi.png" onclick="Begeni(' + item.CevapId + ');"/>   <b>45</b>   <img src="/img/begenmedi.png" onclick="Begenmeme(' + item.CevapId + ');"/>   <b>34</b> </div><b>Kullanıcı: ' + item.KullaniciAdi + '</b><p id="yEkle">' + item.Cevap + '</p></h4></div><div id="sYorumlar' + i + '"><p id="yorumYaz"></div></div><div id="yorumYaz"><form class="form"><div class="form-group"><textarea type="text" class="form-control" placeholder="Yorum" id="yorum1" value="" rows="3"></textarea></div><div class="form-group"><input type="button" class="btn btn-danger" value="Yorum Yap" onclick="YorumYap(' + item.CevapId + ');"  id="yYap"/></div></form></div>');
                 YorumCek(item.CevapId, i);
                 //$("#sCevaplar").append('<p><b>BU BİR CEVAP</b>' + item.Cevap + '<p id="sYorumlar' + i + '"><i>Yorum</i></p></p></b>');
-                
+
             });
 
 
@@ -156,7 +144,7 @@
     }
     function KisiCek() {
         $.post("/Home/KulCek", function (sonuc) {
-            alert(sonuc);
+            //alert(sonuc);
             return sonuc;
 
         });
@@ -176,9 +164,9 @@
             $.post("/Home/CevapVer", data, function (sonuc) {
                 if (sonuc == "+") {
                     alert("Cevabınız başarılı şekilde alındı.");
-                    window.location.reload();
+                    location.reload();
                 }
-                else if ( sonuc =="-")
+                else if (sonuc == "-")
                     window.location = "/Home/Giris";
 
 
@@ -189,12 +177,11 @@
     function YorumYap(cId) {
         alert("ID li soruya Yorum Ypaıyorum" + cId);
         var sonuc = cId;
-        alert(cId);
+        //alert(cId);
 
         var data = {
-            Yorum: $("#sCyorum").val(),
+            yorum1: $("#yorum1").val(),
             cevapId: cId
-
         };
         console.log(data);
         $.post("/Home/YorumYap", data, function (sonuc) {
@@ -212,11 +199,10 @@
             soruId: UrlCevir()
         };
         $.post("/Home/FavoriEkle", data, function (sonuc) {
-            alert(sonuc);
+            //alert(sonuc);
             if (sonuc != "+") {
-                console.log("aaaa");
                 $("#favIco").css("-webkit-filter", "grayscale(1)");
-            
+
             }
         });
     }
@@ -236,9 +222,9 @@
     function Begeni(cId) {
         var data = {
             cevapId: cId,
-            begeniTurId:1
+            begeniTurId: 1
         };
-        $("/Home/Begen",data,function(sonucs){
+        $("/Home/Begen", data, function (sonucs) {
             alert(sonuc);
         });
     }
@@ -254,5 +240,5 @@
     function BegeniCek() {
 
     }
-   
+
 </script>

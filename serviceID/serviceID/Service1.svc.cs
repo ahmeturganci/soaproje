@@ -6,7 +6,7 @@ using serviceID.Model.ViewModel;
 
 namespace serviceID
 {
-   
+
     public class Service1 : IService1
     {
 
@@ -63,7 +63,7 @@ namespace serviceID
         public List<sorularim> Sorularim()
         {
             return KullaniciIslem.Sorularim();
-                 
+
         }
 
         public List<cevaplarim> Cevaplarim(int soruId)
@@ -81,7 +81,7 @@ namespace serviceID
             return KullaniciIslem.hangiSorum(soruId);
         }
 
-        public char FavoriSoruEkle(int soruId,int kullaniciId)
+        public char FavoriSoruEkle(int soruId, int kullaniciId)
         {
             return KullaniciIslem.FavoriSoruEkle(soruId, kullaniciId);
         }
@@ -99,6 +99,11 @@ namespace serviceID
         public char CevapOnayla(int kullaniciId, int soruId, int cevapId)
         {
             return KullaniciIslem.CevapOnayla(kullaniciId, soruId, cevapId);
+        }
+
+        public char SifreGuncelle(string eski, string yeni, int kulId)
+        {
+            return KullaniciIslem.SifreGuncelle(eski, yeni, kulId);
         }
     }
 }

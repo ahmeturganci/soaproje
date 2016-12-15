@@ -339,6 +339,9 @@ namespace clientID.ServiceReference1 {
         private int kullaniciIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<bool> onayDurumuField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private clientID.ServiceReference1.soru soruField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -431,6 +434,19 @@ namespace clientID.ServiceReference1 {
                 if ((this.kullaniciIdField.Equals(value) != true)) {
                     this.kullaniciIdField = value;
                     this.RaisePropertyChanged("kullaniciId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<bool> onayDurumu {
+            get {
+                return this.onayDurumuField;
+            }
+            set {
+                if ((this.onayDurumuField.Equals(value) != true)) {
+                    this.onayDurumuField = value;
+                    this.RaisePropertyChanged("onayDurumu");
                 }
             }
         }
@@ -1668,12 +1684,6 @@ namespace clientID.ServiceReference1 {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CevabaYorumYaz", ReplyAction="http://tempuri.org/IService1/CevabaYorumYazResponse")]
         System.Threading.Tasks.Task<bool> CevabaYorumYazAsync(clientID.ServiceReference1.yorum yorum);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SoruFavoriEkle", ReplyAction="http://tempuri.org/IService1/SoruFavoriEkleResponse")]
-        bool SoruFavoriEkle(clientID.ServiceReference1.favori fav);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SoruFavoriEkle", ReplyAction="http://tempuri.org/IService1/SoruFavoriEkleResponse")]
-        System.Threading.Tasks.Task<bool> SoruFavoriEkleAsync(clientID.ServiceReference1.favori fav);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SoruAra", ReplyAction="http://tempuri.org/IService1/SoruAraResponse")]
         clientID.ServiceReference1.sorularim[] SoruAra(string soruBaslik);
         
@@ -1733,6 +1743,18 @@ namespace clientID.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/BegeniSayisi", ReplyAction="http://tempuri.org/IService1/BegeniSayisiResponse")]
         System.Threading.Tasks.Task<clientID.ServiceReference1.begenilerim[]> BegeniSayisiAsync(int cevapId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CevapOnayla", ReplyAction="http://tempuri.org/IService1/CevapOnaylaResponse")]
+        char CevapOnayla(int kullaniciId, int soruId, int cevapId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CevapOnayla", ReplyAction="http://tempuri.org/IService1/CevapOnaylaResponse")]
+        System.Threading.Tasks.Task<char> CevapOnaylaAsync(int kullaniciId, int soruId, int cevapId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SifreGuncelle", ReplyAction="http://tempuri.org/IService1/SifreGuncelleResponse")]
+        char SifreGuncelle(string eski, string yeni, int kulId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SifreGuncelle", ReplyAction="http://tempuri.org/IService1/SifreGuncelleResponse")]
+        System.Threading.Tasks.Task<char> SifreGuncelleAsync(string eski, string yeni, int kulId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1818,14 +1840,6 @@ namespace clientID.ServiceReference1 {
             return base.Channel.CevabaYorumYazAsync(yorum);
         }
         
-        public bool SoruFavoriEkle(clientID.ServiceReference1.favori fav) {
-            return base.Channel.SoruFavoriEkle(fav);
-        }
-        
-        public System.Threading.Tasks.Task<bool> SoruFavoriEkleAsync(clientID.ServiceReference1.favori fav) {
-            return base.Channel.SoruFavoriEkleAsync(fav);
-        }
-        
         public clientID.ServiceReference1.sorularim[] SoruAra(string soruBaslik) {
             return base.Channel.SoruAra(soruBaslik);
         }
@@ -1904,6 +1918,22 @@ namespace clientID.ServiceReference1 {
         
         public System.Threading.Tasks.Task<clientID.ServiceReference1.begenilerim[]> BegeniSayisiAsync(int cevapId) {
             return base.Channel.BegeniSayisiAsync(cevapId);
+        }
+        
+        public char CevapOnayla(int kullaniciId, int soruId, int cevapId) {
+            return base.Channel.CevapOnayla(kullaniciId, soruId, cevapId);
+        }
+        
+        public System.Threading.Tasks.Task<char> CevapOnaylaAsync(int kullaniciId, int soruId, int cevapId) {
+            return base.Channel.CevapOnaylaAsync(kullaniciId, soruId, cevapId);
+        }
+        
+        public char SifreGuncelle(string eski, string yeni, int kulId) {
+            return base.Channel.SifreGuncelle(eski, yeni, kulId);
+        }
+        
+        public System.Threading.Tasks.Task<char> SifreGuncelleAsync(string eski, string yeni, int kulId) {
+            return base.Channel.SifreGuncelleAsync(eski, yeni, kulId);
         }
     }
 }

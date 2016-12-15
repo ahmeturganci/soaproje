@@ -23,34 +23,47 @@ namespace clientID.Controllers
         {
             return View();
         }
+        public ActionResult SoruGoster()
+        {
+            return View();
+        }
+        public ActionResult SoruSor()
+        {
+            return View();
+        }
+
         public JsonResult GirisYap(string kulAd, string sifre)
         {
-            s = new ServiceReference1.Service1Client();
-            ServiceReference1.kullanici k = new ServiceReference1.kullanici();
-            k.kullaniciAdi = kulAd;
-            k.sifre = sifre;
-
-            kId = s.GirisYap(k);
-
-            if (k != null && kId != 0)
+            using (s = new ServiceReference1.Service1Client())
             {
-                Response.Cookies["idUserID"].Value = k.kullaniciId.ToString();
-                Response.Cookies["idUserID"].Expires = DateTime.Now.AddDays(1);
-                Response.Cookies["idUserName"].Value = k.kullaniciAdi.ToString();
-                Response.Cookies["idUserName"].Expires = DateTime.Now.AddDays(1);
+                ServiceReference1.kullanici k = new ServiceReference1.kullanici();
+                k.kullaniciAdi = kulAd;
+                k.sifre = sifre;
+                kId = s.GirisYap(k);
 
-                HttpCookie aCookie = new HttpCookie("lastVisit");
-                aCookie.Value = DateTime.Now.ToString();
-                aCookie.Expires = DateTime.Now.AddDays(1);
-                Response.Cookies.Add(aCookie);
-                return Json("+");
+                s.Close();
+
+                if (k != null && kId != 0)
+                {
+                    Response.Cookies["idUserID"].Value = k.kullaniciId.ToString();
+                    Response.Cookies["idUserID"].Expires = DateTime.Now.AddDays(1);
+                    Response.Cookies["idUserName"].Value = k.kullaniciAdi.ToString();
+                    Response.Cookies["idUserName"].Expires = DateTime.Now.AddDays(1);
+
+                    HttpCookie aCookie = new HttpCookie("lastVisit");
+                    aCookie.Value = DateTime.Now.ToString();
+                    aCookie.Expires = DateTime.Now.AddDays(1);
+                    Response.Cookies.Add(aCookie);
+                    return Json("+");
+
+                }
+                else
+                    return Json("- Giriş yapılamadı.");
+
 
             }
-            else
-                return Json("- Giriş yapılamadı.");
-            s.Close();
         }
-        public JsonResult Cikis()
+        public ActionResult Cikis()
         {
             Response.Cookies["idUserID"].Value = null;
             Response.Cookies["idUserID"].Expires = DateTime.Now.AddDays(-1);
@@ -61,25 +74,30 @@ namespace clientID.Controllers
             aCookie.Value = DateTime.Now.ToString();
             aCookie.Expires = DateTime.Now.AddDays(1);
             Response.Cookies.Add(aCookie);
-            return Json("+");
+            kId = 0;
+            return View("Giris");
 
         }
         public JsonResult Kaydol(ServiceReference1.kullanici kul)
         {
-            s = new ServiceReference1.Service1Client();
-            kul = new ServiceReference1.kullanici()
+            using (s = new ServiceReference1.Service1Client())
             {
-                kullaniciAdi = kul.kullaniciAdi,
-                sifre = kul.sifre,
-                email = kul.email
-            };
-            kId = s.KayitOl(kul);
+                kul = new ServiceReference1.kullanici()
+                {
+                    kullaniciAdi = kul.kullaniciAdi,
+                    sifre = kul.sifre,
+                    email = kul.email
+                };
+                kId = s.KayitOl(kul);
+                s.Close();
+                if (kId == 0)
+                    return Json("+");
+                else
+                    return Json("-");
+            }
 
-            if (kId == 0)
-                return Json("+");
-            else
-                return Json("-");
-            s.Close();
+
+
         }
         public JsonResult KategoriCek()
         {
@@ -87,115 +105,105 @@ namespace clientID.Controllers
             return Json(s.KategoriListele());
             s.Close();
         }
-        public ActionResult SoruSor()
-        {
-            return View();
-        }
+
         public JsonResult SoruEkle(ServiceReference1.soru sr)
         {
-            s = new ServiceReference1.Service1Client();
-            sr = new ServiceReference1.soru()
+            using (s = new ServiceReference1.Service1Client())
             {
-                baslik = sr.baslik,
-                soruIcerik = sr.soruIcerik,
-                kategoriId = sr.kategoriId
+                sr = new ServiceReference1.soru()
+                {
+                    baslik = sr.baslik,
+                    soruIcerik = sr.soruIcerik,
+                    kategoriId = sr.kategoriId
 
-            };
+                };
+                sr.kullaniciId = kId;
+                sr.onayDurumu = false;
+                sr.yayinTarihi = DateTime.Now;
+                string sonuc = s.SoruEkle(sr);
+                s.Close();
+                if (sonuc == "+")
+                    return Json("+");
+                else return Json("-");
+            }
 
-            sr.kullaniciId = kId;
-            sr.onayDurumu = false;
-            sr.yayinTarihi = DateTime.Now;
-
-
-            string sonuc = s.SoruEkle(sr);
-            if (sonuc == "+")
-                return Json("+");
-            else return Json("-");
-            s.Close();
         }
-        public ActionResult Cevaplarim()
-        {
-            s = new ServiceReference1.Service1Client();
-            return View();
-            s.Close();
-        }
+
         public JsonResult KategoriEkle(ServiceReference1.kategori ktg)
         {
-            s = new ServiceReference1.Service1Client();
-            ktg = new ServiceReference1.kategori()
+            using (s = new ServiceReference1.Service1Client())
             {
-                kategoriAd = ktg.kategoriAd
-            };
-            bool sonuc = s.KategoriEkle(ktg);
-            if (sonuc)
-                return Json("+");
-            else
-                return Json("-");
+                ktg = new ServiceReference1.kategori()
+                {
+                    kategoriAd = ktg.kategoriAd
+                };
+                bool sonuc = s.KategoriEkle(ktg);
+                if (sonuc)
+                    return Json("+");
+                else
+                    return Json("-");
+            }
         }
         public JsonResult SorulariListele()
         {
-            s = new ServiceReference1.Service1Client();
-            var sonuc = s.Sorularim();
-            return Json(sonuc);
-            s.Close();
+            using (s = new ServiceReference1.Service1Client())
+            {
+                var sonuc = s.Sorularim();
+                s.Close();
+
+                return Json(sonuc);
+            }
         }
 
-        public ActionResult SoruGoster()
-        {
-            return View();
-        }
         public JsonResult SoruCek(int soruId)
         {
-            s = new ServiceReference1.Service1Client();
-            ServiceReference1.sorularim ss = s.hangiSorum(soruId);
-            return Json(ss);//soru
-            s.Close();
+            using (s = new ServiceReference1.Service1Client())
+            {
+                ServiceReference1.sorularim ss = s.hangiSorum(soruId);
+                s.Close();
+                return Json(ss);//soru
+            }
+
         }
+
         public JsonResult CevapCek(int soruId)
 
         {
-            s = new ServiceReference1.Service1Client();
-            var cevapListe = s.Cevaplarim(soruId);
-            //foreach (var item in cevapListe)
-            //{
-                
-            //}
-            return Json(cevapListe);
-            s.Close();
+            using (s = new ServiceReference1.Service1Client())
+            {
+                var cevapListe = s.Cevaplarim(soruId);
+                s.Close();
+                return Json(cevapListe);
+            }
+
         }
         public JsonResult YorumCek(int cevapId)
         {
             s = new ServiceReference1.Service1Client();
             var yorumListe = s.Yorumlarim(cevapId);
-            //foreach (var item in yorumListe)
-            //{
-                
-            //}
-            return Json(yorumListe);
             s.Close();
+            return Json(yorumListe);
+
         }
         public JsonResult CevapVer(ServiceReference1.cevap c)
         {
-            s = new ServiceReference1.Service1Client();
-            c = new ServiceReference1.cevap()
+            using (s = new ServiceReference1.Service1Client())
             {
-                cevap1 = c.cevap1,
-                soruId = c.soruId
+                c = new ServiceReference1.cevap()
+                {
+                    cevap1 = c.cevap1,
+                    soruId = c.soruId
 
-            };
-            c.cevapTarihi = DateTime.Now;
-            c.kullaniciId = kId;
-            bool sonuc = s.SoruyaCevapYaz(c);
-            if (sonuc)
-                return Json("+", kId.ToString());
-            else
-                return Json("-", kId.ToString());
-
-            s.Close();
-
-
-
-
+                };
+                c.cevapTarihi = DateTime.Now;
+                c.kullaniciId = kId;
+                bool sonuc = s.SoruyaCevapYaz(c);
+                s.Close();
+                if (sonuc)
+                    return Json("+", kId.ToString());
+                else
+                    return Json("-", kId.ToString());
+            }
         }
         public JsonResult KulCek()
         {
@@ -204,53 +212,92 @@ namespace clientID.Controllers
             else
                 return Json("-");
         }
+
         public JsonResult YorumYap(ServiceReference1.yorum y)
         {
-            s = new ServiceReference1.Service1Client();
-            y = new ServiceReference1.yorum()
+            using (s = new ServiceReference1.Service1Client())
             {
-                
-                yorum1 = y.yorum1,
-                kullaniciId = kId,
-                cevapId =y.cevapId
-
-            };
-            
-            y.yorumTarihi = DateTime.Now;
-            bool sonuc = s.CevabaYorumYaz(y);
-            if (sonuc)
-                return Json("+");
-            else
-                return Json("-");
-            s.Close();
+                y = new ServiceReference1.yorum()
+                {
+                    yorum1=y.yorum1,
+                    kullaniciId = kId,
+                    cevapId = y.cevapId
+                };
+                y.yorumTarihi = DateTime.Now;
+                bool sonuc = s.CevabaYorumYaz(y);
+                s.Close();
+                if (sonuc)
+                    return Json("+");
+                else
+                    return Json("-");
+            }
         }
 
         public JsonResult FavoriEkle(int soruId)
         {
-            s = new ServiceReference1.Service1Client();
-
-            var favSonuc= s.FavoriSoruEkle(soruId, kId); 
-            return Json(favSonuc);
-            s.Close();
-
+            using (s = new ServiceReference1.Service1Client())
+            {
+                var favSonuc = s.FavoriSoruEkle(soruId, kId);
+                s.Close();
+                return Json(favSonuc);
+            }
         }
         public JsonResult Begen(int cevapId, int kullaniciId, int begeniTurId)
         {
-            s = new ServiceReference1.Service1Client();
-            return Json(s.BegeniCevap(cevapId, kullaniciId, begeniTurId));
-            s.Close();
+            using (s = new ServiceReference1.Service1Client())
+            {
+                s.Close();
+                return Json(s.BegeniCevap(cevapId, kullaniciId, begeniTurId));
+            }
+
         }
+
         public JsonResult BegeniCek(int cevapId)
         {
-            s = new ServiceReference1.Service1Client();
-            return Json(s.BegeniSayisi(cevapId));
-            s.Close();
+            using (s = new ServiceReference1.Service1Client())
+            {
+                s.Close();
+                return Json(s.BegeniSayisi(cevapId));
+            }
+
         }
+
         public JsonResult SoruAra(string baslik)
         {
-            s = new ServiceReference1.Service1Client();
-            return Json(s.SoruAra(baslik));
-            s.Close();
+            using (s = new ServiceReference1.Service1Client())
+            {
+                s.Close();
+                return Json(s.SoruAra(baslik));
+            }
         }
+
+        public JsonResult CevapOnay(int sId,int cId)
+        {
+            using (s = new ServiceReference1.Service1Client())
+            {
+                var sss= s.CevapOnayla(kId, sId, cId);
+                s.Close();
+                return Json(sss);
+            }
+        }
+    
+        public JsonResult Test()
+        {
+            return Json("+");
+        }
+
+        public JsonResult SifreDegistir(string eski, string yeni, int kulId)
+        {
+
+            using ( s = new ServiceReference1.Service1Client())
+            {
+                s.Close();
+                
+                return Json(s.SifreGuncelle(eski, yeni, kulId));
+
+            }
+
+        }
+
     }
 }

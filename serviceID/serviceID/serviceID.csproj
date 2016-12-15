@@ -123,12 +123,6 @@
     <Compile Include="Model\DataModel\soruEtiket.cs">
       <DependentUpon>idDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\DataModel\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>idDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\DataModel\sp_helpdiagrams_Result.cs">
-      <DependentUpon>idDBModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Model\DataModel\sysdiagram.cs">
       <DependentUpon>idDBModel.tt</DependentUpon>
     </Compile>
@@ -158,6 +152,7 @@
       <DependentUpon>idDBModel.edmx</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\ahmet.pubxml" />
+    <None Include="Properties\PublishProfiles\iamd.pubxml" />
     <None Include="Properties\PublishProfiles\service.pubxml" />
     <None Include="Properties\PublishProfiles\serviceID.pubxml" />
     <None Include="Web.Debug.config">

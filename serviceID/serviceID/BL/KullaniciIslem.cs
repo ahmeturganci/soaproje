@@ -172,7 +172,8 @@ namespace serviceID.BL
                                          p.kategori.kategoriAd,
                                          p.soruId
                                      });
-                    if (soruSorgu != null) {
+                    if (soruSorgu != null)
+                    {
                         foreach (var i in soruSorgu)
                         {
                             sorularim ss = new sorularim
@@ -186,7 +187,7 @@ namespace serviceID.BL
                                 SoruId = i.soruId
                             };
                             sr.Add(ss);
-                        }   
+                        }
                     }
                 }
             }
@@ -196,7 +197,7 @@ namespace serviceID.BL
             }
             return sr;
         }
-        
+
         public static List<string> KategoriListele()
         {
             List<string> kategoriler = new List<string>();
@@ -243,7 +244,8 @@ namespace serviceID.BL
                 try
                 {
 
-                    var tblSorgu = from p in db.sorus orderby p.yayinTarihi descending
+                    var tblSorgu = from p in db.sorus
+                                   orderby p.yayinTarihi descending
                                    select new
                                    {
                                        p.soruIcerik,
@@ -282,7 +284,7 @@ namespace serviceID.BL
             List<cevaplarim> cv = new List<cevaplarim>();
             try
             {
-                using (idDBEntities db=new idDBEntities())
+                using (idDBEntities db = new idDBEntities())
                 {
                     var tblCevap = from p in db.cevaps
                                    where p.soruId == soruId
@@ -300,7 +302,7 @@ namespace serviceID.BL
                             Cevap = item.cevap1,
                             CevapTarihi = item.cevapTarihi.ToString(),
                             KullaniciAdi = item.kullaniciAdi,
-                            CevapId=item.cevapId
+                            CevapId = item.cevapId
                         };
                         cv.Add(cc);
                     }
@@ -316,7 +318,7 @@ namespace serviceID.BL
             List<yorumlarim> yr = new List<yorumlarim>();
             try
             {
-                using (idDBEntities db=new idDBEntities())
+                using (idDBEntities db = new idDBEntities())
                 {
                     var tblYorum = from p in db.yorums
                                    where p.cevapId == cevapId
@@ -345,14 +347,14 @@ namespace serviceID.BL
         }
         public static sorularim hangiSorum(int soruId)
         {
-            sorularim ss=null;
+            sorularim ss = null;
             using (idDBEntities db = new idDBEntities())
             {
                 try
                 {
                     var tblHangiSoruSorgu = (from p in db.sorus where p.soruId == soruId select p).FirstOrDefault();
 
-                    ss= new sorularim
+                    ss = new sorularim
                     {
                         Icerik = tblHangiSoruSorgu.soruIcerik,
                         Baslik = tblHangiSoruSorgu.baslik,
@@ -401,7 +403,7 @@ namespace serviceID.BL
             }
             return res;
         }
-        public static char BegeniCevap(int cevapId, int kullaniciId,int begeniTuruId)
+        public static char BegeniCevap(int cevapId, int kullaniciId, int begeniTuruId)
         {
             char res = '*';
             try
@@ -419,7 +421,7 @@ namespace serviceID.BL
                         db.SaveChanges();
                         res = '+';
                     }
-                    else if(tblBegeni!=null && tblBegeni.begeniTuruId!=begeniTuruId)
+                    else if (tblBegeni != null && tblBegeni.begeniTuruId != begeniTuruId)
                     {
                         tblBegeni.begeniTuruId = begeniTuruId;
                         db.SaveChanges();
@@ -444,7 +446,8 @@ namespace serviceID.BL
             List<begenilerim> bg = new List<begenilerim>();
             try
             {
-                using (idDBEntities db = new idDBEntities()) {
+                using (idDBEntities db = new idDBEntities())
+                {
                     var tblBegeniler = from p in db.begenis
                                        where p.cevapId == cevapId
                                        group p.begeniTuruId by p.begeniTuruId;
@@ -473,9 +476,9 @@ namespace serviceID.BL
             {
                 using (idDBEntities db = new idDBEntities())
                 {
-                    var tblCevap =(dynamic)null;
+                    var tblCevap = (dynamic)null;
                     var tblSoru = (from p in db.sorus where p.soruId == soruId && p.kullaniciId == kullaniciId select p).SingleOrDefault();//sadece soruyu soran kullanıcı
-                    if(tblSoru!=null) //tblsoru null ise tblcevap için gereksiz sorgulama yapılmamas
+                    if (tblSoru != null) //tblsoru null ise tblcevap için gereksiz sorgulama yapılmamas
                         tblCevap = (from p in db.cevaps where p.cevapId == cevapId select p).SingleOrDefault();// bu cevabı onaylayabilir
                     if (tblSoru != null && tblCevap != null) // tblcevap kontrolü öyle bir cevap yoksa ve aşağıdaki durumların patlama kontrolü
                     {
@@ -500,6 +503,35 @@ namespace serviceID.BL
             {
 
                 return '?';
+            }
+            return res;
+        }
+
+
+        public static char SifreGuncelle(string eski, string yeni, int kulId)
+        {
+            char res = '*';
+            try
+            {
+                using (idDBEntities db = new idDBEntities())
+                {
+                    kullanici k = db.kullanicis.Find(kulId);
+                    if (k.sifre == eski)
+                    {
+                        k.sifre = yeni;
+                        db.SaveChanges();
+                        res = '+';
+                    }
+                    else
+                    {
+                        res = '-';
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                res = '?';
             }
             return res;
         }
