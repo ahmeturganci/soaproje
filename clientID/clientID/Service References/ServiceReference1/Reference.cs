@@ -1755,6 +1755,12 @@ namespace clientID.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SifreGuncelle", ReplyAction="http://tempuri.org/IService1/SifreGuncelleResponse")]
         System.Threading.Tasks.Task<char> SifreGuncelleAsync(string eski, string yeni, int kulId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/FavoriSoruKontrol", ReplyAction="http://tempuri.org/IService1/FavoriSoruKontrolResponse")]
+        char FavoriSoruKontrol(int soruId, int kullaniciId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/FavoriSoruKontrol", ReplyAction="http://tempuri.org/IService1/FavoriSoruKontrolResponse")]
+        System.Threading.Tasks.Task<char> FavoriSoruKontrolAsync(int soruId, int kullaniciId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1934,6 +1940,14 @@ namespace clientID.ServiceReference1 {
         
         public System.Threading.Tasks.Task<char> SifreGuncelleAsync(string eski, string yeni, int kulId) {
             return base.Channel.SifreGuncelleAsync(eski, yeni, kulId);
+        }
+        
+        public char FavoriSoruKontrol(int soruId, int kullaniciId) {
+            return base.Channel.FavoriSoruKontrol(soruId, kullaniciId);
+        }
+        
+        public System.Threading.Tasks.Task<char> FavoriSoruKontrolAsync(int soruId, int kullaniciId) {
+            return base.Channel.FavoriSoruKontrolAsync(soruId, kullaniciId);
         }
     }
 }

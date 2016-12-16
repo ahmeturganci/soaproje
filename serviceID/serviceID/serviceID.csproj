@@ -123,6 +123,12 @@
     <Compile Include="Model\DataModel\soruEtiket.cs">
       <DependentUpon>idDBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\DataModel\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>idDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\DataModel\sp_helpdiagrams_Result.cs">
+      <DependentUpon>idDBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\DataModel\sysdiagram.cs">
       <DependentUpon>idDBModel.tt</DependentUpon>
     </Compile>

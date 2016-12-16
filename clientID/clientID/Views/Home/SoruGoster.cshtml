@@ -198,10 +198,10 @@ g<img src="~/img/favorite.png"  id=""/>
         var data = {
             soruId: UrlCevir()
         };
-        $.post("/Home/FavoriEkle", data, function (sonuc) {
+        $.post("/Home/FavoriSoruKontrol", data, function (sonuc) {
             //alert(sonuc);
-            if (sonuc != "+") {
-                $("#favIco").css("-webkit-filter", "grayscale(1)");
+            if (sonuc == "+") {
+                $("#favIco").css("-webkit-filter", "grayscale(0)");
 
             }
         });

@@ -123,6 +123,12 @@
   <wsdl:message name="IService1_SifreGuncelle_OutputMessage">
     <wsdl:part name="parameters" element="tns:SifreGuncelleResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_FavoriSoruKontrol_InputMessage">
+    <wsdl:part name="parameters" element="tns:FavoriSoruKontrol" />
+  </wsdl:message>
+  <wsdl:message name="IService1_FavoriSoruKontrol_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FavoriSoruKontrolResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="GirisYap">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GirisYap" message="tns:IService1_GirisYap_InputMessage" />
@@ -199,6 +205,10 @@
     <wsdl:operation name="SifreGuncelle">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/SifreGuncelle" message="tns:IService1_SifreGuncelle_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/SifreGuncelleResponse" message="tns:IService1_SifreGuncelle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FavoriSoruKontrol">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/FavoriSoruKontrol" message="tns:IService1_FavoriSoruKontrol_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/FavoriSoruKontrolResponse" message="tns:IService1_FavoriSoruKontrol_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
@@ -367,6 +377,15 @@
     </wsdl:operation>
     <wsdl:operation name="SifreGuncelle">
       <soap:operation soapAction="http://tempuri.org/IService1/SifreGuncelle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FavoriSoruKontrol">
+      <soap:operation soapAction="http://tempuri.org/IService1/FavoriSoruKontrol" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

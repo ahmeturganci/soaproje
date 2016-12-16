@@ -47,5 +47,7 @@ namespace serviceID
         char CevapOnayla(int kullaniciId,int soruId, int cevapId);
         [OperationContract]
         char SifreGuncelle(string eski, string yeni, int kulId);
+        [OperationContract]
+        char FavoriSoruKontrol (int soruId, int kullaniciId);
     }
 }

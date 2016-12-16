@@ -239,6 +239,18 @@ namespace clientID.Controllers
             {
                 var favSonuc = s.FavoriSoruEkle(soruId, kId);
                 s.Close();
+
+                return Json(favSonuc);
+            }
+        }
+        public JsonResult FavoriSoruKontrol(int soruId)
+        {
+
+            using (s = new ServiceReference1.Service1Client())
+            {
+                var favSonuc = s.FavoriSoruKontrol(soruId,kId);
+                s.Close();
+
                 return Json(favSonuc);
             }
         }
@@ -286,14 +298,14 @@ namespace clientID.Controllers
             return Json("+");
         }
 
-        public JsonResult SifreDegistir(string eski, string yeni, int kulId)
+        public JsonResult SifreDegistir(string eski, string yeni)
         {
 
             using ( s = new ServiceReference1.Service1Client())
             {
                 s.Close();
-                
-                return Json(s.SifreGuncelle(eski, yeni, kulId));
+                var sonuc = s.SifreGuncelle(eski, yeni, kId);
+                return Json(sonuc);
 
             }
 

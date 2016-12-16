@@ -271,4 +271,19 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="FavoriSoruKontrol">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="soruId" type="xs:int" />
+        <xs:element minOccurs="0" name="kullaniciId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FavoriSoruKontrolResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="FavoriSoruKontrolResult" type="q20:char" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

@@ -516,9 +516,10 @@ namespace serviceID.BL
                 using (idDBEntities db = new idDBEntities())
                 {
                     kullanici k = db.kullanicis.Find(kulId);
+                    eski = MD5Sifrele(eski);
                     if (k.sifre == eski)
                     {
-                        k.sifre = yeni;
+                        k.sifre = MD5Sifrele(yeni);
                         db.SaveChanges();
                         res = '+';
                     }
@@ -528,9 +529,29 @@ namespace serviceID.BL
                     }
                 }
             }
-            catch (Exception ex)
+            catch
             {
 
+                res = '?';
+            }
+            return res;
+        }
+        public static char FavoriSoruKontrol(int soruId, int kullaniciId)
+        {
+            char res = '*';
+            try
+            {
+                using (idDBEntities db = new idDBEntities())
+                {
+                    var favSoru = (from p in db.favoris where p.soruId == soruId && p.kullaniciId == kullaniciId select p).SingleOrDefault();
+                    if (favSoru == null)
+                        res = '-';
+                    else
+                        res = '+';
+                }
+            }
+            catch
+            {
                 res = '?';
             }
             return res;

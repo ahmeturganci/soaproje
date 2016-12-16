@@ -105,5 +105,9 @@ namespace serviceID
         {
             return KullaniciIslem.SifreGuncelle(eski, yeni, kulId);
         }
+        public char FavoriSoruKontrol(int soruId, int kullaniciId)
+        {
+            return KullaniciIslem.FavoriSoruKontrol(soruId,kullaniciId);
+        }
     }
 }
