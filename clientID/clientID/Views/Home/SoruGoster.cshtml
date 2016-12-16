@@ -10,6 +10,7 @@
         -webkit-filter: grayscale(1);
     }
 </style>
+
 <div class="row" id="soruDetay">
 
     <div class="col-md-12">
@@ -21,7 +22,7 @@
 
             </div>
             <div id="sDetay"></div>
-           </div>
+        </div>
         <div class="clearfix"></div>
         <div id="cevapVerDiv">
 
@@ -72,7 +73,7 @@
     </div>
 </div>
 
-g<img src="~/img/favorite.png"  id=""/>
+g<img src="~/img/favorite.png" id="" />
 
 <script>
 
@@ -112,9 +113,10 @@ g<img src="~/img/favorite.png"  id=""/>
 
             $.each(data, function (i, item) {
                 cevapIdGetir(item.cevapId);
-                
-                $("#sCevaplar").append('<img =""id=onay> <div class="panel panel-primary"> <div class="panel-heading"><h4 class="panel-title">                 <div style="float: right;"><button onclick="Gene<img src="/img/begendi.png" onclick="Begeni(' + item.CevapId + ');"/>   <b>45</b>   <img src="/img/begenmedi.png" onclick="Begenmeme(' + item.CevapId + ');"/>   <b>34</b> </div><b>Kullanıcı: ' + item.KullaniciAdi + '</b><p id="yEkle">' + item.Cevap + '</p></h4></div><div id="sYorumlar' + i + '"><p id="yorumYaz"></div></div><div id="yorumYaz"><form class="form"><div class="form-group"><textarea type="text" class="form-control" placeholder="Yorum" id="yorum1" value="" rows="3"></textarea></div><div class="form-group"><input type="button" class="btn btn-danger" value="Yorum Yap" onclick="YorumYap(' + item.CevapId + ');"  id="yYap"/></div></form></div>');
+
+                $("#sCevaplar").append('<img =""id=onay> <div class="panel panel-primary"> <div class="panel-heading"><h4 class="panel-title">                 <div style="float: right;"><img src="/img/begendi.png" onclick="CevapBegen(' + item.CevapId + ');"/>   <b id="begeniS"></b>   <img src="/img/begenmedi.png" onclick="CevapBegenme(' + item.CevapId + ');"/>   <b id="begeniT"></b> </div><b>Kullanıcı: ' + item.KullaniciAdi + '</b><p id="yEkle">' + item.Cevap + '</p></h4></div><div id="sYorumlar' + i + '"><p id="yorumYaz"></div></div><div id="yorumYaz"><form class="form"><div class="form-group"><textarea type="text" class="form-control" placeholder="Yorum" id="yorum1" value="" rows="3"></textarea></div><div class="form-group"><input type="button" class="btn btn-danger" value="Yorum Yap" onclick="YorumYap(' + item.CevapId + ');"  id="yYap"/></div></form></div>');
                 YorumCek(item.CevapId, i);
+                BegeniCek(item.CevapId);
                 //$("#sCevaplar").append('<p><b>BU BİR CEVAP</b>' + item.Cevap + '<p id="sYorumlar' + i + '"><i>Yorum</i></p></p></b>');
 
             });
@@ -131,6 +133,7 @@ g<img src="~/img/favorite.png"  id=""/>
         //alert(deger);
         var data = {
             cevapId: deger
+
         };
 
         $.post("/Home/YorumCek", data, function (data) {
@@ -142,6 +145,7 @@ g<img src="~/img/favorite.png"  id=""/>
             });
         });
     }
+
     function KisiCek() {
         $.post("/Home/KulCek", function (sonuc) {
             //alert(sonuc);
@@ -219,25 +223,50 @@ g<img src="~/img/favorite.png"  id=""/>
                 $("#favIco").css("-webkit-filter", "grayscale(1)");
         });
     }
-    function Begeni(cId) {
+    function CevapBegen(cId) {
         var data = {
             cevapId: cId,
             begeniTurId: 1
         };
-        $("/Home/Begen", data, function (sonucs) {
-            alert(sonuc);
+        console.log(data);
+        $.post("/Home/CevapBegen", data, function (sonuc) {
+            console.log("Begendim" + sonuc);
         });
+        BegeniCek(data.cevapId);
     }
-    function Begenmeme(cId) {
+    function CevapBegenme(cId) {
         var data = {
             cevapId: cId,
             begeniTurId: 2
         };
-        $("/Home/Begen", data, function (sonucs) {
-            alert(sonuc);
+        $.post("/Home/CevapBegen", data, function (sonuc) {
+            console.log("Begenmedim" + sonuc);
         });
+
     }
-    function BegeniCek() {
+    function BegeniCek(cId) {
+        var begeni = 0;
+        var tiksinme=0;
+
+        var data = {
+            cevapId: cId
+        };
+        $.post("/Home/BegeniCek", data, function (sonuc) {
+            alert(sonuc);
+            $.each(sonuc, function (i, item) {
+                
+
+               
+                $("#begeniS").text(item.BegeniTuruSayisi);
+                    
+            });
+            console.log(begeni + " " + tiksinme);
+
+           
+            $("#begeniT").text(tiksinme);
+
+        });
+
 
     }
 

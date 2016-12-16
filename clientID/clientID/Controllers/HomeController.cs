@@ -254,12 +254,13 @@ namespace clientID.Controllers
                 return Json(favSonuc);
             }
         }
-        public JsonResult Begen(int cevapId, int kullaniciId, int begeniTurId)
+        public JsonResult CevapBegen(int cevapId,int begeniTurId)
         {
             using (s = new ServiceReference1.Service1Client())
             {
                 s.Close();
-                return Json(s.BegeniCevap(cevapId, kullaniciId, begeniTurId));
+                var sonuc = s.BegeniCevap(cevapId, kId, begeniTurId);
+                return Json(sonuc);
             }
 
         }
@@ -269,7 +270,14 @@ namespace clientID.Controllers
             using (s = new ServiceReference1.Service1Client())
             {
                 s.Close();
-                return Json(s.BegeniSayisi(cevapId));
+                var sonuc = s.BegeniSayisi(cevapId);
+                //foreach (var item in s.BegeniSayisi(cevapId))
+                //{
+                    
+                //}
+                return Json(sonuc);
+
+
             }
 
         }
@@ -293,10 +301,6 @@ namespace clientID.Controllers
             }
         }
     
-        public JsonResult Test()
-        {
-            return Json("+");
-        }
 
         public JsonResult SifreDegistir(string eski, string yeni)
         {
