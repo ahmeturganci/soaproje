@@ -143,16 +143,17 @@
     <Content Include="img\begenmedi.png" />
     <Content Include="img\favorite.png" />
     <Content Include="Scripts\jquery-3.js" />
-    <Content Include="Service References\ServiceReference1\clientID.ServiceReference1.sorularim.datasource">
+    <None Include="Properties\PublishProfiles\client.pubxml" />
+    <Content Include="Service References\ServiceReference1\clientID.ServiceReference1.begenilerim.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Service References\ServiceReference1\clientID.ServiceReference1.cevaplarim.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Service References\ServiceReference1\clientID.ServiceReference1.yorumlarim.datasource">
+    <Content Include="Service References\ServiceReference1\clientID.ServiceReference1.sorularim.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Service References\ServiceReference1\clientID.ServiceReference1.begenilerim.datasource">
+    <Content Include="Service References\ServiceReference1\clientID.ServiceReference1.yorumlarim.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Service References\ServiceReference1\Service1.disco" />
@@ -228,7 +229,14 @@
     <Content Include="Views\Profil\Index.cshtml" />
     <Content Include="Views\Shared\_MainShared.cshtml" />
     <Content Include="Views\Home\SoruSor.cshtml" />
+    <Content Include="Views\Home\SoruGoster.cshtml" />
+    <Content Include="UI_1\assets\fonts\Pe-icon-7-stroke.eot" />
+    <Content Include="UI_1\assets\fonts\Pe-icon-7-stroke.ttf" />
+    <Content Include="UI_1\assets\fonts\Pe-icon-7-stroke.woff" />
     <None Include="Service References\ServiceReference1\Service1.wsdl" />
+    <None Include="Service References\ServiceReference1\Service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\ServiceReference1\Service11.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -241,13 +249,6 @@
     <None Include="Service References\ServiceReference1\Service14.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference1\Service15.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <Content Include="Views\Home\SoruGoster.cshtml" />
-    <Content Include="UI_1\assets\fonts\Pe-icon-7-stroke.eot" />
-    <Content Include="UI_1\assets\fonts\Pe-icon-7-stroke.ttf" />
-    <Content Include="UI_1\assets\fonts\Pe-icon-7-stroke.woff" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -9,10 +9,13 @@ namespace clientID.Controllers
     public class HomeController : Controller
     {
         ServiceReference1.Service1Client s;
-        public static int kId = 0;
         public ActionResult Index()
         {
-            if (Request.Cookies["idUserID"] == null)
+            //if (Request.Cookies["idUserID"] == null)
+            //{
+            //    Response.Redirect("/Home/Giris");
+            //}
+            if (Session["kId"] == null)
             {
                 Response.Redirect("/Home/Giris");
             }
@@ -38,21 +41,22 @@ namespace clientID.Controllers
                 ServiceReference1.kullanici k = new ServiceReference1.kullanici();
                 k.kullaniciAdi = kulAd;
                 k.sifre = sifre;
-                kId = s.GirisYap(k);
+                int kId = s.GirisYap(k);
 
                 s.Close();
 
                 if (k != null && kId != 0)
                 {
-                    Response.Cookies["idUserID"].Value = k.kullaniciId.ToString();
-                    Response.Cookies["idUserID"].Expires = DateTime.Now.AddDays(1);
-                    Response.Cookies["idUserName"].Value = k.kullaniciAdi.ToString();
-                    Response.Cookies["idUserName"].Expires = DateTime.Now.AddDays(1);
+                    //Response.Cookies["idUserID"].Value = k.kullaniciId.ToString();
+                    //Response.Cookies["idUserID"].Expires = DateTime.Now.AddDays(1);
+                    //Response.Cookies["idUserName"].Value = k.kullaniciAdi.ToString();
+                    //Response.Cookies["idUserName"].Expires = DateTime.Now.AddDays(1);
 
-                    HttpCookie aCookie = new HttpCookie("lastVisit");
-                    aCookie.Value = DateTime.Now.ToString();
-                    aCookie.Expires = DateTime.Now.AddDays(1);
-                    Response.Cookies.Add(aCookie);
+                    //HttpCookie aCookie = new HttpCookie("lastVisit");
+                    //aCookie.Value = DateTime.Now.ToString();
+                    //aCookie.Expires = DateTime.Now.AddDays(1);
+                    //Response.Cookies.Add(aCookie);
+                    Session.Add("kId", kId);
                     return Json("+");
 
                 }
@@ -65,16 +69,16 @@ namespace clientID.Controllers
 
         public ActionResult Cikis()
         {
-            Response.Cookies["idUserID"].Value = null;
-            Response.Cookies["idUserID"].Expires = DateTime.Now.AddDays(-1);
-            Response.Cookies["idUserName"].Value = null;
-            Response.Cookies["idUserName"].Expires = DateTime.Now.AddDays(-1);
+            //Response.Cookies["idUserID"].Value = null;
+            //Response.Cookies["idUserID"].Expires = DateTime.Now.AddDays(-1);
+            //Response.Cookies["idUserName"].Value = null;
+            //Response.Cookies["idUserName"].Expires = DateTime.Now.AddDays(-1);
 
-            HttpCookie aCookie = new HttpCookie("lastVisit");
-            aCookie.Value = DateTime.Now.ToString();
-            aCookie.Expires = DateTime.Now.AddDays(1);
-            Response.Cookies.Add(aCookie);
-            kId = 0;
+            //HttpCookie aCookie = new HttpCookie("lastVisit");
+            //aCookie.Value = DateTime.Now.ToString();
+            //aCookie.Expires = DateTime.Now.AddDays(1);
+            //Response.Cookies.Add(aCookie);
+            Session.Remove("kId");
             return View("Giris");
 
         }
@@ -89,9 +93,9 @@ namespace clientID.Controllers
                     sifre = kul.sifre,
                     email = kul.email
                 };
-                kId = s.KayitOl(kul);
+                int sonuc = s.KayitOl(kul);
                 s.Close();
-                if (kId == 0)
+                if (sonuc == 0)
                     return Json("+");
                 else
                     return Json("-");
@@ -110,6 +114,7 @@ namespace clientID.Controllers
 
         public JsonResult SoruEkle(ServiceReference1.soru sr)
         {
+            int kId = int.Parse(Session["kId"].ToString());
             using (s = new ServiceReference1.Service1Client())
             {
                 sr = new ServiceReference1.soru()
@@ -191,6 +196,7 @@ namespace clientID.Controllers
 
         public JsonResult CevapVer(ServiceReference1.cevap c)
         {
+            int kId = int.Parse(Session["kId"].ToString());
             using (s = new ServiceReference1.Service1Client())
             {
                 c = new ServiceReference1.cevap()
@@ -212,6 +218,7 @@ namespace clientID.Controllers
 
         public JsonResult KulCek()
         {
+            int kId = int.Parse(Session["kId"].ToString());
             if (kId != 0)
                 return Json(kId.ToString());
             else
@@ -220,6 +227,7 @@ namespace clientID.Controllers
 
         public JsonResult YorumYap(ServiceReference1.yorum y)
         {
+            int kId = int.Parse(Session["kId"].ToString());
             using (s = new ServiceReference1.Service1Client())
             {
                 y = new ServiceReference1.yorum()
@@ -240,6 +248,7 @@ namespace clientID.Controllers
 
         public JsonResult FavoriEkle(int soruId)
         {
+            int kId = int.Parse(Session["kId"].ToString());
             using (s = new ServiceReference1.Service1Client())
             {
                 var favSonuc = s.FavoriSoruEkle(soruId, kId);
@@ -251,7 +260,7 @@ namespace clientID.Controllers
 
         public JsonResult FavoriSoruKontrol(int soruId)
         {
-
+            int kId = int.Parse(Session["kId"].ToString());
             using (s = new ServiceReference1.Service1Client())
             {
                 var favSonuc = s.FavoriSoruKontrol(soruId, kId);
@@ -263,6 +272,7 @@ namespace clientID.Controllers
 
         public JsonResult CevapBegen(int cevapId, int begeniTurId)
         {
+            int kId = int.Parse(Session["kId"].ToString());
             using (s = new ServiceReference1.Service1Client())
             {
                 s.Close();
@@ -297,6 +307,7 @@ namespace clientID.Controllers
 
         public JsonResult CevapOnay(int sId, int cId)
         {
+            int kId = int.Parse(Session["kId"].ToString());
             using (s = new ServiceReference1.Service1Client())
             {
                 var sss = s.CevapOnayla(kId, sId, cId);
@@ -308,7 +319,7 @@ namespace clientID.Controllers
 
         public JsonResult SifreDegistir(string eski, string yeni)
         {
-
+            int kId = int.Parse(Session["kId"].ToString());
             using (s = new ServiceReference1.Service1Client())
             {
                 s.Close();
