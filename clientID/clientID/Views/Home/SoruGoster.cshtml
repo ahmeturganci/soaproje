@@ -159,7 +159,7 @@
     }
 
     function YorumYap(cId) {
-        alert("ID li soruya Yorum Ypaıyorum" + cId);
+       // alert("ID li soruya yorum yapıldı." + cId);
         var sonuc = cId;
         //alert(cId);
 
@@ -234,7 +234,7 @@
             cevapId: cId
         };
         $.post("/Home/BegeniCek", data, function (sonuc) {
-            alert(sonuc);
+            //alert(sonuc);
             $.each(sonuc, function (i, item) {
                 $("#begeniS").text(item.BegeniTuruSayisi);
             });

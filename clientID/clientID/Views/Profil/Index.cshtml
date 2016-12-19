@@ -19,7 +19,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Yeni Şifre </label>
-                                            <input type="text" class="form-control" placeholder="Yeni Şifre" id="txtYeniS1" value="">
+                                            <input type="password" class="form-control" placeholder="Yeni Şifre" id="txtYeniS1" value="">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -55,7 +55,8 @@
         var yeni1 = $("#txtYeniS1").val();
         var eski = $("#txtEskiS").val();
         $.post("/Home/SifreDegistir", { eski: eski, yeni: yeni1 }, function (sonuc) {
-            console.log(sonuc + 'Sonuc');
+            //console.log(sonuc + 'Sonuc');
+            alert("şifre değiştirildi.");
         });
     }
 </script>

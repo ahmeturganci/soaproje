@@ -120,7 +120,7 @@
                 kulAd: $("#txtGKulAd").val(),
                 sifre: $("#txtGSifre").val()
             };
-            alert(data.kulAd + " " + data.sifre);
+        //alert(data.kulAd + " " + data.sifre);
             $.post("/Home/GirisYap", data, function (sonuc) {
                 if (sonuc == '+')
                     window.location = "/Home/Index";
