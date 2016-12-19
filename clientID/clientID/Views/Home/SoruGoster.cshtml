@@ -10,98 +10,77 @@
         -webkit-filter: grayscale(1);
     }
 </style>
-
 <div class="row" id="soruDetay">
-
     <div class="col-md-12">
         <div class="card">
             <div style="float:right"><img src="~/img/favorite.png" id="favIco" onclick="SoruFavoriEkle();" /></div>
             <div class="header">
-
                 <h4 class="title">Soru Detay</h4>
-
             </div>
             <div id="sDetay"></div>
         </div>
         <div class="clearfix"></div>
         <div id="cevapVerDiv">
-
-
             <div class="card">
                 <div class="header">
                     <h4 class="title">Cevap Ekle</h4>
                 </div>
-
                 <form class="form">
-
                     <div class="form-group">
                         <textarea type="text" class="form-control" placeholder="Cevap" id="sCevap" value="" rows="3"></textarea>
                     </div>
                     <div class="form-group">
                         <input type="button" class="btn btn-success" value="Cevap Ver" onclick="CevapVer();" />
                     </div>
-
-
                 </form>
-
             </div>
         </div>
-
         <div class="card">
             <div class="header">
                 <h4 class="title">Soru Cevaplar</h4>
             </div>
-
             <div id="sCevaplar">
-
             </div>
-
         </div>
     </div>
-
 </div>
-
 <div class="row">
     <div class="col-md-8">
         <div class="panel-group" id="accordion">
             <div id="sCevap">
-
             </div>
-
-
         </div>
     </div>
 </div>
 
-g<img src="~/img/favorite.png" id="" />
-
 <script>
-
     $("#soruDetay").load(SoruCek());
+        
+
     $("body").load(CevapCek());
+
     $("body").load(FavoriKontrol());
-    $("#yEkle").on('shown', function () {
-        alert("hooop");
-        $('#modalYorum').modal();
-    });
-    function UrlCevir() {
+
+    function UrlCevir(){
         var url = window.location.pathname;
         var id = url.substring(url.lastIndexOf('/') + 1);
         return id;
     }
+
     function SoruCek() {
         var id = UrlCevir();
-        alert(id);
+        //alert(id);
         var data = {
             soruId: id
         };
-        console.log(data);
+       // console.log(data);
         $.post("/Home/SoruCek", data, function (data) {
-            console.log(data.KullaniciAd);
+           // console.log(data.KullaniciAd);
             $("#sDetay").append('<div class="typo-line"><p class="category"><strong>' + data.KategoriAd + '</strong></p><blockquote><p class="text-primary"><b>' + data.KullaniciAd + '  takma adlı kullanıcı soruyor;</b></p><p text-success><b>' + data.Baslik + '</b></p><p>' + data.Icerik + '</p><small>' + data.YayinTarihi + '</small></blockquote><strong>' + data.OnayDurum + '</strong></div>');
 
         });
     }
+
     function CevapCek() {
         var id = UrlCevir();
         //alert(id);
@@ -125,10 +104,12 @@ g<img src="~/img/favorite.png" id="" />
         });
 
     }
+
     function cevapIdGetir(deger) {
         var cevapId = deger;
         return deger;
     }
+
     function YorumCek(deger, sayac) {
         //alert(deger);
         var data = {
@@ -153,6 +134,7 @@ g<img src="~/img/favorite.png" id="" />
 
         });
     }
+
     function CevapVer() {
 
         var kisi =
@@ -172,12 +154,10 @@ g<img src="~/img/favorite.png" id="" />
                 }
                 else if (sonuc == "-")
                     window.location = "/Home/Giris";
-
-
             });
         }
-
     }
+
     function YorumYap(cId) {
         alert("ID li soruya Yorum Ypaıyorum" + cId);
         var sonuc = cId;
@@ -187,17 +167,15 @@ g<img src="~/img/favorite.png" id="" />
             yorum1: $("#yorum1").val(),
             cevapId: cId
         };
-        console.log(data);
+       // console.log(data);
         $.post("/Home/YorumYap", data, function (sonuc) {
             if (sonuc == "+")
                 alert("başarılı bir şekilde yorum elendi");
             else
                 console.log("hata var hacım" + sonuc);
         });
-
-
-
     }
+
     function FavoriKontrol() {
         var data = {
             soruId: UrlCevir()
@@ -210,40 +188,44 @@ g<img src="~/img/favorite.png" id="" />
             }
         });
     }
+
     function SoruFavoriEkle() {
         var data = {
             soruId: UrlCevir()
         };
         $.post("/Home/FavoriEkle", data, function (sonuc) {
             if (sonuc == "+") {
-                console.log("aaaa");
+             //   console.log("aaaa");
                 $("#favIco").css("-webkit-filter", "grayscale(0)");
             }
             else
                 $("#favIco").css("-webkit-filter", "grayscale(1)");
         });
     }
+
     function CevapBegen(cId) {
         var data = {
             cevapId: cId,
             begeniTurId: 1
         };
-        console.log(data);
+       // console.log(data);
         $.post("/Home/CevapBegen", data, function (sonuc) {
-            console.log("Begendim" + sonuc);
+          //  console.log("Begendim" + sonuc);
         });
         BegeniCek(data.cevapId);
     }
+
     function CevapBegenme(cId) {
         var data = {
             cevapId: cId,
             begeniTurId: 2
         };
         $.post("/Home/CevapBegen", data, function (sonuc) {
-            console.log("Begenmedim" + sonuc);
+         //   console.log("Begenmedim" + sonuc);
         });
 
     }
+
     function BegeniCek(cId) {
         var begeni = 0;
         var tiksinme=0;
@@ -254,20 +236,11 @@ g<img src="~/img/favorite.png" id="" />
         $.post("/Home/BegeniCek", data, function (sonuc) {
             alert(sonuc);
             $.each(sonuc, function (i, item) {
-                
-
-               
                 $("#begeniS").text(item.BegeniTuruSayisi);
-                    
             });
-            console.log(begeni + " " + tiksinme);
-
-           
+           // console.log(begeni + " " + tiksinme);
             $("#begeniT").text(tiksinme);
-
         });
-
-
     }
 
 </script>

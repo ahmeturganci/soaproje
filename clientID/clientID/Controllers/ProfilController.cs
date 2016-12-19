@@ -9,14 +9,9 @@ namespace clientID.Controllers
 {
     public class ProfilController : Controller
     {
-
-        ServiceReference1.Service1Client s;
         public ActionResult Index()
         {
             return View();
         }
-        
-
-
     }
 }

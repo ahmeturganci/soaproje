@@ -8,7 +8,7 @@
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
-    <!--SoruDetay Ekranı için-->
+    
     <link href="~/Content/soruDetay.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-3.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
@@ -75,7 +75,6 @@
                         <a class="navbar-brand" href="/Home/Index">ID</a>
                     </div>
                     <div class="collapse navbar-collapse">
-
                         <ul class="nav navbar-nav navbar-right">
                             <li>
                                 <a href="@Url.Action("Cikis","Home")" id="cikis">
@@ -93,19 +92,15 @@
             </div>
             <footer class="footer">
                 <div class="container-fluid">
-
                     <p class="copyright pull-right">
                         &copy; 2016 <a href="#">MEGAU</a>, Geliştirici ekibi tarfından yapılmıştır.
                     </p>
                 </div>
             </footer>
-
         </div>
     </div>
-
 </body>
 <script>
-
     $(function () {
         $("a#cikis").click(function () {
             $.post("/Home/Cikis", "", function (sonuc) {
@@ -117,7 +112,6 @@
 
     });
 </script>
-
 <script src="~/UI_1/assets/js/bootstrap-checkbox-radio-switch.js"></script>
 <script src="~/UI_1/assets/js/bootstrap-notify.js"></script>
 <script src="~/UI_1/assets/js/bootstrap-select.js"></script>

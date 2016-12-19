@@ -1,9 +1,4 @@
-﻿
-@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="utf-8">
@@ -11,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>I am debugger - Start Debugger Page</title>
+    <title>IAMD - Giriş Sayfası</title>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -111,19 +106,15 @@
                 email: $("#txtMail").val(),
                 sifre: $("#txtSifre").val(),
             };
-            alert(data);
             $.post("/Home/Kaydol", data, function (sonuc) {
                 if (sonuc == "+") {
-
-                    alert("Başarılı");
+                    alert("Başarılı şekilde kayıt oldunuz.");
                     window.location = "/Home/Giris";
                 }
-                else
-                    alert("Başarısız");
+                else alert("Kayıt işlemi başarısız. Tekrar deneyiniz.");
 
             });
         }
-
         function Giris() {
             var data = {
                 kulAd: $("#txtGKulAd").val(),
@@ -144,7 +135,7 @@
 
 
         });
-        
+
     </script>
 </body>
 </html>

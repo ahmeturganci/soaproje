@@ -5,9 +5,7 @@
 }
 <div class="row">
     <div class="col-md-6">
-
         <form class="form">
-
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="Ara" id="sAra" value="" />
             </div>
@@ -15,9 +13,7 @@
     </div>
 </div>
 <div id="listara">
-
 </div>
-
 <div id="sorular">
     <div class="row">
         <div class="col-md-12">
@@ -49,7 +45,6 @@
 <script>
     var soruId;
     $("#sorular").load(Listele());
-
     function Listele() {
 
         $.post("/Home/SorulariListele", function (data) {
@@ -60,13 +55,12 @@
             });
         });
     }
-
     $("#sAra").keypress(function () {
         var data = {
             baslik: $("#sAra").val()
         };
         console.log(data);
-        if (data == "")
+        if (data == " ")
             Listele();
         $.post("/Home/SoruAra", data, function (sonuc) {
             $("#sorularList").html("");
@@ -76,27 +70,6 @@
             });
         });
     });
-  /*  function SoruAra() {//button için 
-        
-        var data = {
-            baslik: $("#sAra").val()
-        };
-        console.log(data);
-        $.post("/Home/SoruAra", data, function (sonuc) {
-            $("#sorularList").html("");
-            $.each(sonuc, function (i, item) {
-                $("#sorularList").append('<tr><td>' + item.KullaniciAd + '</td><td>' + item.Baslik + '</td><td>' + item.KategoriAd + '</td><td>' + item.OnayDurum + '</td><td>' + item.YayinTarihi + '</td><td><a href="/Home/SoruGoster/' + item.SoruId + '">Ayrıntılar</a></td></tr>');
-
-            });
-
-           
-        });
-            
-    }
-
-    */
-
-
 
 
 </script>

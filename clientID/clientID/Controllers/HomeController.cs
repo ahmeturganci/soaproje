@@ -15,7 +15,6 @@ namespace clientID.Controllers
             if (Request.Cookies["idUserID"] == null)
             {
                 Response.Redirect("/Home/Giris");
-
             }
             return View();
         }
@@ -63,6 +62,7 @@ namespace clientID.Controllers
 
             }
         }
+
         public ActionResult Cikis()
         {
             Response.Cookies["idUserID"].Value = null;
@@ -78,6 +78,7 @@ namespace clientID.Controllers
             return View("Giris");
 
         }
+
         public JsonResult Kaydol(ServiceReference1.kullanici kul)
         {
             using (s = new ServiceReference1.Service1Client())
@@ -99,6 +100,7 @@ namespace clientID.Controllers
 
 
         }
+
         public JsonResult KategoriCek()
         {
             s = new ServiceReference1.Service1Client();
@@ -144,6 +146,7 @@ namespace clientID.Controllers
                     return Json("-");
             }
         }
+
         public JsonResult SorulariListele()
         {
             using (s = new ServiceReference1.Service1Client())
@@ -185,6 +188,7 @@ namespace clientID.Controllers
             return Json(yorumListe);
 
         }
+
         public JsonResult CevapVer(ServiceReference1.cevap c)
         {
             using (s = new ServiceReference1.Service1Client())
@@ -205,6 +209,7 @@ namespace clientID.Controllers
                     return Json("-", kId.ToString());
             }
         }
+
         public JsonResult KulCek()
         {
             if (kId != 0)
@@ -219,7 +224,7 @@ namespace clientID.Controllers
             {
                 y = new ServiceReference1.yorum()
                 {
-                    yorum1=y.yorum1,
+                    yorum1 = y.yorum1,
                     kullaniciId = kId,
                     cevapId = y.cevapId
                 };
@@ -243,18 +248,20 @@ namespace clientID.Controllers
                 return Json(favSonuc);
             }
         }
+
         public JsonResult FavoriSoruKontrol(int soruId)
         {
 
             using (s = new ServiceReference1.Service1Client())
             {
-                var favSonuc = s.FavoriSoruKontrol(soruId,kId);
+                var favSonuc = s.FavoriSoruKontrol(soruId, kId);
                 s.Close();
 
                 return Json(favSonuc);
             }
         }
-        public JsonResult CevapBegen(int cevapId,int begeniTurId)
+
+        public JsonResult CevapBegen(int cevapId, int begeniTurId)
         {
             using (s = new ServiceReference1.Service1Client())
             {
@@ -269,12 +276,9 @@ namespace clientID.Controllers
         {
             using (s = new ServiceReference1.Service1Client())
             {
-                s.Close();
+
                 var sonuc = s.BegeniSayisi(cevapId);
-                //foreach (var item in s.BegeniSayisi(cevapId))
-                //{
-                    
-                //}
+                s.Close();
                 return Json(sonuc);
 
 
@@ -291,21 +295,21 @@ namespace clientID.Controllers
             }
         }
 
-        public JsonResult CevapOnay(int sId,int cId)
+        public JsonResult CevapOnay(int sId, int cId)
         {
             using (s = new ServiceReference1.Service1Client())
             {
-                var sss= s.CevapOnayla(kId, sId, cId);
+                var sss = s.CevapOnayla(kId, sId, cId);
                 s.Close();
                 return Json(sss);
             }
         }
-    
+
 
         public JsonResult SifreDegistir(string eski, string yeni)
         {
 
-            using ( s = new ServiceReference1.Service1Client())
+            using (s = new ServiceReference1.Service1Client())
             {
                 s.Close();
                 var sonuc = s.SifreGuncelle(eski, yeni, kId);

@@ -3,7 +3,6 @@
     ViewBag.Title = "Soru Sor";
     Layout = "~/Views/Shared/_MainShared.cshtml";
 }
-
 <div class="row" id="soruSor">
     <div id="sonuc"></div>
     <div class="col-md-12">
@@ -37,7 +36,6 @@
                                 <label>Kategori Ad</label>
                                 <input type="text" class="form-control" placeholder="Kategori Adı" id="sKategoriAdi" value="">
                             </div>
-
                             <button type="button" class="btn btn-primary" onclick="KategoriEkle();">Kategori Ekle</button>
                         </div>
                     </div>
@@ -51,25 +49,19 @@
                     </div>
 
             </div>
-            <!-- Modal -->
-
-
             <button type="button" class="btn btn-info btn-fill pull-right" onclick="SoruEkle();">Gönder</button>
-            
             <div class="clearfix"></div>
-
             </form>
         </div>
     </div>
 </div>
 <script>
-
     $("#soruSor").load(KategoriListele());
 
     $("#kategoriEkle").hide();
 
     $("#katEkle").click(function () {
-        $("#kategoriEkle").show(2000);
+        $("#kategoriEkle").toggle(500);
     });
 
     function KategoriListele() {
@@ -90,7 +82,7 @@
         };
         $.post("/Home/SoruEkle", data, function (sonuc) {
             if (sonuc == "+")
-                $("#sonuc").append(' <div class="alert alert-info alert-with-icon" data-notify="container"><button type="button" aria-hidden="true" class="close">×</button><span data-notify="icon" class="pe-7s-bell"></span><span data-notify="message">Soru Başarılı Şekilde Eklendi.</span></div>').toggle(3000);
+                $("#sonuc").append(' <div class="alert alert-info alert-with-icon" data-notify="container"><button type="button" aria-hidden="true" class="close">×</button><span data-notify="icon" class="pe-7s-bell"></span><span data-notify="message">Soru Başarılı Şekilde Eklendi.</span></div>').toggle(500);
             else
                 $("#sonuc").append(' <div class="alert alert-info alert-with-icon" data-notify="container"><button type="button" aria-hidden="true" class="close">×</button><span data-notify="icon" class="pe-7s-bell"></span><span data-notify="message">Soru Başarılı Şekilde Eklenemedi..</span></div>').toggle(3000);
         });
@@ -100,7 +92,6 @@
         var data = {
             kategoriAd: $("#sKategoriAdi").val()
         };
-        alert(data.kategoriAdi);
         $.post("/Home/KategoriEkle", data, function (sonuc) {
             if (sonuc == "+") {
                 $("#kategoriEkle").hide();
