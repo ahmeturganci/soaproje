@@ -93,7 +93,7 @@
             $.each(data, function (i, item) {
                 cevapIdGetir(item.cevapId);
 
-                $("#sCevaplar").append('<img =""id=onay> <div class="panel panel-primary"> <div class="panel-heading"><h4 class="panel-title">                 <div style="float: right;"><img src="/img/begendi.png" onclick="CevapBegen(' + item.CevapId + ');"/>   <b id="begeniS"></b>   <img src="/img/begenmedi.png" onclick="CevapBegenme(' + item.CevapId + ');"/>   <b id="begeniT"></b> </div><b>Kullanıcı: ' + item.KullaniciAdi + '</b><p id="yEkle">' + item.Cevap + '</p></h4></div><div id="sYorumlar' + i + '"><p id="yorumYaz"></div></div><div id="yorumYaz"><form class="form"><div class="form-group"><textarea type="text" class="form-control" placeholder="Yorum" id="yorum1" value="" rows="3"></textarea></div><div class="form-group"><input type="button" class="btn btn-danger" value="Yorum Yap" onclick="YorumYap(' + item.CevapId + ');"  id="yYap"/></div></form></div>');
+                $("#sCevaplar").append('<img =""id=onay> <div class="panel panel-primary"> <div class="panel-heading"><h4 class="panel-title">                 <div style="float: right;"><img src="/img/begendi.png" onclick="CevapBegen(' + item.CevapId + ');"/>   <b id="begeniS"></b>   <img src="/img/begenmedi.png" onclick="CevapBegenme(' + item.CevapId + ');"/>   <b id="begeniT"></b> </div><b>Kullanıcı: ' + item.KullaniciAdi + '</b><p id="yEkle">' + item.Cevap + '</p></h4></div><div id="sYorumlar' + i + '"><p id="yorumYaz"></div></div><div id="yorumYaz"><form class="form"><div class="form-group"><textarea type="text" class="form-control" placeholder="Yorum" id="yorum' + item.CevapId + '" value="" rows="3"></textarea></div><div class="form-group"><input type="button" class="btn btn-danger" value="Yorum Yap" onclick="YorumYap(' + item.CevapId + ');"  id="yYap"/></div></form></div>');
                 YorumCek(item.CevapId, i);
                 BegeniCek(item.CevapId);
                 //$("#sCevaplar").append('<p><b>BU BİR CEVAP</b>' + item.Cevap + '<p id="sYorumlar' + i + '"><i>Yorum</i></p></p></b>');
@@ -164,7 +164,7 @@
         //alert(cId);
 
         var data = {
-            yorum1: $("#yorum1").val(),
+            yorum1: $("#yorum"+cId).val(),
             cevapId: cId
         };
        // console.log(data);
