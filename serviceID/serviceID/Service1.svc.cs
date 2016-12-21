@@ -110,9 +110,9 @@ namespace serviceID
             return KullaniciIslem.FavoriSoruKontrol(soruId,kullaniciId);
         }
 
-        public char FavoriCevapKontrol(int cevapId, int kullaniciId)
+        public char FavoriCevapKontrol(int cevapId)
         {
-            return KullaniciIslem.FavoriCevapKontrol(cevapId, kullaniciId);
+            return KullaniciIslem.FavoriCevapKontrol(cevapId);
         }
     }
 }

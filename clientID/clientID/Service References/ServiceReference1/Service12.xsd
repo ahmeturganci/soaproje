@@ -290,7 +290,6 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="cevapId" type="xs:int" />
-        <xs:element minOccurs="0" name="kullaniciId" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

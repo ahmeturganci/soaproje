@@ -1,4 +1,5 @@
-﻿using System;
+﻿using clientID.helper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -108,8 +109,8 @@ namespace clientID.Controllers
         public JsonResult KategoriCek()
         {
             s = new ServiceReference1.Service1Client();
-            return Json(s.KategoriListele());
             s.Close();
+            return Json(s.KategoriListele());
         }
 
         public JsonResult SoruEkle(ServiceReference1.soru sr)
@@ -210,9 +211,9 @@ namespace clientID.Controllers
                 bool sonuc = s.SoruyaCevapYaz(c);
                 s.Close();
                 if (sonuc)
-                    return Json("+", kId.ToString());
+                    return Json("+");
                 else
-                    return Json("-", kId.ToString());
+                    return Json("-");
             }
         }
 
@@ -286,10 +287,17 @@ namespace clientID.Controllers
         {
             using (s = new ServiceReference1.Service1Client())
             {
-
+                BegeniHelper bh = new BegeniHelper();
                 var sonuc = s.BegeniSayisi(cevapId);
+                foreach (var item in sonuc)
+                {
+                    if (item.BegeniTuruId == 1)
+                        bh.begeni += item.BegeniTuruSayisi;
+                    else if (item.BegeniTuruId == 2)
+                        bh.tiksinti += item.BegeniTuruSayisi;
+                }
                 s.Close();
-                return Json(sonuc);
+                return Json(bh);
 
 
             }
@@ -331,17 +339,16 @@ namespace clientID.Controllers
         }
         public JsonResult CevapOnayKontrol(int cId) // kontrol edilecek.
         {
-            int kId = int.Parse(Session["kId"].ToString());
             using (s = new ServiceReference1.Service1Client())
             {
-                var sonuc = s.FavoriCevapKontrol(cId,kId);
+                var sonuc = s.FavoriCevapKontrol(cId);
                 s.Close();
                 if (sonuc == '+')
                     return Json("+");
                 else
                     return Json("-");
             }
-            
+
 
         }
 

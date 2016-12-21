@@ -30,7 +30,7 @@
                         <textarea type="text" class="form-control" placeholder="Cevap" id="sCevap" value="" rows="3"></textarea>
                     </div>
                     <div class="form-group">
-                        <input type="button" class="btn btn-success" value="Cevap Ver" onclick="CevapVer();" />
+                        <input type="button" id="btnCevapVer" class="btn btn-success" value="Cevap Ver" onclick="CevapVer();" />
                     </div>
                 </form>
             </div>
@@ -60,7 +60,7 @@
     $("body").load(CevapCek());
 
     $("body").load(FavoriKontrol());
-    
+
 
     function UrlCevir() {
         var url = window.location.pathname;
@@ -94,7 +94,7 @@
             $.each(data, function (i, item) {
                 cevapIdGetir(item.cevapId);
                 CevapOnayKontrol(item.CevapId);
-                $("#sCevaplar").append('<img src="/img/cevapOnay.png" id="onay" onclick="CevapOnay(' + item.CevapId + ');"> <div class="panel panel-primary"> <div class="panel-heading"><h4 class="panel-title">                 <div style="float: right;"><img src="/img/begendi.png" onclick="CevapBegen(' + item.CevapId + ');"/>   <b id="begeniS"></b>   <img src="/img/begenmedi.png" onclick="CevapBegenme(' + item.CevapId + ');"/>   <b id="begeniT"></b> </div><b>Kullanıcı: ' + item.KullaniciAdi + '</b><p id="yEkle">' + item.Cevap + '</p></h4></div><div id="sYorumlar' + i + '"><p id="yorumYaz"></div></div><div id="yorumYaz"><form class="form"><div class="form-group"><textarea type="text" class="form-control" placeholder="Yorum" id="yorum' + item.CevapId + '" value="" rows="3"></textarea></div><div class="form-group"><input type="button" class="btn btn-danger" value="Yorum Yap" onclick="YorumYap(' + item.CevapId + ');"  id="yYap"/></div></form></div>');
+                $("#sCevaplar").append('<img src="/img/cevapOnay.png" id="onay' + item.CevapId + '" onclick="CevapOnay(' + item.CevapId + ');"> <div class="panel panel-primary"> <div class="panel-heading"><h4 class="panel-title">                 <div style="float: right;"><img src="/img/begendi.png" onclick="CevapBegen(' + item.CevapId + ');"/>   <b id="begeniS' + item.CevapId + '"></b>   <img src="/img/begenmedi.png" onclick="CevapBegenme(' + item.CevapId + ');"/>   <b id="begeniT' + item.CevapId + '"></b> </div><b>Kullanıcı: ' + item.KullaniciAdi + '</b><p id="yEkle">' + item.Cevap + '</p></h4></div><div id="sYorumlar' + i + '"><p id="yorumYaz"></div></div><div id="yorumYaz"><form class="form"><div class="form-group"><textarea type="text" class="form-control" placeholder="Yorum" id="yorum' + item.CevapId + '" value="" rows="3"></textarea></div><div class="form-group"><input type="button" class="btn btn-danger" value="Yorum Yap" onclick="YorumYap(' + item.CevapId + ');"  id="yYap"/></div></form></div>');
                 YorumCek(item.CevapId, i);
                 BegeniCek(item.CevapId);
                 //$("#sCevaplar").append('<p><b>BU BİR CEVAP</b>' + item.Cevap + '<p id="sYorumlar' + i + '"><i>Yorum</i></p></p></b>');
@@ -148,10 +148,14 @@
                 cevap1: $("#sCevap").val(),
                 soruId: UrlCevir()
             };
+            console.log("önce");
             $.post("/Home/CevapVer", data, function (sonuc) {
+                //console.log("sonra sonuc" + sonuc);
                 if (sonuc == "+") {
+                    //console.log("sonra ifff" + sonuc);
                     alert("Cevabınız başarılı şekilde alındı.");
-                    location.href = "/Home/Index";
+                    window.location.reload(true);
+                    //console.log("sonra reload çıkış" + sonuc);
                 }
                 else if (sonuc == "-")
                     window.location = "/Home/Giris";
@@ -170,8 +174,12 @@
         };
         // console.log(data);
         $.post("/Home/YorumYap", data, function (sonuc) {
-            if (sonuc == "+")
-            location.href="/Home/SoruGoster"+UrlCevir();
+            if (sonuc == "+") {//location.href="/Home/SoruGoster/"+UrlCevir();
+                alert("Yorumunuz başarılı şekilde alındı.");
+                window.location.reload(true);
+            }
+            else if (sonuc == "-")
+                window.location = "/Home/Giris";
         });
     }
 
@@ -222,23 +230,33 @@
         $.post("/Home/CevapBegen", data, function (sonuc) {
             //   console.log("Begenmedim" + sonuc);
         });
-
+        BegeniCek(data.cevapId);
     }
 
     function BegeniCek(cId) {
-        var begeni = 0;
-        var tiksinme = 0;
+        //var begeni = 0;
+        //var tiksinme = 0;
 
         var data = {
             cevapId: cId
         };
         $.post("/Home/BegeniCek", data, function (sonuc) {
             //alert(sonuc);
-            $.each(sonuc, function (i, item) {
-                $("#begeniS").text(item.BegeniTuruSayisi);
-            });
-            // console.log(begeni + " " + tiksinme);
-            $("#begeniT").text(tiksinme);
+            //$.each(sonuc, function (i, item) {
+            //    if (item.begeniTurId == 1)
+            //    {
+            //        begeni = item.BegeniTuruSayisi;
+            //        console.log(begeni);
+            //    }
+            //    else if (item.begeniTurId == 2)
+            //    {
+            //        tiksinme = item.BegeniTuruSayisi;
+            //        console.log(tiksinme);
+            //    }
+            //});
+            $("#begeniS" + cId).text(sonuc.begeni);
+            $("#begeniT" + cId).text(sonuc.tiksinti);
+            //console.log(sonuc.begeni + "  " + sonuc.tiksinti);
         });
     }
 
@@ -247,13 +265,13 @@
             cId: cevapId,
             sId: UrlCevir()
         };
-        console.log(data);
+        //console.log(data);
         $.post("/Home/CevapOnay", data, function (sonuc) {
             if (sonuc == "+")
-                $("#onay").css("-webkit-filter", "grayscale(1)");
+                $("#onay" + cevapId).css("-webkit-filter", "grayscale(0)");
 
             else
-                $("#onay").css("-webkit-filter", "grayscale(0)");
+                $("#onay" + cevapId).css("-webkit-filter", "grayscale(1)");
 
         });
 
@@ -264,10 +282,16 @@
         var data = {
             cId: cevapId
         };
-        console.log(data);
+        //console.log(data);
         $.post("/Home/CevapOnayKontrol", data, function (sonuc) {
+            //console.log(sonuc);
             if (sonuc == "+") {
-                $("#onay").css("-webkit-filter", "grayscale(1)");
+                $("#onay" + cevapId).css("-webkit-filter", "grayscale(0)");
+                //console.log("webkitdeğiş");
+            }
+            else {
+                $("#onay" + cevapId).css("-webkit-filter", "grayscale(1)");
+                //console.log("webkitdeğişme");
             }
 
             //$.each()

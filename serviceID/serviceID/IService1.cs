@@ -50,6 +50,6 @@ namespace serviceID
         [OperationContract]
         char FavoriSoruKontrol (int soruId, int kullaniciId);
         [OperationContract]
-        char FavoriCevapKontrol(int cevapId, int kullaniciId);
+        char FavoriCevapKontrol(int cevapId);
     }
 }

@@ -557,16 +557,20 @@ namespace serviceID.BL
             return res;
         }
 
-        public static char FavoriCevapKontrol(int cevapId, int kullaniciId)
+        public static char FavoriCevapKontrol(int cevapId)
         {
             char res = '*';
             try
             {
                 using (idDBEntities db = new idDBEntities())
                 {
-                    var favCevap = (from p in db.cevaps where p.cevapId == cevapId && p.kullaniciId == kullaniciId && p.onayDurumu==true select p).SingleOrDefault();
+                    //var favCevap = (from p in db.cevaps where p.cevapId == cevapId select new { p.soruId }).SingleOrDefault();
+                    //if(favCevap !=null)
+                    //    var favKontrol=(from p in db.sorus where favCevap.soruId==favCevap.soruId && p.kullaniciId==kullaniciId)
+                    //var favCevap = (from p in db.cevaps where p.cevapId == cevapId && p.kullaniciId == kullaniciId && p.onayDurumu==true select p).SingleOrDefault();
+                    var favCevap = (from p in db.cevaps where p.cevapId == cevapId && p.onayDurumu == true select p).SingleOrDefault();
                     if (favCevap == null)
-                        res = '-'; 
+                        res = '-';
                     else
                         res = '+';
                 }
