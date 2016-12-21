@@ -329,6 +329,21 @@ namespace clientID.Controllers
             }
 
         }
+        public JsonResult CevapOnayKontrol(int cId) // kontrol edilecek.
+        {
+            int kId = int.Parse(Session["kId"].ToString());
+            using (s = new ServiceReference1.Service1Client())
+            {
+                var sonuc = s.FavoriCevapKontrol(cId,kId);
+                s.Close();
+                if (sonuc == '+')
+                    return Json("+");
+                else
+                    return Json("-");
+            }
+            
+
+        }
 
     }
 }

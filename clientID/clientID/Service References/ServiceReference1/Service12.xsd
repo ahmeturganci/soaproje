@@ -286,4 +286,19 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="FavoriCevapKontrol">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="cevapId" type="xs:int" />
+        <xs:element minOccurs="0" name="kullaniciId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FavoriCevapKontrolResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q21="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="FavoriCevapKontrolResult" type="q21:char" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

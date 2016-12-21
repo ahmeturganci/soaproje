@@ -1761,6 +1761,12 @@ namespace clientID.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/FavoriSoruKontrol", ReplyAction="http://tempuri.org/IService1/FavoriSoruKontrolResponse")]
         System.Threading.Tasks.Task<char> FavoriSoruKontrolAsync(int soruId, int kullaniciId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/FavoriCevapKontrol", ReplyAction="http://tempuri.org/IService1/FavoriCevapKontrolResponse")]
+        char FavoriCevapKontrol(int cevapId, int kullaniciId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/FavoriCevapKontrol", ReplyAction="http://tempuri.org/IService1/FavoriCevapKontrolResponse")]
+        System.Threading.Tasks.Task<char> FavoriCevapKontrolAsync(int cevapId, int kullaniciId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1948,6 +1954,14 @@ namespace clientID.ServiceReference1 {
         
         public System.Threading.Tasks.Task<char> FavoriSoruKontrolAsync(int soruId, int kullaniciId) {
             return base.Channel.FavoriSoruKontrolAsync(soruId, kullaniciId);
+        }
+        
+        public char FavoriCevapKontrol(int cevapId, int kullaniciId) {
+            return base.Channel.FavoriCevapKontrol(cevapId, kullaniciId);
+        }
+        
+        public System.Threading.Tasks.Task<char> FavoriCevapKontrolAsync(int cevapId, int kullaniciId) {
+            return base.Channel.FavoriCevapKontrolAsync(cevapId, kullaniciId);
         }
     }
 }

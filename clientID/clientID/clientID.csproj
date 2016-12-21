@@ -141,6 +141,7 @@
     <Content Include="Global.asax" />
     <Content Include="img\begendi.png" />
     <Content Include="img\begenmedi.png" />
+    <Content Include="img\cevapOnay.png" />
     <Content Include="img\favorite.png" />
     <Content Include="Scripts\jquery-3.js" />
     <None Include="Properties\PublishProfiles\client.pubxml" />

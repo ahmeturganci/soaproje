@@ -556,5 +556,26 @@ namespace serviceID.BL
             }
             return res;
         }
+
+        public static char FavoriCevapKontrol(int cevapId, int kullaniciId)
+        {
+            char res = '*';
+            try
+            {
+                using (idDBEntities db = new idDBEntities())
+                {
+                    var favCevap = (from p in db.cevaps where p.cevapId == cevapId && p.kullaniciId == kullaniciId && p.onayDurumu==true select p).SingleOrDefault();
+                    if (favCevap == null)
+                        res = '-'; 
+                    else
+                        res = '+';
+                }
+            }
+            catch
+            {
+                res = '?';
+            }
+            return res;
+        }
     }
 }

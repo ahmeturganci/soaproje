@@ -129,6 +129,12 @@
   <wsdl:message name="IService1_FavoriSoruKontrol_OutputMessage">
     <wsdl:part name="parameters" element="tns:FavoriSoruKontrolResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_FavoriCevapKontrol_InputMessage">
+    <wsdl:part name="parameters" element="tns:FavoriCevapKontrol" />
+  </wsdl:message>
+  <wsdl:message name="IService1_FavoriCevapKontrol_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FavoriCevapKontrolResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="GirisYap">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GirisYap" message="tns:IService1_GirisYap_InputMessage" />
@@ -209,6 +215,10 @@
     <wsdl:operation name="FavoriSoruKontrol">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/FavoriSoruKontrol" message="tns:IService1_FavoriSoruKontrol_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/FavoriSoruKontrolResponse" message="tns:IService1_FavoriSoruKontrol_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FavoriCevapKontrol">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/FavoriCevapKontrol" message="tns:IService1_FavoriCevapKontrol_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/FavoriCevapKontrolResponse" message="tns:IService1_FavoriCevapKontrol_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
@@ -386,6 +396,15 @@
     </wsdl:operation>
     <wsdl:operation name="FavoriSoruKontrol">
       <soap:operation soapAction="http://tempuri.org/IService1/FavoriSoruKontrol" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FavoriCevapKontrol">
+      <soap:operation soapAction="http://tempuri.org/IService1/FavoriCevapKontrol" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
